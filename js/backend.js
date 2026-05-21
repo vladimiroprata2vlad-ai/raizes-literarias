@@ -511,7 +511,45 @@ function initAudioProgress() {
 }
 
 // ============================================
-// 14. PAÍSES - cards clicáveis
+// 14. COUNTDOWN TIMER
+// ============================================
+function initCountdown() {
+  const container = document.getElementById('countdown');
+  if (!container) return;
+
+  // Next launch: 7 days from now
+  const launchDate = new Date();
+  launchDate.setDate(launchDate.getDate() + 7);
+
+  function update() {
+    const now = new Date();
+    const diff = launchDate - now;
+
+    if (diff <= 0) {
+      container.innerHTML = '<div class="countdown-item"><span>00</span><small>Lançado!</small></div>';
+      return;
+    }
+
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    const items = container.querySelectorAll('.countdown-item span');
+    if (items.length >= 4) {
+      items[0].textContent = String(days).padStart(2, '0');
+      items[1].textContent = String(hours).padStart(2, '0');
+      items[2].textContent = String(mins).padStart(2, '0');
+      items[3].textContent = String(secs).padStart(2, '0');
+    }
+  }
+
+  update();
+  setInterval(update, 1000);
+}
+
+// ============================================
+// 15. PAÍSES - cards clicáveis
 // ============================================
 function initCountryCards() {
   document.querySelectorAll('.pais-card').forEach(card => {
@@ -602,6 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('compareTable')) initCompararPage();
   if (document.getElementById('writerDashboard')) initDashboardPage();
   if (document.getElementById('audioPlayerBar')) initAudioProgress();
+  if (document.getElementById('countdown')) initCountdown();
 
   // Load saved theme
   const savedTheme = localStorage.getItem('theme') || 'light';
