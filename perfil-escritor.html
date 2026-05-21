@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perfil do Escritor - Raízes Literárias">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#2D5A3D">
+  <title>Perfil do Escritor | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="paises.html">Países</a>
+        <a href="comunidade.html">Comunidade</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="entrevistas.html">Entrevistas</a>
+    <a href="loja.html">Livraria</a>
+    <a href="audiobooks.html">Audiobooks</a>
+  </div>
+
+  <!-- Profile Header -->
+  <section class="profile-header">
+    <div class="profile-cover">
+      <div class="profile-cover-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="profile-info">
+        <div class="profile-avatar-wrapper">
+          <div class="profile-avatar" id="profileAvatar">
+            <span id="profileInitials">PE</span>
+          </div>
+          <div class="verified-badge" id="verifiedBadge" style="display: none;">
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </div>
+        <div class="profile-details">
+          <div class="profile-name-row">
+            <h1 id="profileName">Nome do Escritor</h1>
+            <span class="profile-type-badge escritor">
+              <i class="fas fa-pen-fancy"></i> Escritor
+            </span>
+            <span class="verified-text" id="verifiedText" style="display: none;">
+              <i class="fas fa-check-circle"></i> Verificado
+            </span>
+          </div>
+          <p class="profile-bio" id="profileBio">Biografia do escritor...</p>
+          <div class="profile-meta">
+            <span><i class="fas fa-map-marker-alt"></i> <span id="profileLocation">Angola</span></span>
+            <span><i class="fas fa-calendar"></i> Membro desde <span id="profileJoinDate">2026</span></span>
+            <span><i class="fas fa-book"></i> <span id="profileBookCount">12</span> livros</span>
+            <span><i class="fas fa-users"></i> <span id="profileFollowers">1.2K</span> seguidores</span>
+          </div>
+          <div class="profile-actions">
+            <button class="btn btn-primary" onclick="followWriter()">
+              <i class="fas fa-user-plus"></i> Seguir
+            </button>
+            <button class="btn btn-secondary" style="border-color: var(--cinza-light); color: var(--preto);" onclick="sendMessage()">
+              <i class="fas fa-envelope"></i> Mensagem
+            </button>
+            <button class="btn btn-secondary" style="border-color: var(--cinza-light); color: var(--preto);" onclick="shareProfile()">
+              <i class="fas fa-share-alt"></i> Partilhar
+            </button>
+            <button class="btn btn-secondary" style="border-color: var(--terracotta); color: var(--terracotta);" onclick="openTipModal('Pepetela')">
+              <i class="fas fa-hand-holding-heart"></i> Apoiar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile Content -->
+  <section class="profile-content">
+    <div class="container">
+      <div class="profile-layout">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+          <!-- Stats Card -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-chart-bar"></i> Estatísticas</h3>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-number" id="totalBooks">12</span>
+                <span class="stat-label">Livros</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="totalReaders">5.4K</span>
+                <span class="stat-label">Leitores</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="totalReviews">234</span>
+                <span class="stat-label">Avaliações</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="avgRating">4.8</span>
+                <span class="stat-label">Média</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Genres Card -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-tags"></i> Géneros</h3>
+            <div class="genres-list">
+              <span class="genre-tag">Romance</span>
+              <span class="genre-tag">Ficção</span>
+              <span class="genre-tag">Poesia</span>
+              <span class="genre-tag">Histórico</span>
+            </div>
+          </div>
+
+          <!-- Awards Card -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-trophy"></i> Prémios</h3>
+            <div class="awards-list">
+              <div class="award-item">
+                <i class="fas fa-medal" style="color: var(--dourado);"></i>
+                <div>
+                  <strong>Prémio Camões</strong>
+                  <span>2023</span>
+                </div>
+              </div>
+              <div class="award-item">
+                <i class="fas fa-medal" style="color: #C0C0C0;"></i>
+                <div>
+                  <strong>Prémio Literário</strong>
+                  <span>2022</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-link"></i> Redes Sociais</h3>
+            <div class="social-links-list">
+              <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+              <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+              <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+              <a href="#"><i class="fas fa-globe"></i> Website</a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="profile-main">
+          <!-- Tabs -->
+          <div class="profile-tabs">
+            <button class="profile-tab active" data-tab="livros">
+              <i class="fas fa-book"></i> Livros
+            </button>
+            <button class="profile-tab" data-tab="sobre">
+              <i class="fas fa-user"></i> Sobre
+            </button>
+            <button class="profile-tab" data-tab="comentarios">
+              <i class="fas fa-comments"></i> Comentários
+            </button>
+            <button class="profile-tab" data-tab="comunidade">
+              <i class="fas fa-users"></i> Comunidade
+            </button>
+          </div>
+
+          <!-- Tab Content: Livros -->
+          <div class="tab-content active" id="tab-livros">
+            <div class="books-header">
+              <h2>Livros Publicados</h2>
+              <div class="books-filter">
+                <select id="bookFilter">
+                  <option value="todos">Todos</option>
+                  <option value="romance">Romance</option>
+                  <option value="poesia">Poesia</option>
+                  <option value="conto">Conto</option>
+                </select>
+              </div>
+            </div>
+            <div class="books-grid" id="booksGrid">
+              <!-- Books will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Tab Content: Sobre -->
+          <div class="tab-content" id="tab-sobre">
+            <div class="about-section">
+              <h2>Sobre o Autor</h2>
+              <div class="about-text" id="aboutText">
+                <p>Escritor angolano nascido em Luanda, Pepetela é um dos maiores nomes da literatura africana. Sua obra retrata a complexidade da sociedade angolana, desde a luta pela independência até os desafios contemporâneos.</p>
+                <p>Com mais de 20 obras publicadas, incluindo romances, contos e peças de teatro, Pepetela recebeu inúmeros prémios internacionais, incluindo o Prémio Camões em 2023.</p>
+              </div>
+
+              <h3><i class="fas fa-graduation-cap"></i> Formação</h3>
+              <ul class="about-list">
+                <li>Licenciatura em Sociologia - Universidade de Lisboa</li>
+                <li>Mestrado em Literatura - Universidade Agostinho Neto</li>
+              </ul>
+
+              <h3><i class="fas fa-briefcase"></i> Experiência</h3>
+              <ul class="about-list">
+                <li>Professor de Literatura - Universidade Agostinho Neto</li>
+                <li>Escritor profissional desde 1972</li>
+                <li>Membro da União dos Escritores Angolanos</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tab Content: Comentários -->
+          <div class="tab-content" id="tab-comentarios">
+            <div class="comments-section">
+              <h2>Comentários dos Leitores</h2>
+              <div class="comments-list" id="commentsList">
+                <!-- Comments will be loaded here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: Comunidade -->
+          <div class="tab-content" id="tab-comunidade">
+            <div class="community-section">
+              <h2>Posts da Comunidade</h2>
+              <div class="community-posts" id="communityPosts">
+                <!-- Community posts will be loaded here -->
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

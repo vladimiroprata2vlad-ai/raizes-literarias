@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ranking dos leitores mais ativos da comunidade Raízes Literárias.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#2D5A3D">
+  <title>Ranking | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+  <style>
+    .page-hero {
+      margin-top: 70px;
+      padding: 80px 0 40px;
+      background: linear-gradient(135deg, var(--dourado), var(--terracotta), var(--verde-dark));
+      color: white;
+      text-align: center;
+    }
+    .page-hero h1 i { color: white; }
+    .ranking-section { padding: 60px 0; }
+    .ranking-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--branco);
+      border-radius: var(--radius);
+      box-shadow: var(--sombra);
+      overflow: hidden;
+    }
+    .lb-row:first-child { background: rgba(212,168,67,0.08); }
+    .lb-row:nth-child(2) { background: rgba(192,192,192,0.08); }
+    .lb-row:nth-child(3) { background: rgba(205,127,50,0.08); }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="paises.html">Países</a>
+        <a href="comunidade.html">Comunidade</a>
+        <a href="entrevistas.html">Entrevistas</a>
+        <a href="loja.html">Livrarias</a>
+        <a href="audiobooks.html">Audiobooks</a>
+              </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="entrevistas.html">Entrevistas</a>
+    <a href="loja.html">Livrarias</a>
+    <a href="audiobooks.html">Audiobooks</a>
+      </div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="fas fa-trophy"></i> Ranking da Comunidade</h1>
+      <p>Os leitores mais ativos e dedicados da plataforma</p>
+    </div>
+  </section>
+
+  <section class="ranking-section">
+    <div class="container">
+      <div class="ranking-container" id="leaderboardBody"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', renderLeaderboard);</script>
+</body>
+</html>

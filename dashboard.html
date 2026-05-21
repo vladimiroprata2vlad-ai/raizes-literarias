@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard do Escritor - Raízes Literárias">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#2D5A3D">
+  <title>Dashboard | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="comunidade.html">Comunidade</a>
+  </div>
+
+  <!-- Dashboard -->
+  <section class="dashboard-section">
+    <div class="container">
+      <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+          <div class="dashboard-user">
+            <div class="dashboard-avatar">
+              <span id="dashboardInitials">PE</span>
+            </div>
+            <div class="dashboard-user-info">
+              <h3 id="dashboardName">Nome do Escritor</h3>
+              <span class="dashboard-role">Escritor</span>
+            </div>
+          </div>
+
+          <nav class="dashboard-nav">
+            <a href="#" class="dashboard-link active" data-section="overview">
+              <i class="fas fa-home"></i> Visão Geral
+            </a>
+            <a href="#" class="dashboard-link" data-section="books">
+              <i class="fas fa-book"></i> Meus Livros
+            </a>
+            <a href="#" class="dashboard-link" data-section="upload">
+              <i class="fas fa-upload"></i> Publicar Livro
+            </a>
+            <a href="#" class="dashboard-link" data-section="comments">
+              <i class="fas fa-comments"></i> Comentários
+            </a>
+            <a href="#" class="dashboard-link" data-section="analytics">
+              <i class="fas fa-chart-line"></i> Análises
+            </a>
+            <a href="#" class="dashboard-link" data-section="writer-stats">
+              <i class="fas fa-chart-pie"></i> Painel
+            </a>
+            <a href="#" class="dashboard-link" data-section="settings">
+              <i class="fas fa-cog"></i> Configurações
+            </a>
+          </nav>
+
+          <div class="dashboard-premium">
+            <i class="fas fa-crown"></i>
+            <h4>Premium</h4>
+            <p>Responda comentários e tenha análises avançadas</p>
+            <a href="#" class="btn btn-gold btn-sm" onclick="showToast('Premium em desenvolvimento', 'info'); return false;">Ativar Premium</a>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+          <!-- Overview Section -->
+          <div class="dashboard-section-content active" id="section-overview">
+            <h2>Visão Geral</h2>
+            <div class="stats-cards">
+              <div class="stat-card">
+                <div class="stat-card-icon" style="background: linear-gradient(135deg, var(--terracotta), var(--dourado));">
+                  <i class="fas fa-book"></i>
+                </div>
+                <div class="stat-card-info">
+                  <span class="stat-card-number" id="dashTotalBooks">12</span>
+                  <span class="stat-card-label">Livros Publicados</span>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-icon" style="background: linear-gradient(135deg, var(--verde), #4CAF50);">
+                  <i class="fas fa-download"></i>
+                </div>
+                <div class="stat-card-info">
+                  <span class="stat-card-number" id="dashTotalDownloads">5.4K</span>
+                  <span class="stat-card-label">Downloads</span>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-icon" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53);">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-card-info">
+                  <span class="stat-card-number" id="dashAvgRating">4.8</span>
+                  <span class="stat-card-label">Avaliação Média</span>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-card-info">
+                  <span class="stat-card-number" id="dashFollowers">1.2K</span>
+                  <span class="stat-card-label">Seguidores</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+              <h3>Atividade Recente</h3>
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fas fa-comment" style="color: var(--verde);"></i>
+                  </div>
+                  <div class="activity-info">
+                    <p><strong>Maria Silva</strong> comentou em <strong>Terra Sonâmbula</strong></p>
+                    <span>Há 2 horas</span>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fas fa-star" style="color: var(--dourado);"></i>
+                  </div>
+                  <div class="activity-info">
+                    <p><strong>João Santos</strong> avaliou <strong>Mayombe</strong> com 5 estrelas</p>
+                    <span>Há 5 horas</span>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fas fa-user-plus" style="color: var(--terracotta);"></i>
+                  </div>
+                  <div class="activity-info">
+                    <p><strong>Ana Costa</strong> começou a seguir-te</p>
+                    <span>Há 1 dia</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Books Section -->
+          <div class="dashboard-section-content" id="section-books">
+            <div class="section-header">
+              <h2>Meus Livros</h2>
+              <button class="btn btn-primary" onclick="showSection('upload')">
+                <i class="fas fa-plus"></i> Novo Livro
+              </button>
+            </div>
+            <div class="books-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Livro</th>
+                    <th>Género</th>
+                    <th>Downloads</th>
+                    <th>Avaliação</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="booksTableBody">
+                  <!-- Books will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Upload Section -->
+          <div class="dashboard-section-content" id="section-upload">
+            <h2>Publicar Novo Livro</h2>
+            <form id="uploadForm" class="upload-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bookTitle">Título do Livro *</label>
+                  <input type="text" id="bookTitle" required placeholder="Título da obra">
+                </div>
+                <div class="form-group">
+                  <label for="bookGenre">Género *</label>
+                  <select id="bookGenre" required>
+                    <option value="">Selecciona o género</option>
+                    <option value="romance">Romance</option>
+                    <option value="poesia">Poesia</option>
+                    <option value="conto">Conto</option>
+                    <option value="teatro">Teatro</option>
+                    <option value="ensaio">Ensaio</option>
+                    <option value="infantil">Infantil</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="bookDescription">Sinopse *</label>
+                <textarea id="bookDescription" rows="5" required placeholder="Descreva sua obra..."></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bookPages">Número de Páginas</label>
+                  <input type="number" id="bookPages" placeholder="Ex: 320">
+                </div>
+                <div class="form-group">
+                  <label for="bookPrice">Preço (Kz)</label>
+                  <input type="number" id="bookPrice" placeholder="0 para gratuito">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Capa do Livro</label>
+                <div class="file-upload" id="coverUpload">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <p>Arraste a imagem ou clique para selecionar</p>
+                  <span>Formatos: JPG, PNG (Máx. 5MB)</span>
+                  <input type="file" id="bookCover" accept="image/*">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Arquivo do Livro</label>
+                <div class="file-upload" id="fileUpload">
+                  <i class="fas fa-file-pdf"></i>
+                  <p>Arraste o arquivo ou clique para selecionar</p>
+                  <span>Formatos: PDF, EPUB, MOBI</span>
+                  <input type="file" id="bookFile" accept=".pdf,.epub,.mobi">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="bookFree"> Disponibilizar como audiobook
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-upload"></i> Publicar Livro
+                </button>
+                <button type="button" class="btn btn-secondary" style="border-color: var(--cinza-light); color: var(--preto);">
+                  <i class="fas fa-save"></i> Guardar Rascunho
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Comments Section -->
+          <div class="dashboard-section-content" id="section-comments">
+            <h2>Comentários</h2>
+            <div class="premium-notice">
+              <i class="fas fa-crown"></i>
+              <div>
+                <h3>Funcionalidade Premium</h3>
+                <p>Para responder aos comentários dos leitores, ative a conta Premium.</p>
+                <a href="#" class="btn btn-gold btn-sm" onclick="showToast('Premium em desenvolvimento', 'info'); return false;">Ativar Premium</a>
+              </div>
+            </div>
+            <div class="comments-list" id="dashCommentsList">
+              <!-- Comments will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Analytics Section -->
+          <div class="dashboard-section-content" id="section-analytics">
+            <h2>Análises</h2>
+            <div class="analytics-grid">
+              <div class="analytics-card">
+                <h3>Downloads por Mês</h3>
+                <div class="chart-placeholder">
+                  <div class="chart-bars">
+                    <div class="chart-bar" style="height: 60%;"><span>Jan</span></div>
+                    <div class="chart-bar" style="height: 80%;"><span>Fev</span></div>
+                    <div class="chart-bar" style="height: 45%;"><span>Mar</span></div>
+                    <div class="chart-bar" style="height: 90%;"><span>Abr</span></div>
+                    <div class="chart-bar" style="height: 70%;"><span>Mai</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="analytics-card">
+                <h3>Avaliações</h3>
+                <div class="rating-breakdown">
+                  <div class="rating-row">
+                    <span>5 estrelas</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width: 65%;"></div></div>
+                    <span>65%</span>
+                  </div>
+                  <div class="rating-row">
+                    <span>4 estrelas</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width: 25%;"></div></div>
+                    <span>25%</span>
+                  </div>
+                  <div class="rating-row">
+                    <span>3 estrelas</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width: 7%;"></div></div>
+                    <span>7%</span>
+                  </div>
+                  <div class="rating-row">
+                    <span>2 estrelas</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width: 2%;"></div></div>
+                    <span>2%</span>
+                  </div>
+                  <div class="rating-row">
+                    <span>1 estrela</span>
+                    <div class="rating-bar"><div class="rating-fill" style="width: 1%;"></div></div>
+                    <span>1%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Writer Stats Section -->
+          <div class="dashboard-section-content" id="section-writer-stats">
+            <h2><i class="fas fa-chart-pie"></i> Painel do Escritor</h2>
+            <div id="writerDashboard"></div>
+          </div>
+
+          <!-- Settings Section -->
+          <div class="dashboard-section-content" id="section-settings">
+            <h2>Configurações</h2>
+            <form id="settingsForm" class="settings-form">
+              <div class="form-group">
+                <label for="settingsName">Nome</label>
+                <input type="text" id="settingsName" value="Nome do Escritor">
+              </div>
+              <div class="form-group">
+                <label for="settingsBio">Biografia</label>
+                <textarea id="settingsBio" rows="4">Biografia do escritor...</textarea>
+              </div>
+              <div class="form-group">
+                <label for="settingsLocation">Localização</label>
+                <input type="text" id="settingsLocation" value="Luanda, Angola">
+              </div>
+              <div class="form-group">
+                <label for="settingsWebsite">Website</label>
+                <input type="url" id="settingsWebsite" placeholder="https://seusite.com">
+              </div>
+              <div class="form-group">
+                <label>Redes Sociais</label>
+                <div class="social-inputs">
+                  <div class="social-input">
+                    <i class="fab fa-facebook-f"></i>
+                    <input type="text" placeholder="Facebook">
+                  </div>
+                  <div class="social-input">
+                    <i class="fab fa-instagram"></i>
+                    <input type="text" placeholder="Instagram">
+                  </div>
+                  <div class="social-input">
+                    <i class="fab fa-twitter"></i>
+                    <input type="text" placeholder="Twitter">
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Guardar Alterações
+              </button>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

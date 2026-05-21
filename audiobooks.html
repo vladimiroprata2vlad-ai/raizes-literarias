@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Audiobooks de literatura global. Ouve obras de escritores de todo o mundo em áudio.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#2D5A3D">
+  <title>Audiobooks | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+  <style>
+    .page-hero {
+      margin-top: 70px;
+      padding: 80px 0 40px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      color: white;
+      text-align: center;
+    }
+    .page-hero h1 i { color: var(--dourado); }
+    .audiobooks-section { padding: 60px 0; }
+    .audio-player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--verde-dark);
+      color: white;
+      padding: 15px 20px;
+      z-index: 998;
+      display: none;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+    }
+    .audio-player-bar.active {
+      display: block;
+    }
+    .audio-player-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .audio-player-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 200px;
+    }
+    .audio-player-thumb {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--terracotta), var(--dourado));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .audio-player-text h4 {
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+    .audio-player-text span {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+    .audio-player-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .audio-player-controls button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    .audio-player-controls button:hover {
+      color: var(--dourado);
+    }
+    .audio-player-controls .play-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .audio-player-progress {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .audio-player-progress input[type="range"] {
+      flex: 1;
+      height: 4px;
+      -webkit-appearance: none;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+      outline: none;
+    }
+    .audio-player-progress input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--dourado);
+      cursor: pointer;
+    }
+    .audio-player-progress span {
+      font-size: 0.8rem;
+      min-width: 40px;
+    }
+    .audio-player-volume {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .audio-player-volume input[type="range"] {
+      width: 80px;
+      height: 4px;
+      -webkit-appearance: none;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+      outline: none;
+    }
+    .audio-player-volume input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+    }
+    .audio-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      transition: var(--transition);
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      margin-bottom: 15px;
+    }
+    .audio-card:hover {
+      box-shadow: var(--sombra-hover);
+      transform: translateY(-2px);
+    }
+    .audio-card-cover {
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      position: relative;
+    }
+    .audio-card-cover .play-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .audio-card:hover .play-overlay {
+      opacity: 1;
+    }
+    .play-overlay i {
+      font-size: 2rem;
+      color: white;
+    }
+    .audio-card-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .audio-card-info h3 {
+      font-size: 1.1rem;
+      color: var(--verde);
+      margin-bottom: 5px;
+    }
+    .audio-card-info .autor {
+      color: var(--terracotta);
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    .audio-card-info .meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.8rem;
+      color: var(--cinza);
+    }
+    .audio-card-info .meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .audio-card-info .duracao {
+      color: var(--dourado);
+      font-weight: 500;
+    }
+    .audio-categories {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .audio-cat-btn {
+      padding: 10px 20px;
+      border: 2px solid var(--marfim-dark);
+      background: transparent;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: var(--font-corpo);
+      font-weight: 500;
+      transition: var(--transition);
+      color: var(--preto);
+    }
+    .audio-cat-btn.active, .audio-cat-btn:hover {
+      background: var(--verde);
+      border-color: var(--verde);
+      color: white;
+    }
+    .featured-audio {
+      background: linear-gradient(135deg, var(--verde-dark), var(--verde));
+      border-radius: var(--radius);
+      padding: 40px;
+      color: white;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .featured-audio-cover {
+      height: 200px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--terracotta), var(--dourado));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    .featured-audio-info h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .featured-audio-info .autor {
+      color: var(--dourado);
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+    .featured-audio-info p {
+      opacity: 0.9;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .featured-audio-meta {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .featured-audio-meta span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.8;
+    }
+    @media (max-width: 768px) {
+      .featured-audio {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .featured-audio-cover {
+        margin: 0 auto;
+        width: 150px;
+        height: 150px;
+      }
+      .featured-audio-meta {
+        justify-content: center;
+      }
+      .audio-card {
+        grid-template-columns: 100px 1fr;
+      }
+      .audio-card-cover {
+        height: 100px;
+        font-size: 2rem;
+      }
+      .audio-player-content {
+        flex-wrap: wrap;
+      }
+      .audio-player-progress {
+        order: 3;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="paises.html">Países</a>
+        <a href="comunidade.html">Comunidade</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="entrevistas.html">Entrevistas</a>
+    <a href="loja.html">Livraria</a>
+    <a href="audiobooks.html">Audiobooks</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="fas fa-headphones"></i> Audiobooks</h1>
+      <p>Ouve as melhores obras da literatura global em áudio</p>
+    </div>
+  </section>
+
+  <!-- Featured Audio -->
+  <section class="audiobooks-section">
+    <div class="container">
+      <div class="featured-audio">
+        <div class="featured-audio-cover">
+          <i class="fas fa-book"></i>
+        </div>
+        <div class="featured-audio-info">
+          <h2>Terra Sonâmbula</h2>
+          <p class="autor">Mia Couto</p>
+          <p>Uma das obras mais importantes da literatura moçambicana. A história de Tuahir e Muidinga, dois sobreviventes de uma guerra, que encontram um caderno com histórias de amor e esperança.</p>
+          <div class="featured-audio-meta">
+            <span><i class="fas fa-clock"></i> 8h 30min</span>
+            <span><i class="fas fa-headphones"></i> 24 capítulos</span>
+            <span><i class="fas fa-star"></i> 4.9</span>
+          </div>
+          <button class="btn btn-gold" onclick="playAudio('Terra Sonâmbula', 'Mia Couto', '8:30:00')">
+            <i class="fas fa-play"></i> Ouvir Agora
+          </button>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="audio-categories">
+        <button class="audio-cat-btn active" data-cat="todos">Todos</button>
+        <button class="audio-cat-btn" data-cat="romance">Romance</button>
+        <button class="audio-cat-btn" data-cat="poesia">Poesia</button>
+        <button class="audio-cat-btn" data-cat="conto">Conto</button>
+        <button class="audio-cat-btn" data-cat="infantil">Infantil</button>
+      </div>
+
+      <!-- Audio List -->
+      <div id="audioList">
+        <div class="audio-card" data-cat="romance" data-pais="angola">
+          <div class="audio-card-cover" style="background: linear-gradient(135deg, #C75B39, #D4A843);">
+            <div class="play-overlay" onclick="playAudio('Mayombe', 'Pepetela', '6:45:00')">
+              <i class="fas fa-play"></i>
+            </div>
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="audio-card-info">
+            <h3>Mayombe</h3>
+            <p class="autor">Pepetela</p>
+            <div class="meta">
+              <span><i class="fas fa-globe-africa"></i> Angola</span>
+              <span><i class="fas fa-headphones"></i> 18 capítulos</span>
+              <span class="duracao"><i class="fas fa-clock"></i> 6h 45min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="audio-card" data-cat="romance" data-pais="caboverde">
+          <div class="audio-card-cover" style="background: linear-gradient(135deg, #8B4513, #D2691E);">
+            <div class="play-overlay" onclick="playAudio('Chiquinho', 'Baltasar Lopes', '5:20:00')">
+              <i class="fas fa-play"></i>
+            </div>
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="audio-card-info">
+            <h3>Chiquinho</h3>
+            <p class="autor">Baltasar Lopes</p>
+            <div class="meta">
+              <span><i class="fas fa-globe-africa"></i> Cabo Verde</span>
+              <span><i class="fas fa-headphones"></i> 15 capítulos</span>
+              <span class="duracao"><i class="fas fa-clock"></i> 5h 20min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="audio-card" data-cat="romance" data-pais="angola">
+          <div class="audio-card-cover" style="background: linear-gradient(135deg, #4A0E0E, #8B0000);">
+            <div class="play-overlay" onclick="playAudio('O Vendedor de Passados', 'José Eduardo Agualusa', '7:10:00')">
+              <i class="fas fa-play"></i>
+            </div>
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="audio-card-info">
+            <h3>O Vendedor de Passados</h3>
+            <p class="autor">José Eduardo Agualusa</p>
+            <div class="meta">
+              <span><i class="fas fa-globe-africa"></i> Angola</span>
+              <span><i class="fas fa-headphones"></i> 20 capítulos</span>
+              <span class="duracao"><i class="fas fa-clock"></i> 7h 10min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="audio-card" data-cat="poesia" data-pais="mocambique">
+          <div class="audio-card-cover" style="background: linear-gradient(135deg, #8B4513, #A0522D);">
+            <div class="play-overlay" onclick="playAudio('Vozeria', 'José Craveirinha', '2:30:00')">
+              <i class="fas fa-play"></i>
+            </div>
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="audio-card-info">
+            <h3>Vozeria</h3>
+            <p class="autor">José Craveirinha</p>
+            <div class="meta">
+              <span><i class="fas fa-globe-africa"></i> Moçambique</span>
+              <span><i class="fas fa-headphones"></i> 45 poemas</span>
+              <span class="duracao"><i class="fas fa-clock"></i> 2h 30min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="audio-card" data-cat="romance" data-pais="internacional">
+          <div class="audio-card-cover" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <div class="play-overlay" onclick="playAudio('O Alquimista', 'Paulo Coelho', '4:15:00')">
+              <i class="fas fa-play"></i>
+            </div>
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="audio-card-info">
+            <h3>O Alquimista</h3>
+            <p class="autor">Paulo Coelho</p>
+            <div class="meta">
+              <span><i class="fas fa-globe-africa"></i> Internacional</span>
+              <span><i class="fas fa-headphones"></i> 12 capítulos</span>
+              <span class="duracao"><i class="fas fa-clock"></i> 4h 15min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="audio-card" data-cat="conto" data-pais="guine">
+          <div class="audio-card-cover" style="background: linear-gradient(135deg, #006400, #228B22);">
+            <div class="play-overlay" onclick="playAudio('Mestre Tamoda', 'Uanhenga Xitu', '3:45:00')">
+              <i class="fas fa-play"></i>
+            </div>
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="audio-card-info">
+            <h3>Mestre Tamoda</h3>
+            <p class="autor">Uanhenga Xitu</p>
+            <div class="meta">
+              <span><i class="fas fa-globe-africa"></i> Guiné-Bissau</span>
+              <span><i class="fas fa-headphones"></i> 10 contos</span>
+              <span class="duracao"><i class="fas fa-clock"></i> 3h 45min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="audio-card" data-cat="romance" data-pais="saotome">
+          <div class="audio-card-cover" style="background: linear-gradient(135deg, #DAA520, #B8860B);">
+            <div class="play-overlay" onclick="playAudio('A Costa dos Murmúrios', 'Lília Momplé', '5:50:00')">
+              <i class="fas fa-play"></i>
+            </div>
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="audio-card-info">
+            <h3>A Costa dos Murmúrios</h3>
+            <p class="autor">Lília Momplé</p>
+            <div class="meta">
+              <span><i class="fas fa-globe-africa"></i> São Tomé e Príncipe</span>
+              <span><i class="fas fa-headphones"></i> 16 capítulos</span>
+              <span class="duracao"><i class="fas fa-clock"></i> 5h 50min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="audio-card" data-cat="infantil" data-pais="mocambique">
+          <div class="audio-card-cover" style="background: linear-gradient(135deg, #FF6B6B, #FFA07A);">
+            <div class="play-overlay" onclick="playAudio('O Bebê que Sabia Voar', 'Abdulai Silá', '1:20:00')">
+              <i class="fas fa-play"></i>
+            </div>
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="audio-card-info">
+            <h3>O Bebê que Sabia Voar</h3>
+            <p class="autor">Abdulai Silá</p>
+            <div class="meta">
+              <span><i class="fas fa-globe-africa"></i> Moçambique</span>
+              <span><i class="fas fa-headphones"></i> 8 capítulos</span>
+              <span class="duracao"><i class="fas fa-clock"></i> 1h 20min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audio Player Bar -->
+  <div class="audio-player-bar" id="audioPlayerBar">
+    <div class="audio-player-content">
+      <div class="audio-player-info">
+        <div class="audio-player-thumb">
+          <i class="fas fa-headphones"></i>
+        </div>
+        <div class="audio-player-text">
+          <h4 id="playerTitle">Título do Audiobook</h4>
+          <span id="playerAutor">Autor</span>
+        </div>
+      </div>
+      <div class="audio-player-controls">
+        <button onclick="audioBackward()"><i class="fas fa-undo"></i></button>
+        <button class="play-btn" id="playPauseBtn" onclick="togglePlayPause()">
+          <i class="fas fa-play"></i>
+        </button>
+        <button onclick="audioForward()"><i class="fas fa-redo"></i></button>
+      </div>
+      <div class="audio-player-progress">
+        <span id="currentTime">0:00</span>
+        <input type="range" id="progressBar" min="0" max="100" value="0" oninput="seekAudio(this.value)">
+        <span id="totalTime">0:00</span>
+      </div>
+      <div class="audio-player-volume">
+        <i class="fas fa-volume-up"></i>
+        <input type="range" min="0" max="100" value="80" oninput="setVolume(this.value)">
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" style="padding-bottom: 100px;">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Language Selector (Bottom) -->
+  <div class="lang-selector-bottom" id="langSelectorBottom">
+    <button class="lang-btn-bottom" onclick="toggleLangMenuBottom()">
+      <i class="fas fa-globe"></i>
+      <span id="currentLangBottom">PT</span>
+    </button>
+    <div class="lang-menu-bottom" id="langMenuBottom">
+      <a href="#" onclick="setLangBottom('pt')" class="active">🇵🇹 Português</a>
+      <a href="#" onclick="setLangBottom('en')">🇬🇧 English</a>
+      <a href="#" onclick="setLangBottom('es')">🇪🇸 Español</a>
+      <a href="#" onclick="setLangBottom('fr')">🇫🇷 Français</a>
+      <a href="#" onclick="setLangBottom('ar')">🇸🇦 العربية</a>
+      <a href="#" onclick="setLangBottom('zh')">🇨🇳 中文</a>
+      <a href="#" onclick="setLangBottom('ja')">🇯🇵 日本語</a>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+  <script>
+    // Audio Player State
+    let isPlaying = false;
+    let currentAudio = null;
+
+    // Audio data (simulated)
+    const audioData = {
+      'Terra Sonâmbula': { autor: 'Mia Couto', duracao: '8:30:00', segundos: 30600 },
+      'Mayombe': { autor: 'Pepetela', duracao: '6:45:00', segundos: 24300 },
+      'Chiquinho': { autor: 'Baltasar Lopes', duracao: '5:20:00', segundos: 19200 },
+      'O Vendedor de Passados': { autor: 'José Eduardo Agualusa', duracao: '7:10:00', segundos: 25800 },
+      'Vozeria': { autor: 'José Craveirinha', duracao: '2:30:00', segundos: 9000 },
+      'O Alquimista': { autor: 'Paulo Coelho', duracao: '4:15:00', segundos: 15300 },
+      'Mestre Tamoda': { autor: 'Uanhenga Xitu', duracao: '3:45:00', segundos: 13500 },
+      'A Costa dos Murmúrios': { autor: 'Lília Momplé', duracao: '5:50:00', segundos: 21000 },
+      'O Bebê que Sabia Voar': { autor: 'Abdulai Silá', duracao: '1:20:00', segundos: 4800 }
+    };
+
+    // Play audio
+    function playAudio(title, autor, duracao) {
+      currentAudio = { title, autor, duracao };
+      const playerBar = document.getElementById('audioPlayerBar');
+      const playerTitle = document.getElementById('playerTitle');
+      const playerAutor = document.getElementById('playerAutor');
+      const totalTime = document.getElementById('totalTime');
+
+      playerTitle.textContent = title;
+      playerAutor.textContent = autor;
+      totalTime.textContent = duracao;
+
+      playerBar.classList.add('active');
+      isPlaying = true;
+      updatePlayButton();
+
+      showToast(`Tocando: ${title}`);
+    }
+
+    // Toggle play/pause
+    function togglePlayPause() {
+      isPlaying = !isPlaying;
+      updatePlayButton();
+    }
+
+    function updatePlayButton() {
+      const btn = document.getElementById('playPauseBtn');
+      btn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+    }
+
+    // Forward/Backward
+    function audioForward() {
+      const bar = document.getElementById('progressBar');
+      if (bar) bar.value = Math.min(100, parseInt(bar.value) + 5);
+      updateProgressDisplay();
+      showToast('Avançando 30 segundos');
+    }
+
+    function audioBackward() {
+      const bar = document.getElementById('progressBar');
+      if (bar) bar.value = Math.max(0, parseInt(bar.value) - 3);
+      updateProgressDisplay();
+      showToast('Retrocedendo 15 segundos');
+    }
+
+    // Seek
+    function seekAudio(value) {
+      updateProgressDisplay();
+    }
+
+    // Volume
+    function setVolume(value) {
+      const icon = document.getElementById('volumeIcon');
+      if (icon) {
+        if (value == 0) icon.className = 'fas fa-volume-mute';
+        else if (value < 50) icon.className = 'fas fa-volume-down';
+        else icon.className = 'fas fa-volume-up';
+      }
+    }
+
+    // Update progress display
+    function updateProgressDisplay() {
+      const bar = document.getElementById('progressBar');
+      const current = document.getElementById('currentTime');
+      if (!bar || !current || !currentAudio) return;
+      const total = audioDatabase[currentAudio.title]?.segundos || 3600;
+      const pct = parseInt(bar.value) / 100;
+      const secs = Math.floor(total * pct);
+      const h = Math.floor(secs / 3600);
+      const m = Math.floor((secs % 3600) / 60);
+      const s = secs % 60;
+      current.textContent = h > 0 ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}` : `${m}:${s.toString().padStart(2,'0')}`;
+    }
+
+    // Category filter
+    document.querySelectorAll('.audio-cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.audio-cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const cat = btn.dataset.cat;
+        document.querySelectorAll('.audio-card').forEach(card => {
+          if (cat === 'todos' || card.dataset.cat === cat) {
+            card.style.display = 'grid';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

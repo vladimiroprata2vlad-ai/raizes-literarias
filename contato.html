@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+  <style>
+    .page-hero {
+      margin-top: 70px;
+      padding: 80px 0 40px;
+      background: linear-gradient(135deg, var(--verde-dark), var(--verde));
+      color: white;
+      text-align: center;
+    }
+    .contato-section { padding: 60px 0; }
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .contato-grid { grid-template-columns: 1fr; }
+    }
+    .contato-info {
+      padding: 30px;
+      background: var(--verde);
+      border-radius: var(--radius);
+      color: white;
+    }
+    .contato-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+    .contato-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .contato-item i {
+      font-size: 1.2rem;
+      color: var(--dourado);
+      margin-top: 3px;
+    }
+    .contato-item h4 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+    .contato-item p {
+      opacity: 0.8;
+      font-size: 0.95rem;
+    }
+    .contato-social {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    .contato-social h4 {
+      margin-bottom: 15px;
+    }
+    .contato-social-links {
+      display: flex;
+      gap: 12px;
+    }
+    .contato-social-links a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: var(--transition);
+    }
+    .contato-social-links a:hover {
+      background: var(--terracotta);
+      transform: translateY(-3px);
+    }
+    .contato-form {
+      background: var(--branco);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--sombra);
+    }
+    .contato-form h3 {
+      color: var(--verde);
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--preto);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--marfim-dark);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-family: var(--font-corpo);
+      background: var(--marfim);
+      color: var(--preto);
+      transition: var(--transition);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--verde);
+    }
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .form-error {
+      color: var(--terracotta);
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
+    .form-group.error .form-error {
+      display: block;
+    }
+    .form-group.error input,
+    .form-group.error textarea {
+      border-color: var(--terracotta);
+    }
+    .form-success {
+      background: var(--verde);
+      color: white;
+      padding: 15px 20px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+      display: none;
+    }
+    .form-success.show {
+      display: block;
+    }
+    .faq-section {
+      padding: 60px 0;
+      background: var(--marfim);
+    }
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--branco);
+      border-radius: var(--radius);
+      margin-bottom: 15px;
+      box-shadow: var(--sombra);
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      color: var(--verde);
+      transition: var(--transition);
+    }
+    .faq-question:hover {
+      background: var(--marfim);
+    }
+    .faq-question i {
+      transition: var(--transition);
+    }
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 0 20px 20px;
+    }
+    .faq-answer p {
+      color: var(--cinza);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="paises.html">Países</a>
+        <a href="comunidade.html">Comunidade</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="entrevistas.html">Entrevistas</a>
+    <a href="loja.html">Livrarias</a>
+    <a href="audiobooks.html">Audiobooks</a>
+    <a href="contato.html">Contato</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="fas fa-envelope"></i> Contato</h1>
+      <p>Entre em contato connosco. Adoramos ouvir nossos leitores!</p>
+    </div>
+  </section>
+
+  <!-- Formulário de Contato -->
+  <section class="contato-section">
+    <div class="container">
+      <div class="contato-grid">
+        <div class="contato-info">
+          <h3>Fale Connosco</h3>
+          <div class="contato-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>contato@raizesliterarias.com</p>
+            </div>
+          </div>
+          <div class="contato-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Telefone</h4>
+              <p>+244 923 456 789</p>
+            </div>
+          </div>
+          <div class="contato-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Endereço</h4>
+              <p>Luanda, Angola</p>
+            </div>
+          </div>
+          <div class="contato-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h4>Horário</h4>
+              <p>Seg-Sex: 9h - 18h</p>
+            </div>
+          </div>
+          <div class="contato-social">
+            <h4>Redes Sociais</h4>
+            <div class="contato-social-links">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contato-form">
+          <h3>Envia a tua Mensagem</h3>
+          <div class="form-success" id="formSuccess">
+            <i class="fas fa-check-circle"></i> Mensagem enviada com sucesso! Responderemos em breve.
+          </div>
+          <form id="contatoForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nome">Nome *</label>
+                <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                <span class="form-error">Por favor, insira seu nome.</span>
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                <span class="form-error">Por favor, insira um email válido.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="assunto">Assunto *</label>
+              <select id="assunto" name="assunto" required>
+                <option value="">Selecciona o assunto</option>
+                <option value="duvida">Dúvida</option>
+                <option value="sugestao">Sugestão</option>
+                <option value="parceria">Parceria</option>
+                <option value="entrevista">Entrevista</option>
+                <option value="reclamacao">Reclamação</option>
+                <option value="outro">Outro</option>
+              </select>
+              <span class="form-error">Por favor, selecione o assunto.</span>
+            </div>
+            <div class="form-group">
+              <label for="mensagem">Mensagem *</label>
+              <textarea id="mensagem" name="mensagem" required placeholder="Escreve a tua mensagem..."></textarea>
+              <span class="form-error">Por favor, escreve a tua mensagem.</span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fas fa-paper-plane"></i> Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Perguntas Frequentes</h2>
+        <p>Respostas para as dúvidas mais comuns</p>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Como posso contribuir com meus livros?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Para publicar os teus livros na nossa plataforma, envie um email para contato@raizesliterarias.com com o assunto "Publicação de Livro". A nossa equipa analisará a tua obra e entrará em contacto.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Como funcionam os audiobooks?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Nossos audiobooks são narrações profissionais das melhores obras da literatura lusófona. Você pode ouvir online ou baixar para ouvir offline.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Como funciona a comunidade?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Nossa comunidade permite que leitores e escritores se conectem. Você pode participar de discussões, clube do livro, e até conversar diretamente com autores durante sessões de chat ao vivo.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Posso sugerir um escritor para entrevista?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Claro! Envia a tua sugestão pelo formulário de contato ou pelo email contato@raizesliterarias.com com o assunto "Sugestão de Entrevista".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Language Selector (Bottom) -->
+  <div class="lang-selector-bottom" id="langSelectorBottom">
+    <button class="lang-btn-bottom" onclick="toggleLangMenuBottom()">
+      <i class="fas fa-globe"></i>
+      <span id="currentLangBottom">PT</span>
+    </button>
+    <div class="lang-menu-bottom" id="langMenuBottom">
+      <a href="#" onclick="setLangBottom('pt')" class="active">🇵🇹 Português</a>
+      <a href="#" onclick="setLangBottom('en')">🇬🇧 English</a>
+      <a href="#" onclick="setLangBottom('es')">🇪🇸 Español</a>
+      <a href="#" onclick="setLangBottom('fr')">🇫🇷 Français</a>
+      <a href="#" onclick="setLangBottom('ar')">🇸🇦 العربية</a>
+      <a href="#" onclick="setLangBottom('zh')">🇨🇳 中文</a>
+      <a href="#" onclick="setLangBottom('ja')">🇯🇵 日本語</a>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+  <script>
+    // Validação do formulário
+    const contatoForm = document.getElementById('contatoForm');
+    if (contatoForm) {
+      contatoForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let isValid = true;
+
+        // Validar nome
+        const nome = document.getElementById('nome');
+        if (!nome.value.trim()) {
+          nome.parentElement.classList.add('error');
+          isValid = false;
+        } else {
+          nome.parentElement.classList.remove('error');
+        }
+
+        // Validar email
+        const email = document.getElementById('email');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+          email.parentElement.classList.add('error');
+          isValid = false;
+        } else {
+          email.parentElement.classList.remove('error');
+        }
+
+        // Validar assunto
+        const assunto = document.getElementById('assunto');
+        if (!assunto.value) {
+          assunto.parentElement.classList.add('error');
+          isValid = false;
+        } else {
+          assunto.parentElement.classList.remove('error');
+        }
+
+        // Validar mensagem
+        const mensagem = document.getElementById('mensagem');
+        if (!mensagem.value.trim()) {
+          mensagem.parentElement.classList.add('error');
+          isValid = false;
+        } else {
+          mensagem.parentElement.classList.remove('error');
+        }
+
+        if (isValid) {
+          document.getElementById('formSuccess').classList.add('show');
+          contatoForm.reset();
+          setTimeout(() => {
+            document.getElementById('formSuccess').classList.remove('show');
+          }, 5000);
+        }
+      });
+    }
+
+    // FAQ Toggle
+    function toggleFaq(element) {
+      const faqItem = element.parentElement;
+      faqItem.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

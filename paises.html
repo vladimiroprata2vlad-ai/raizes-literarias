@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explora a literatura de todos os países do mundo. Romance, poesia, ficção e mais em todos os idiomas.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#2D5A3D">
+  <title>Países | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+  <style>
+    .page-hero {
+      margin-top: 70px;
+      padding: 80px 0 40px;
+      background: linear-gradient(135deg, var(--verde-dark), var(--verde));
+      color: white;
+      text-align: center;
+    }
+    .page-hero h1 { margin-bottom: 10px; }
+    .page-hero p { opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+    /* Filter Bar */
+    .filter-bar {
+      padding: 20px 0;
+      background: var(--branco);
+      position: sticky;
+      top: 70px;
+      z-index: 100;
+      box-shadow: var(--sombra);
+    }
+    .filter-content {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-search {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 15px;
+      border: 2px solid var(--marfim-dark);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-family: var(--font-corpo);
+      background: var(--marfim);
+      color: var(--preto);
+    }
+    .filter-search:focus {
+      outline: none;
+      border-color: var(--verde);
+    }
+    .filter-select {
+      padding: 10px 15px;
+      border: 2px solid var(--marfim-dark);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-corpo);
+      font-size: 0.95rem;
+      background: var(--marfim);
+      color: var(--preto);
+      cursor: pointer;
+    }
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--verde);
+    }
+
+    /* Region Tabs */
+    .region-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .region-tab {
+      padding: 10px 20px;
+      border: 2px solid var(--marfim-dark);
+      background: transparent;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: var(--font-corpo);
+      font-weight: 500;
+      transition: var(--transition);
+      color: var(--preto);
+    }
+    .region-tab.active, .region-tab:hover {
+      background: var(--verde);
+      border-color: var(--verde);
+      color: white;
+    }
+
+    /* Countries Grid */
+    .paises-section {
+      padding: 40px 0;
+    }
+    .region-title {
+      font-size: 1.5rem;
+      color: var(--verde);
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .region-title i {
+      color: var(--terracotta);
+    }
+    .paises-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+    .pais-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 25px 20px;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+      box-shadow: var(--sombra);
+    }
+    .pais-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--terracotta);
+      box-shadow: var(--sombra-hover);
+    }
+    .pais-bandeira {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      display: block;
+      transition: var(--transition);
+    }
+    .pais-card:hover .pais-bandeira {
+      transform: scale(1.2) rotate(5deg);
+    }
+    .pais-card h3 {
+      font-size: 1rem;
+      color: var(--verde);
+      margin-bottom: 5px;
+    }
+    .pais-card .livros-count {
+      color: var(--cinza);
+      font-size: 0.8rem;
+    }
+    .pais-card .idioma {
+      display: inline-block;
+      padding: 3px 10px;
+      background: var(--marfim);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      color: var(--terracotta);
+      margin-top: 8px;
+    }
+
+    /* Lusófona Section */
+    .lusofona-section {
+      padding: 60px 0;
+      background: linear-gradient(135deg, var(--verde-dark), var(--verde));
+      color: white;
+    }
+    .lusofona-section .section-title h2 {
+      color: white;
+    }
+    .lusofona-section .section-title p {
+      color: rgba(255,255,255,0.8);
+    }
+    .lusofona-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .lusofona-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(5px);
+      border-radius: var(--radius);
+      padding: 25px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: var(--transition);
+    }
+    .lusofona-card:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-3px);
+    }
+    .lusofona-card-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .lusofona-card-header .bandeira {
+      font-size: 2.5rem;
+    }
+    .lusofona-card-header h3 {
+      font-size: 1.1rem;
+      margin-bottom: 3px;
+    }
+    .lusofona-card-header span {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+    .lusofona-card p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .lusofona-card .autores {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .lusofona-card .autor-tag {
+      padding: 5px 12px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .paises-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .filter-content {
+        flex-direction: column;
+      }
+      .filter-search, .filter-select {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="paises.html" class="active">Países</a>
+        <a href="comunidade.html">Comunidade</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="entrevistas.html">Entrevistas</a>
+    <a href="loja.html">Livrarias</a>
+    <a href="audiobooks.html">Audiobooks</a>
+      </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="fas fa-globe-americas"></i> Países do Mundo</h1>
+      <p>Explora a literatura de todos os cantos do planeta, em todos os idiomas</p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="filter-bar">
+    <div class="container">
+      <div class="filter-content">
+        <input type="text" class="filter-search" placeholder="Pesquisar país..." id="countrySearch">
+        <select class="filter-select" id="regionFilter">
+          <option value="todos">Todas as Regiões</option>
+          <option value="africa">África</option>
+          <option value="america">América</option>
+          <option value="asia">Ásia</option>
+          <option value="europa">Europa</option>
+          <option value="oceania">Oceania</option>
+        </select>
+        <select class="filter-select" id="langFilter">
+          <option value="todos">Todos os Idiomas</option>
+          <option value="portugues">Português</option>
+          <option value="espanhol">Espanhol</option>
+          <option value="ingles">Inglês</option>
+          <option value="frances">Francês</option>
+          <option value="arabe">Árabe</option>
+          <option value="chinese">Chinês</option>
+          <option value="japones">Japonês</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comunidade Lusófona -->
+  <section class="lusofona-section">
+    <div class="container">
+      <div class="section-title">
+        <h2><i class="fas fa-globe-americas"></i> Comunidade Lusófona</h2>
+        <p>De Angola ao Brasil, a literatura que une o mundo de língua portuguesa</p>
+      </div>
+      <div class="lusofona-grid">
+        <div class="lusofona-card">
+          <div class="lusofona-card-header">
+            <span class="bandeira">🇧🇷</span>
+            <div>
+              <h3>Brasil</h3>
+              <span>A maior comunidade lusófona</span>
+            </div>
+          </div>
+          <p>De Machado de Assis a Conceição Evaristo, a literatura brasileira é rica e diversa, com vozes negras, indígenas e periféricas.</p>
+          <div class="autores">
+            <span class="autor-tag">Clarice Lispector</span>
+            <span class="autor-tag">Jorge Amado</span>
+            <span class="autor-tag">Paulo Coelho</span>
+          </div>
+        </div>
+
+        <div class="lusofona-card">
+          <div class="lusofona-card-header">
+            <span class="bandeira">🇵🇹</span>
+            <div>
+              <h3>Portugal</h3>
+              <span>Raízes da língua portuguesa</span>
+            </div>
+          </div>
+          <p>De Fernando Pessoa a José Saramago, a literatura portuguesa é berço de grandes nomes da literatura mundial.</p>
+          <div class="autores">
+            <span class="autor-tag">Fernando Pessoa</span>
+            <span class="autor-tag">José Saramago</span>
+            <span class="autor-tag">Eça de Queirós</span>
+          </div>
+        </div>
+
+        <div class="lusofona-card">
+          <div class="lusofona-card-header">
+            <span class="bandeira">🇦🇴</span>
+            <div>
+              <h3>Angola</h3>
+              <span>Vozes da resistência</span>
+            </div>
+          </div>
+          <p>De Pepetela a Agualusa, a literatura angolana conta histórias de luta, identidade e esperança.</p>
+          <div class="autores">
+            <span class="autor-tag">Pepetela</span>
+            <span class="autor-tag">Agualusa</span>
+            <span class="autor-tag">Manuel Rui</span>
+          </div>
+        </div>
+
+        <div class="lusofona-card">
+          <div class="lusofona-card-header">
+            <span class="bandeira">🇲🇿</span>
+            <div>
+              <h3>Moçambique</h3>
+              <span>Poesia e prosa encantadora</span>
+            </div>
+          </div>
+          <p>Mia Couto e Craveirinha levaram a literatura moçambicana ao mundo com sua poesia única.</p>
+          <div class="autores">
+            <span class="autor-tag">Mia Couto</span>
+            <span class="autor-tag">Craveirinha</span>
+            <span class="autor-tag">Paulina Chiziane</span>
+          </div>
+        </div>
+
+        <div class="lusofona-card">
+          <div class="lusofona-card-header">
+            <span class="bandeira">🇨🇻</span>
+            <div>
+              <h3>Cabo Verde</h3>
+              <span>Ilhas de morna e sodade</span>
+            </div>
+          </div>
+          <p>A literatura cabo-verdiana nasce do mar, da saudade e da morna.</p>
+          <div class="autores">
+            <span class="autor-tag">Baltasar Lopes</span>
+            <span class="autor-tag">Germano Almeida</span>
+            <span class="autor-tag">Eugénio Tavares</span>
+          </div>
+        </div>
+
+        <div class="lusofona-card">
+          <div class="lusofona-card-header">
+            <span class="bandeira">🇬🇼</span>
+            <div>
+              <h3>Guiné-Bissau</h3>
+              <span>Palavras de liberdade</span>
+            </div>
+          </div>
+          <p>Amílcar Cabral e a tradição oral mandinga alimentam a literatura guineense.</p>
+          <div class="autores">
+            <span class="autor-tag">Amílcar Cabral</span>
+            <span class="autor-tag">Uanhenga Xitu</span>
+          </div>
+        </div>
+
+        <div class="lusofona-card">
+          <div class="lusofona-card-header">
+            <span class="bandeira">🇸🇹</span>
+            <div>
+              <h3>São Tomé e Príncipe</h3>
+              <span>Um pequeno país, grande literatura</span>
+            </div>
+          </div>
+          <p>Tenreiro e Alda do Espírito Santo são vozes da poesia são-tomense.</p>
+          <div class="autores">
+            <span class="autor-tag">Tenreiro</span>
+            <span class="autor-tag">Alda do Espírito Santo</span>
+          </div>
+        </div>
+
+        <div class="lusofona-card">
+          <div class="lusofona-card-header">
+            <span class="bandeira">🇹🇱</span>
+            <div>
+              <h3>Timor-Leste</h3>
+              <span>A nova voz da lusofonia asiática</span>
+            </div>
+          </div>
+          <p>Carlos Filipe Ximenes Belmonte é a voz timorense que conquistou o Prémio Camões.</p>
+          <div class="autores">
+            <span class="autor-tag">Carlos Filipe Ximenes</span>
+            <span class="autor-tag">Luís Cardoso</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Países por Região -->
+  <section class="paises-section">
+    <div class="container">
+      <!-- África -->
+      <h2 class="region-title"><i class="fas fa-globe-africa"></i> África</h2>
+      <div class="paises-grid" data-region="africa">
+        <div class="pais-card" data-lang="portugues">
+          <span class="pais-bandeira">🇦🇴</span>
+          <h3>Angola</h3>
+          <span class="livros-count">120+ livros</span>
+          <span class="idioma">Português</span>
+        </div>
+        <div class="pais-card" data-lang="portugues">
+          <span class="pais-bandeira">🇲🇿</span>
+          <h3>Moçambique</h3>
+          <span class="livros-count">85+ livros</span>
+          <span class="idioma">Português</span>
+        </div>
+        <div class="pais-card" data-lang="portugues">
+          <span class="pais-bandeira">🇨🇻</span>
+          <h3>Cabo Verde</h3>
+          <span class="livros-count">60+ livros</span>
+          <span class="idioma">Português</span>
+        </div>
+        <div class="pais-card" data-lang="portugues">
+          <span class="pais-bandeira">🇬🇼</span>
+          <h3>Guiné-Bissau</h3>
+          <span class="livros-count">35+ livros</span>
+          <span class="idioma">Português</span>
+        </div>
+        <div class="pais-card" data-lang="portugues">
+          <span class="pais-bandeira">🇸🇹</span>
+          <h3>São Tomé e Príncipe</h3>
+          <span class="livros-count">25+ livros</span>
+          <span class="idioma">Português</span>
+        </div>
+        <div class="pais-card" data-lang="frances">
+          <span class="pais-bandeira">🇳🇬</span>
+          <h3>Nigéria</h3>
+          <span class="livros-count">200+ livros</span>
+          <span class="idioma">Inglês</span>
+        </div>
+        <div class="pais-card" data-lang="frances">
+          <span class="pais-bandeira">🇰🇪</span>
+          <h3>Quénia</h3>
+          <span class="livros-count">150+ livros</span>
+          <span class="idioma">Inglês</span>
+        </div>
+        <div class="pais-card" data-lang="frances">
+          <span class="pais-bandeira">🇿🇦</span>
+          <h3>África do Sul</h3>
+          <span class="livros-count">180+ livros</span>
+          <span class="idioma">Inglês</span>
+        </div>
+        <div class="pais-card" data-lang="frances">
+          <span class="pais-bandeira">🇪🇬</span>
+          <h3>Egito</h3>
+          <span class="livros-count">250+ livros</span>
+          <span class="idioma">Árabe</span>
+        </div>
+        <div class="pais-card" data-lang="frances">
+          <span class="pais-bandeira">🇲🇦</span>
+          <h3>Marrocos</h3>
+          <span class="livros-count">120+ livros</span>
+          <span class="idioma">Árabe</span>
+        </div>
+      </div>
+
+      <!-- América -->
+      <h2 class="region-title"><i class="fas fa-globe-americas"></i> América</h2>
+      <div class="paises-grid" data-region="america">
+        <div class="pais-card" data-lang="portugues">
+          <span class="pais-bandeira">🇧🇷</span>
+          <h3>Brasil</h3>
+          <span class="livros-count">500+ livros</span>
+          <span class="idioma">Português</span>
+        </div>
+        <div class="pais-card" data-lang="espanhol">
+          <span class="pais-bandeira">🇲🇽</span>
+          <h3>México</h3>
+          <span class="livros-count">300+ livros</span>
+          <span class="idioma">Espanhol</span>
+        </div>
+        <div class="pais-card" data-lang="espanhol">
+          <span class="pais-bandeira">🇦🇷</span>
+          <h3>Argentina</h3>
+          <span class="livros-count">280+ livros</span>
+          <span class="idioma">Espanhol</span>
+        </div>
+        <div class="pais-card" data-lang="espanhol">
+          <span class="pais-bandeira">🇨🇴</span>
+          <h3>Colômbia</h3>
+          <span class="livros-count">250+ livros</span>
+          <span class="idioma">Espanhol</span>
+        </div>
+        <div class="pais-card" data-lang="espanhol">
+          <span class="pais-bandeira">🇨🇱</span>
+          <h3>Chile</h3>
+          <span class="livros-count">180+ livros</span>
+          <span class="idioma">Espanhol</span>
+        </div>
+        <div class="pais-card" data-lang="espanhol">
+          <span class="pais-bandeira">🇵🇪</span>
+          <h3>Peru</h3>
+          <span class="livros-count">150+ livros</span>
+          <span class="idioma">Espanhol</span>
+        </div>
+        <div class="pais-card" data-lang="ingles">
+          <span class="pais-bandeira">🇺🇸</span>
+          <h3>Estados Unidos</h3>
+          <span class="livros-count">1000+ livros</span>
+          <span class="idioma">Inglês</span>
+        </div>
+        <div class="pais-card" data-lang="ingles">
+          <span class="pais-bandeira">🇨🇦</span>
+          <h3>Canadá</h3>
+          <span class="livros-count">200+ livros</span>
+          <span class="idioma">Inglês/Francês</span>
+        </div>
+      </div>
+
+      <!-- Europa -->
+      <h2 class="region-title"><i class="fas fa-globe-europe"></i> Europa</h2>
+      <div class="paises-grid" data-region="europa">
+        <div class="pais-card" data-lang="portugues">
+          <span class="pais-bandeira">🇵🇹</span>
+          <h3>Portugal</h3>
+          <span class="livros-count">400+ livros</span>
+          <span class="idioma">Português</span>
+        </div>
+        <div class="pais-card" data-lang="espanhol">
+          <span class="pais-bandeira">🇪🇸</span>
+          <h3>Espanha</h3>
+          <span class="livros-count">350+ livros</span>
+          <span class="idioma">Espanhol</span>
+        </div>
+        <div class="pais-card" data-lang="frances">
+          <span class="pais-bandeira">🇫🇷</span>
+          <h3>França</h3>
+          <span class="livros-count">500+ livros</span>
+          <span class="idioma">Francês</span>
+        </div>
+        <div class="pais-card" data-lang="ingles">
+          <span class="pais-bandeira">🇬🇧</span>
+          <h3>Reino Unido</h3>
+          <span class="livros-count">600+ livros</span>
+          <span class="idioma">Inglês</span>
+        </div>
+        <div class="pais-card" data-lang="alemao">
+          <span class="pais-bandeira">🇩🇪</span>
+          <h3>Alemanha</h3>
+          <span class="livros-count">400+ livros</span>
+          <span class="idioma">Alemão</span>
+        </div>
+        <div class="pais-card" data-lang="italiano">
+          <span class="pais-bandeira">🇮🇹</span>
+          <h3>Itália</h3>
+          <span class="livros-count">350+ livros</span>
+          <span class="idioma">Italiano</span>
+        </div>
+        <div class="pais-card" data-lang="russo">
+          <span class="pais-bandeira">🇷🇺</span>
+          <h3>Rússia</h3>
+          <span class="livros-count">300+ livros</span>
+          <span class="idioma">Russo</span>
+        </div>
+        <div class="pais-card" data-lang="outro">
+          <span class="pais-bandeira">🇳🇱</span>
+          <h3>Holanda</h3>
+          <span class="livros-count">150+ livros</span>
+          <span class="idioma">Holandês</span>
+        </div>
+      </div>
+
+      <!-- Ásia -->
+      <h2 class="region-title"><i class="fas fa-globe-asia"></i> Ásia</h2>
+      <div class="paises-grid" data-region="asia">
+        <div class="pais-card" data-lang="chinese">
+          <span class="pais-bandeira">🇨🇳</span>
+          <h3>China</h3>
+          <span class="livros-count">800+ livros</span>
+          <span class="idioma">Chinês</span>
+        </div>
+        <div class="pais-card" data-lang="japones">
+          <span class="pais-bandeira">🇯🇵</span>
+          <h3>Japão</h3>
+          <span class="livros-count">500+ livros</span>
+          <span class="idioma">Japonês</span>
+        </div>
+        <div class="pais-card" data-lang="outro">
+          <span class="pais-bandeira">🇮🇳</span>
+          <h3>Índia</h3>
+          <span class="livros-count">600+ livros</span>
+          <span class="idioma">Hindi/Inglês</span>
+        </div>
+        <div class="pais-card" data-lang="arabe">
+          <span class="pais-bandeira">🇸🇦</span>
+          <h3>Arábia Saudita</h3>
+          <span class="livros-count">200+ livros</span>
+          <span class="idioma">Árabe</span>
+        </div>
+        <div class="pais-card" data-lang="coreano">
+          <span class="pais-bandeira">🇰🇷</span>
+          <h3>Coreia do Sul</h3>
+          <span class="livros-count">250+ livros</span>
+          <span class="idioma">Coreano</span>
+        </div>
+        <div class="pais-card" data-lang="portugues">
+          <span class="pais-bandeira">🇹🇱</span>
+          <h3>Timor-Leste</h3>
+          <span class="livros-count">20+ livros</span>
+          <span class="idioma">Português</span>
+        </div>
+      </div>
+
+      <!-- Oceania -->
+      <h2 class="region-title"><i class="fas fa-globe"></i> Oceania</h2>
+      <div class="paises-grid" data-region="oceania">
+        <div class="pais-card" data-lang="ingles">
+          <span class="pais-bandeira">🇦🇺</span>
+          <h3>Austrália</h3>
+          <span class="livros-count">300+ livros</span>
+          <span class="idioma">Inglês</span>
+        </div>
+        <div class="pais-card" data-lang="ingles">
+          <span class="pais-bandeira">🇳🇿</span>
+          <h3>Nova Zelândia</h3>
+          <span class="livros-count">100+ livros</span>
+          <span class="idioma">Inglês</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Language Selector (Bottom) -->
+  <div class="lang-selector-bottom" id="langSelectorBottom">
+    <button class="lang-btn-bottom" onclick="toggleLangMenuBottom()">
+      <i class="fas fa-globe"></i>
+      <span id="currentLangBottom">PT</span>
+    </button>
+    <div class="lang-menu-bottom" id="langMenuBottom">
+      <a href="#" onclick="setLangBottom('pt')" class="active">🇵🇹 Português</a>
+      <a href="#" onclick="setLangBottom('en')">🇬🇧 English</a>
+      <a href="#" onclick="setLangBottom('es')">🇪🇸 Español</a>
+      <a href="#" onclick="setLangBottom('fr')">🇫🇷 Français</a>
+      <a href="#" onclick="setLangBottom('ar')">🇸🇦 العربية</a>
+      <a href="#" onclick="setLangBottom('zh')">🇨🇳 中文</a>
+      <a href="#" onclick="setLangBottom('ja')">🇯🇵 日本語</a>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+  <script>
+    // Country Search
+    const searchInput = document.getElementById('countrySearch');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        document.querySelectorAll('.pais-card').forEach(card => {
+          const name = card.querySelector('h3').textContent.toLowerCase();
+          card.style.display = name.includes(query) ? 'block' : 'none';
+        });
+      });
+    }
+
+    // Region Filter
+    const regionFilter = document.getElementById('regionFilter');
+    if (regionFilter) {
+      regionFilter.addEventListener('change', function() {
+        const region = this.value;
+        document.querySelectorAll('.pais-grid, .paises-grid').forEach(grid => {
+          if (region === 'todos' || grid.dataset.region === region) {
+            grid.style.display = 'grid';
+          } else {
+            grid.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // Language Filter
+    const langFilter = document.getElementById('langFilter');
+    if (langFilter) {
+      langFilter.addEventListener('change', function() {
+        const lang = this.value;
+        document.querySelectorAll('.pais-card').forEach(card => {
+          if (lang === 'todos' || card.dataset.lang === lang) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perfil do Leitor - Raízes Literárias">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#2D5A3D">
+  <title>Perfil do Leitor | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="paises.html">Países</a>
+        <a href="comunidade.html">Comunidade</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="entrevistas.html">Entrevistas</a>
+    <a href="loja.html">Livraria</a>
+    <a href="audiobooks.html">Audiobooks</a>
+  </div>
+
+  <!-- Profile Header -->
+  <section class="profile-header">
+    <div class="profile-cover">
+      <div class="profile-cover-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="profile-info">
+        <div class="profile-avatar-wrapper">
+          <div class="profile-avatar leitor" id="profileAvatar">
+            <span id="profileInitials">VL</span>
+          </div>
+        </div>
+        <div class="profile-details">
+          <div class="profile-name-row">
+            <h1 id="profileName">Nome do Leitor</h1>
+            <span class="profile-type-badge leitor">
+              <i class="fas fa-book-reader"></i> Leitor
+            </span>
+          </div>
+          <p class="profile-bio" id="profileBio">Amante da literatura africana...</p>
+          <div class="profile-meta">
+            <span><i class="fas fa-map-marker-alt"></i> <span id="profileLocation">Luanda, Angola</span></span>
+            <span><i class="fas fa-calendar"></i> Membro desde <span id="profileJoinDate">2026</span></span>
+            <span><i class="fas fa-book"></i> <span id="profileBooksRead">45</span> livros lidos</span>
+            <span><i class="fas fa-star"></i> <span id="profileReviews">12</span> avaliações</span>
+          </div>
+          <div class="profile-actions">
+            <button class="btn btn-primary" onclick="followUser()">
+              <i class="fas fa-user-plus"></i> Seguir
+            </button>
+            <button class="btn btn-secondary" onclick="editProfile()">
+              <i class="fas fa-edit"></i> Editar Perfil
+            </button>
+            <button class="btn btn-secondary" style="border-color: var(--cinza-light); color: var(--preto);" onclick="shareProfile()">
+              <i class="fas fa-share-alt"></i> Partilhar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile Content -->
+  <section class="profile-content">
+    <div class="container">
+      <div class="profile-layout">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+          <!-- Reading Stats -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-chart-line"></i> Estatísticas de Leitura</h3>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-number" id="booksRead">45</span>
+                <span class="stat-label">Lidos</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="booksReading">3</span>
+                <span class="stat-label">Lendo</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="booksWant">12</span>
+                <span class="stat-label">Quero Ler</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="reviewsWritten">12</span>
+                <span class="stat-label">Avaliações</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Favorite Genres -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-heart"></i> Géneros Favoritos</h3>
+            <div class="genres-list">
+              <span class="genre-tag">Romance</span>
+              <span class="genre-tag">Ficção Histórica</span>
+              <span class="genre-tag">Poesia</span>
+            </div>
+          </div>
+
+          <!-- Reading Challenge -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-bullseye"></i> Desafio de Leitura 2026</h3>
+            <div class="challenge-progress">
+              <div class="challenge-bar">
+                <div class="challenge-fill" style="width: 45%;"></div>
+              </div>
+              <p><strong>27</strong> de <strong>60</strong> livros</p>
+              <span class="challenge-percent">45%</span>
+            </div>
+          </div>
+
+          <!-- Currently Reading -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-book-open"></i> Lendo Agora</h3>
+            <div class="reading-list">
+              <div class="reading-item">
+                <div class="reading-cover" style="background: linear-gradient(135deg, #C75B39, #D4A843);"></div>
+                <div class="reading-info">
+                  <strong>Terra Sonâmbula</strong>
+                  <span>Mia Couto</span>
+                  <div class="reading-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 65%;"></div>
+                    </div>
+                    <span>65%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="reading-item">
+                <div class="reading-cover" style="background: linear-gradient(135deg, #2D5A3D, #1E3D2A);"></div>
+                <div class="reading-info">
+                  <strong>Mayombe</strong>
+                  <span>Pepetela</span>
+                  <div class="reading-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 30%;"></div>
+                    </div>
+                    <span>30%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="profile-main">
+          <!-- Tabs -->
+          <div class="profile-tabs">
+            <button class="profile-tab active" data-tab="lidos">
+              <i class="fas fa-check-circle"></i> Lidos
+            </button>
+            <button class="profile-tab" data-tab="quero-ler">
+              <i class="fas fa-bookmark"></i> Quero Ler
+            </button>
+            <button class="profile-tab" data-tab="avaliacoes">
+              <i class="fas fa-star"></i> Avaliações
+            </button>
+            <button class="profile-tab" data-tab="favoritos">
+              <i class="fas fa-heart"></i> Favoritos
+            </button>
+          </div>
+
+          <!-- Tab Content: Lidos -->
+          <div class="tab-content active" id="tab-lidos">
+            <div class="books-header">
+              <h2>Livros Lidos</h2>
+              <div class="books-filter">
+                <select id="bookFilter">
+                  <option value="todos">Todos</option>
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                </select>
+              </div>
+            </div>
+            <div class="books-grid" id="booksGrid">
+              <!-- Books will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Tab Content: Quero Ler -->
+          <div class="tab-content" id="tab-quero-ler">
+            <div class="books-header">
+              <h2>Quero Ler</h2>
+            </div>
+            <div class="want-to-read-grid" id="wantToReadGrid">
+              <!-- Books will be loaded here -->
+            </div>
+          </div>
+
+          <!-- Tab Content: Avaliações -->
+          <div class="tab-content" id="tab-avaliacoes">
+            <div class="reviews-section">
+              <h2>Minhas Avaliações</h2>
+              <div class="reviews-list" id="reviewsList">
+                <!-- Reviews will be loaded here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: Favoritos -->
+          <div class="tab-content" id="tab-favoritos">
+            <div class="favorites-section">
+              <h2>Livros Favoritos</h2>
+              <div class="favorites-grid" id="favoritesGrid">
+                <!-- Favorites will be loaded here -->
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

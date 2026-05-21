@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Raízes Literárias — Plataforma global de literatura. Livros, audiobooks, entrevistas e comunidade para leitores e escritores de todo o mundo.">
+  <meta name="keywords" content="literatura, livros, escritores, audiobooks, comunidade literária, leitura global, livraria online">
+  <meta name="author" content="Raízes Literárias">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://raizesliterarias.com/">
+  <meta property="og:title" content="Raízes Literárias | Plataforma Global de Literatura">
+  <meta property="og:description" content="Descobre a riqueza da literatura global. Livros, audiobooks, entrevistas e comunidade para leitores e escritores de todo o mundo.">
+  <meta property="og:image" content="https://raizesliterarias.com/imagens/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://raizesliterarias.com/">
+  <meta property="twitter:title" content="Raízes Literárias | Plataforma Global de Literatura">
+  <meta property="twitter:description" content="Descobre a riqueza da literatura global. Livros, audiobooks, entrevistas e comunidade.">
+  <meta property="twitter:image" content="https://raizesliterarias.com/imagens/og-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#2D5A3D">
+
+  <title>Raízes Literárias | Plataforma Global de Literatura</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+</head>
+<body>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <i class="fas fa-book-open"></i>
+      </div>
+      <h2 class="loading-title">Raízes Literárias</h2>
+      <div class="loading-bar">
+        <div class="loading-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <span>Raízes Literárias</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html" class="active">HQ</a>
+
+        <!-- Dropdown Géneros -->
+        <div class="nav-dropdown">
+          <a href="#" class="nav-dropdown-trigger">
+            Géneros <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-grid">
+              <a href="loja.html?genero=romance"><i class="fas fa-heart"></i> Romance</a>
+              <a href="loja.html?genero=poesia"><i class="fas fa-feather-alt"></i> Poesia</a>
+              <a href="loja.html?genero=conto"><i class="fas fa-book-open"></i> Conto</a>
+              <a href="loja.html?genero=teatro"><i class="fas fa-theater-masks"></i> Teatro</a>
+              <a href="loja.html?genero=ensaio"><i class="fas fa-graduation-cap"></i> Ensaio</a>
+              <a href="loja.html?genero=ficcao"><i class="fas fa-dragon"></i> Ficção</a>
+              <a href="loja.html?genero=romance-historico"><i class="fas fa-landmark"></i> Romance Histórico</a>
+              <a href="loja.html?genero=biografia"><i class="fas fa-user-edit"></i> Biografia</a>
+              <a href="loja.html?genero=aventura"><i class="fas fa-mountain"></i> Aventura</a>
+              <a href="loja.html?genero=misterio"><i class="fas fa-search"></i> Mistério</a>
+              <a href="loja.html?genero=fantasia"><i class="fas fa-hat-wizard"></i> Fantasia</a>
+              <a href="loja.html?genero=terror"><i class="fas fa-ghost"></i> Terror</a>
+              <a href="loja.html?genero=sci-fi"><i class="fas fa-rocket"></i> Ficção Científica</a>
+              <a href="loja.html?genero=humor"><i class="fas fa-laugh"></i> Humor</a>
+              <a href="loja.html?genero=infantil"><i class="fas fa-child"></i> Infantil</a>
+              <a href="loja.html?genero=juvenil"><i class="fas fa-users"></i> Juvenil</a>
+              <a href="loja.html?genero=autoajuda"><i class="fas fa-hand-holding-heart"></i> Autoajuda</a>
+              <a href="loja.html?genero=academico"><i class="fas fa-university"></i> Académico</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropdown Países -->
+        <div class="nav-dropdown">
+          <a href="paises.html" class="nav-dropdown-trigger">
+            Países <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="nav-dropdown-menu">
+            <div class="dropdown-columns">
+              <div class="dropdown-col">
+                <h4>América</h4>
+                <a href="paises.html#brasil">🇧🇷 Brasil</a>
+                <a href="paises.html#argentina">🇦🇷 Argentina</a>
+                <a href="paises.html#mexico">🇲🇽 México</a>
+                <a href="paises.html#colombia">🇨🇴 Colômbia</a>
+                <a href="paises.html#chile">🇨🇱 Chile</a>
+              </div>
+              <div class="dropdown-col">
+                <h4>Europa</h4>
+                <a href="paises.html#portugal">🇵🇹 Portugal</a>
+                <a href="paises.html#espanha">🇪🇸 Espanha</a>
+                <a href="paises.html#franca">🇫🇷 França</a>
+                <a href="paises.html#alemanha">🇩🇪 Alemanha</a>
+                <a href="paises.html#italia">🇮🇹 Itália</a>
+              </div>
+              <div class="dropdown-col">
+                <h4>África</h4>
+                <a href="paises.html#angola">🇦🇴 Angola</a>
+                <a href="paises.html#mocambique">🇲🇿 Moçambique</a>
+                <a href="paises.html#caboverde">🇨🇻 Cabo Verde</a>
+                <a href="paises.html#guine">🇬🇼 Guiné-Bissau</a>
+                <a href="paises.html#saotome">🇸🇹 São Tomé</a>
+              </div>
+              <div class="dropdown-col">
+                <h4>Ásia & Oceania</h4>
+                <a href="paises.html#japao">🇯🇵 Japão</a>
+                <a href="paises.html#china">🇨🇳 China</a>
+                <a href="paises.html#india">🇮🇳 Índia</a>
+                <a href="paises.html#australia">🇦🇺 Austrália</a>
+                <a href="paises.html#timor">🇹🇱 Timor-Leste</a>
+              </div>
+            </div>
+            <a href="paises.html" class="dropdown-see-all">
+              Ver todos os países <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <a href="comunidade.html">Comunidade</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livrarias</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="search-btn" id="searchBtn" aria-label="Pesquisar" title="Pesquisar (Ctrl+K)">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="escritores.html">Escritores</a>
+    <a href="loja.html">Livraria</a>
+    <a href="ranking.html">Ranking</a>
+    <a href="biblioteca.html">Biblioteca</a>
+    <a href="audiobooks.html">Audiobooks</a>
+    <a href="entrevistas.html">Entrevistas</a>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-box">
+      <button class="search-close" id="searchClose">&times;</button>
+      <input type="text" placeholder="Pesquisar livros, autores, países..." id="searchInput" autocomplete="off">
+      <div id="searchResults" style="max-height: 400px; overflow-y: auto; padding: 10px 20px;"></div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-bg-decor" data-parallax="0.3"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <i class="fas fa-star"></i> Destaque do Dia
+        </div>
+        <h1>
+          Raízes
+          <span>Literárias</span>
+        </h1>
+        <p class="typewriter-text">Descobre a riqueza da literatura dos países africanos de língua portuguesa. Histórias que conectam continentes, vozes que ecoam liberdade.</p>
+        <div class="hero-buttons">
+          <a href="#livros" class="btn btn-primary">
+            <i class="fas fa-book"></i> Explorar Livros
+          </a>
+          <a href="#paises" class="btn btn-secondary">
+            <i class="fas fa-globe-africa"></i> Países PALOP
+          </a>
+        </div>
+
+        <div class="countdown" id="countdown">
+          <div class="countdown-item">
+            <span class="number" id="days">00</span>
+            <span class="label">Dias</span>
+          </div>
+          <div class="countdown-item">
+            <span class="number" id="hours">00</span>
+            <span class="label">Horas</span>
+          </div>
+          <div class="countdown-item">
+            <span class="number" id="minutes">00</span>
+            <span class="label">Min</span>
+          </div>
+          <div class="countdown-item">
+            <span class="number" id="seconds">00</span>
+            <span class="label">Seg</span>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 10px;">
+          <i class="fas fa-clock"></i> Próximo lançamento especial
+        </p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card" data-tilt>
+          <div class="hero-card-inner">
+            <div class="book-cover">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3>Mayombe</h3>
+            <p class="autor">Pepetela</p>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>4.8</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>O Que Oferecemos</h2>
+        <p>Uma plataforma completa para amantes da literatura lusófona</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <i class="fas fa-globe-africa"></i>
+          </div>
+          <h3>Literatura PALOP</h3>
+          <p>Obras de Angola, Moçambique, Cabo Verde, Guiné-Bissau, São Tomé e Príncipe e Timor-Leste.</p>
+          <div class="feature-counter"><span data-counter="150">0</span>+</div>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <i class="fas fa-headphones"></i>
+          </div>
+          <h3>Audiobooks</h3>
+          <p>Ouve as melhores obras da literatura lusófona em áudio, a qualquer hora e em qualquer lugar.</p>
+          <div class="feature-counter"><span data-counter="50">0</span>+</div>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <h3>Livraria</h3>
+          <p>Compra livros físicos e digitais com entrega em todo o mundo lusófono.</p>
+          <div class="feature-counter"><span data-counter="500">0</span>+</div>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Comunidade</h3>
+          <p>Conversa directamente com escritores, participa em discussões e clubes de leitura.</p>
+          <div class="feature-counter"><span data-counter="2000">0</span>+</div>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3>Resenhas</h3>
+          <p>Escreve e lê resenhas detalhadas, avalia livros e partilha a tua opinião.</p>
+          <div class="feature-counter"><span data-counter="800">0</span>+</div>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <i class="fas fa-book-reader"></i>
+          </div>
+          <h3>Biblioteca</h3>
+          <p>Guarda os teus livros comprados, acompanha o progresso de leitura.</p>
+          <div class="feature-counter"><span data-counter="300">0</span>+</div>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <h3>Entrevistas</h3>
+          <p>Assiste a entrevistas exclusivas com os maiores escritores dos PALOP no nosso canal.</p>
+          <div class="feature-counter"><span data-counter="30">0</span>+</div>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>Académico</h3>
+          <p>Teses, artigos e pesquisas sobre literatura lusófona para estudantes e investigadores.</p>
+          <div class="feature-counter"><span data-counter="100">0</span>+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVROS EM DESTAQUE -->
+  <section class="livros" id="livros">
+    <div class="container">
+      <div class="section-title">
+        <h2>Livros em Destaque</h2>
+        <p>Descobre as obras mais populares da literatura lusófona</p>
+      </div>
+
+      <div class="livros-filter">
+        <button class="filter-btn active" data-filter="todos">Todos</button>
+        <button class="filter-btn" data-filter="angola">Angola</button>
+        <button class="filter-btn" data-filter="mocambique">Moçambique</button>
+        <button class="filter-btn" data-filter="caboverde">Cabo Verde</button>
+        <button class="filter-btn" data-filter="guine">Guiné-Bissau</button>
+        <button class="filter-btn" data-filter="saotome">São Tomé</button>
+        <button class="filter-btn" data-filter="timor">Timor-Leste</button>
+        <button class="filter-btn" data-filter="internacional">Internacional</button>
+      </div>
+
+      <div class="livros-grid" id="livrosGrid">
+        <!-- Angola -->
+        <div class="livro-card animate-on-scroll" data-pais="angola">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #C75B39, #D4A843); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-destaque">Destaque</span>
+          </div>
+          <div class="livro-info">
+            <h4>Mayombe</h4>
+            <p class="autor">Pepetela</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Angola</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>4.8</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.500 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Mayombe', 1500)">Comprar</button>
+            <button class="btn-favorite" data-book="Mayombe" onclick="toggleFavorite('Mayombe','Pepetela',1500)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <div class="livro-card animate-on-scroll" data-pais="angola">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #4A0E0E, #8B0000); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-novo">Novo</span>
+          </div>
+          <div class="livro-info">
+            <h4>O Vendedor de Passados</h4>
+            <p class="autor">José Eduardo Agualusa</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Angola</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>4.9</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">2.000 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('O Vendedor de Passados', 2000)">Comprar</button>
+            <button class="btn-favorite" data-book="O Vendedor de Passados" onclick="toggleFavorite('O Vendedor de Passados','Agualusa',2000)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <div class="livro-card animate-on-scroll" data-pais="angola">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #2D5A3D, #1E3D2A); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+          <div class="livro-info">
+            <h4>Yaka</h4>
+            <p class="autor">Pepetela</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Angola</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>4.7</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">2.500 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Yaka', 2500)">Comprar</button>
+            <button class="btn-favorite" data-book="Yaka" onclick="toggleFavorite('Yaka','Pepetela',2500)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <div class="livro-card animate-on-scroll" data-pais="angola">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #8B4513, #A0522D); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+          <div class="livro-info">
+            <h4>A Geração da Utopia</h4>
+            <p class="autor">Pepetela</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Angola</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> <span>4.5</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.800 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('A Geração da Utopia', 1800)">Comprar</button>
+            <button class="btn-favorite" data-book="A Geração da Utopia" onclick="toggleFavorite('A Geração da Utopia','Pepetela',1800)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <!-- Moçambique -->
+        <div class="livro-card animate-on-scroll" data-pais="mocambique">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #2D5A3D, #4CAF50); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-destaque">Destaque</span>
+          </div>
+          <div class="livro-info">
+            <h4>Terra Sonâmbula</h4>
+            <p class="autor">Mia Couto</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Moçambique</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>4.9</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.500 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Terra Sonâmbula', 1500)">Comprar</button>
+            <button class="btn-favorite" data-book="Terra Sonâmbula" onclick="toggleFavorite('Terra Sonâmbula','Mia Couto',1500)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <div class="livro-card animate-on-scroll" data-pais="mocambique">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #8B4513, #D2691E); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+          <div class="livro-info">
+            <h4>Vozeria</h4>
+            <p class="autor">José Craveirinha</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Moçambique</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>4.6</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">900 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Vozeria', 900)">Comprar</button>
+            <button class="btn-favorite" data-book="Vozeria" onclick="toggleFavorite('Vozeria','José Craveirinha',900)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <div class="livro-card animate-on-scroll" data-pais="mocambique">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #DAA520, #B8860B); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-novo">Novo</span>
+          </div>
+          <div class="livro-info">
+            <h4>Jerusalém</h4>
+            <p class="autor">Mia Couto</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Moçambique</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>4.8</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.600 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Jerusalém', 1600)">Comprar</button>
+            <button class="btn-favorite" data-book="Jerusalém" onclick="toggleFavorite('Jerusalém','Mia Couto',1600)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <!-- Cabo Verde -->
+        <div class="livro-card animate-on-scroll" data-pais="caboverde">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-destaque">Clássico</span>
+          </div>
+          <div class="livro-info">
+            <h4>Chiquinho</h4>
+            <p class="autor">Baltasar Lopes</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Cabo Verde</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>4.7</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.200 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Chiquinho', 1200)">Comprar</button>
+            <button class="btn-favorite" data-book="Chiquinho" onclick="toggleFavorite('Chiquinho','Baltasar Lopes',1200)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <div class="livro-card animate-on-scroll" data-pais="caboverde">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #006400, #228B22); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+          <div class="livro-info">
+            <h4>O Testamento do Sr. Napumoceno</h4>
+            <p class="autor">Germano Almeida</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Cabo Verde</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>4.9</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.400 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('O Testamento do Sr. Napumoceno', 1400)">Comprar</button>
+            <button class="btn-favorite" data-book="O Testamento do Sr. Napumoceno" onclick="toggleFavorite('O Testamento do Sr. Napumoceno','Germano Almeida',1400)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <!-- Guiné-Bissau -->
+        <div class="livro-card animate-on-scroll" data-pais="guine">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #C75B39, #8B0000); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-destaque">Raro</span>
+          </div>
+          <div class="livro-info">
+            <h4>Uma Caderneta de Calombo</h4>
+            <p class="autor">Amílcar Cabral</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Guiné-Bissau</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>4.6</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.800 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Uma Caderneta de Calombo', 1800)">Comprar</button>
+            <button class="btn-favorite" data-book="Uma Caderneta de Calombo" onclick="toggleFavorite('Uma Caderneta de Calombo','Amílcar Cabral',1800)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <!-- São Tomé -->
+        <div class="livro-card animate-on-scroll" data-pais="saotome">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #D4A843, #B8860B); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-novo">Novo</span>
+          </div>
+          <div class="livro-info">
+            <h4>A Costa dos Murmúrios</h4>
+            <p class="autor">Lília Momplé</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> São Tomé e Príncipe</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>4.5</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.200 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('A Costa dos Murmúrios', 1200)">Comprar</button>
+            <button class="btn-favorite" data-book="A Costa dos Murmúrios" onclick="toggleFavorite('A Costa dos Murmúrios','Lília Momplé',1200)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <!-- Internacional -->
+        <div class="livro-card animate-on-scroll" data-pais="internacional">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #4A0E0E, #800020); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-destaque">Internacional</span>
+          </div>
+          <div class="livro-info">
+            <h4>O Alquimista</h4>
+            <p class="autor">Paulo Coelho</p>
+            <span class="pais"><i class="fas fa-globe"></i> Internacional</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>4.7</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.800 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('O Alquimista', 1800)">Comprar</button>
+            <button class="btn-favorite" data-book="O Alquimista" onclick="toggleFavorite('O Alquimista','Paulo Coelho',1800)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+
+        <!-- Timor-Leste -->
+        <div class="livro-card animate-on-scroll" data-pais="timor">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #8B0000, #DC143C); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+          <div class="livro-info">
+            <h4>A Viagem do Marujo</h4>
+            <p class="autor">Luís Cardoso</p>
+            <span class="pais"><i class="fas fa-map-marker-alt"></i> Timor-Leste</span>
+            <div class="rating" style="margin-top:5px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> <span>4.3</span></div>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.100 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('A Viagem do Marujo', 1100)">Comprar</button>
+            <button class="btn-favorite" data-book="A Viagem do Marujo" onclick="toggleFavorite('A Viagem do Marujo','Luís Cardoso',1100)"><i class="far fa-heart"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="loja.html" class="btn btn-primary">
+          <i class="fas fa-book"></i> Ver Todos os Livros na Loja
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAÍSES PALOP -->
+  <section class="paises" id="paises">
+    <div class="container">
+      <div class="section-title">
+        <h2>Países PALOP</h2>
+        <p>Explora a literatura de cada país lusófono</p>
+      </div>
+      <div class="paises-grid">
+        <a href="paises.html#angola" class="pais-card animate-on-scroll">
+          <span class="pais-bandeira">🇦🇴</span>
+          <h3>Angola</h3>
+          <span class="livros-count">120+ livros</span>
+        </a>
+        <a href="paises.html#mocambique" class="pais-card animate-on-scroll">
+          <span class="pais-bandeira">🇲🇿</span>
+          <h3>Moçambique</h3>
+          <span class="livros-count">85+ livros</span>
+        </a>
+        <a href="paises.html#caboverde" class="pais-card animate-on-scroll">
+          <span class="pais-bandeira">🇨🇻</span>
+          <h3>Cabo Verde</h3>
+          <span class="livros-count">60+ livros</span>
+        </a>
+        <a href="paises.html#guine" class="pais-card animate-on-scroll">
+          <span class="pais-bandeira">🇬🇼</span>
+          <h3>Guiné-Bissau</h3>
+          <span class="livros-count">35+ livros</span>
+        </a>
+        <a href="paises.html#saotome" class="pais-card animate-on-scroll">
+          <span class="pais-bandeira">🇸🇹</span>
+          <h3>São Tomé e Príncipe</h3>
+          <span class="livros-count">25+ livros</span>
+        </a>
+        <a href="paises.html#timor" class="pais-card animate-on-scroll">
+          <span class="pais-bandeira">🇹🇱</span>
+          <h3>Timor-Leste</h3>
+          <span class="livros-count">20+ livros</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMUNIDADE -->
+  <section class="comunidade" id="comunidade">
+    <div class="container">
+      <div class="section-title">
+        <h2>Comunidade</h2>
+        <p>Conversas, debates e conexões entre escritores e leitores</p>
+      </div>
+      <div class="comunidade-grid">
+        <div class="comunidade-card animate-on-scroll">
+          <div class="comunidade-header">
+            <div class="comunidade-avatar">PE</div>
+            <div class="comunidade-user">
+              <h4>Pepetela</h4>
+              <span>Escritor • Angola</span>
+            </div>
+          </div>
+          <p>"A literatura é a memória de um povo. Sem ela, não somos nada. Escrever é resistir, é lembrar, é sonhar."</p>
+          <div class="comunidade-stats">
+            <span><i class="fas fa-heart"></i> 234</span>
+            <span><i class="fas fa-comment"></i> 45</span>
+            <span><i class="fas fa-share"></i> 12</span>
+          </div>
+        </div>
+
+        <div class="comunidade-card animate-on-scroll">
+          <div class="comunidade-header">
+            <div class="comunidade-avatar">MC</div>
+            <div class="comunidade-user">
+              <h4>Mia Couto</h4>
+              <span>Escritor • Moçambique</span>
+            </div>
+          </div>
+          <p>"As palavras são sementes. Quando as plantamos na alma de alguém, florescem histórias que transcendem fronteiras."</p>
+          <div class="comunidade-stats">
+            <span><i class="fas fa-heart"></i> 189</span>
+            <span><i class="fas fa-comment"></i> 38</span>
+            <span><i class="fas fa-share"></i> 8</span>
+          </div>
+        </div>
+
+        <div class="comunidade-card animate-on-scroll">
+          <div class="comunidade-header">
+            <div class="comunidade-avatar">MC</div>
+            <div class="comunidade-user">
+              <h4>Manuel Rui</h4>
+              <span>Escritor • Angola</span>
+            </div>
+          </div>
+          <p>"A literatura angolana nasceu da necessidade de contar a nossa história. Cada livro é um pedaço da nossa identidade."</p>
+          <div class="comunidade-stats">
+            <span><i class="fas fa-heart"></i> 156</span>
+            <span><i class="fas fa-comment"></i> 29</span>
+            <span><i class="fas fa-share"></i> 6</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="comunidade.html" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.4);">
+          <i class="fas fa-users"></i> Ver Toda a Comunidade
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTREVISTAS -->
+  <section class="entrevistas" id="entrevistas">
+    <div class="container">
+      <div class="section-title">
+        <h2>Entrevistas no YouTube</h2>
+        <p>Conversas profundas com os maiores escritores lusófonos</p>
+      </div>
+      <div class="entrevistas-grid">
+        <div class="entrevista-card animate-on-scroll">
+          <div class="video-container">
+            <div class="video-placeholder" onclick="playVideo(this, 'VIDEO_ID_1')">
+              <i class="fab fa-youtube"></i>
+              <span>Assistir Entrevista</span>
+            </div>
+          </div>
+          <div class="entrevista-info">
+            <h3>A Arte de Escrever em Angola</h3>
+            <p class="escritor">Pepetela</p>
+            <p class="data"><i class="far fa-calendar"></i> 15 de Maio, 2026</p>
+          </div>
+        </div>
+
+        <div class="entrevista-card animate-on-scroll">
+          <div class="video-container">
+            <div class="video-placeholder" onclick="playVideo(this, 'VIDEO_ID_2')">
+              <i class="fab fa-youtube"></i>
+              <span>Assistir Entrevista</span>
+            </div>
+          </div>
+          <div class="entrevista-info">
+            <h3>Moçambique nas Entrelinhas</h3>
+            <p class="escritor">Mia Couto</p>
+            <p class="data"><i class="far fa-calendar"></i> 10 de Maio, 2026</p>
+          </div>
+        </div>
+
+        <div class="entrevista-card animate-on-scroll">
+          <div class="video-container">
+            <div class="video-placeholder" onclick="playVideo(this, 'VIDEO_ID_3')">
+              <i class="fab fa-youtube"></i>
+              <span>Assistir Entrevista</span>
+            </div>
+          </div>
+          <div class="entrevista-info">
+            <h3>Cabo Verde: Ilhas de Palavras</h3>
+            <p class="escritor">Germano Almeida</p>
+            <p class="data"><i class="far fa-calendar"></i> 5 de Maio, 2026</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="entrevistas.html" class="btn btn-primary">
+          <i class="fab fa-youtube"></i> Ver Todas as Entrevistas
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIAL ACADÊMICO -->
+  <section class="academico-section">
+    <div class="container">
+      <div class="section-title">
+        <h2><i class="fas fa-graduation-cap"></i> Material Académico</h2>
+        <p>Teses, artigos e pesquisas sobre literatura lusófona</p>
+      </div>
+      <div class="academic-grid">
+        <div class="academic-card animate-on-scroll">
+          <div class="academic-card-header">
+            <div class="academic-card-icon green">
+              <i class="fas fa-file-pdf"></i>
+            </div>
+            <div>
+              <h4 class="academic-card-title">A Identidade na Literatura Angolana</h4>
+              <span class="academic-card-type">Tese de Mestrado</span>
+            </div>
+          </div>
+          <p class="academic-card-desc">Análise da construção da identidade nacional através da literatura angolana contemporânea.</p>
+          <div class="academic-card-meta">
+            <span><i class="fas fa-download"></i> 1.2K downloads</span>
+            <span><i class="fas fa-star"></i> 4.8</span>
+          </div>
+        </div>
+
+        <div class="academic-card animate-on-scroll">
+          <div class="academic-card-header">
+            <div class="academic-card-icon terracotta">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div>
+              <h4 class="academic-card-title">Oralidade em Mia Couto</h4>
+              <span class="academic-card-type">Artigo Científico</span>
+            </div>
+          </div>
+          <p class="academic-card-desc">Estudo sobre a influência da tradição oral moçambicana na obra de Mia Couto.</p>
+          <div class="academic-card-meta">
+            <span><i class="fas fa-download"></i> 856 downloads</span>
+            <span><i class="fas fa-star"></i> 4.6</span>
+          </div>
+        </div>
+
+        <div class="academic-card animate-on-scroll">
+          <div class="academic-card-header">
+            <div class="academic-card-icon dark">
+              <i class="fas fa-book"></i>
+            </div>
+            <div>
+              <h4 class="academic-card-title">Poesia Cabo-verdiana</h4>
+              <span class="academic-card-type">Dissertação</span>
+            </div>
+          </div>
+          <p class="academic-card-desc">Análise comparativa da poesia cabo-verdiana desde Baltasar Lopes até aos contemporâneos.</p>
+          <div class="academic-card-meta">
+            <span><i class="fas fa-download"></i> 634 downloads</span>
+            <span><i class="fas fa-star"></i> 4.7</span>
+          </div>
+        </div>
+
+        <div class="academic-card animate-on-scroll">
+          <div class="academic-card-header">
+            <div class="academic-card-icon brown">
+              <i class="fas fa-scroll"></i>
+            </div>
+            <div>
+              <h4 class="academic-card-title">Resistência em Pepetela</h4>
+              <span class="academic-card-type">Tese de Doutoramento</span>
+            </div>
+          </div>
+          <p class="academic-card-desc">A temática da resistência anticolonial na obra completa de Pepetela.</p>
+          <div class="academic-card-meta">
+            <span><i class="fas fa-download"></i> 2.1K downloads</span>
+            <span><i class="fas fa-star"></i> 4.9</span>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="loja.html" class="btn btn-primary">
+          <i class="fas fa-graduation-cap"></i> Ver Todo o Material Académico
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOVIDADES -->
+  <section style="padding: 80px 0; background: var(--marfim);">
+    <div class="container">
+      <div class="section-title">
+        <h2><i class="fas fa-sparkles"></i> Novidades</h2>
+        <p>Os livros mais recentes na nossa livraria</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+        <div style="background: var(--branco); border-radius: var(--radius); overflow: hidden; box-shadow: var(--sombra); transition: var(--transition);">
+          <div style="height: 140px; background: linear-gradient(135deg, #DAA520, #B8860B); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"><i class="fas fa-book"></i></div>
+          <div style="padding: 15px;">
+            <span style="font-size: 0.7rem; background: var(--terracotta); color: white; padding: 2px 8px; border-radius: 50px;">Novo</span>
+            <h4 style="margin: 8px 0 3px; color: var(--verde);">Jerusalém</h4>
+            <p style="font-size: 0.85rem; color: var(--cinza); margin: 0;">Mia Couto • Moçambique</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+              <span style="font-weight: 700; color: var(--terracotta);">1.600 Kz</span>
+              <button class="btn btn-sm btn-primary" onclick="addToCart('Jerusalém', 1600)">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div style="background: var(--branco); border-radius: var(--radius); overflow: hidden; box-shadow: var(--sombra); transition: var(--transition);">
+          <div style="height: 140px; background: linear-gradient(135deg, #8B0000, #DC143C); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"><i class="fas fa-book"></i></div>
+          <div style="padding: 15px;">
+            <span style="font-size: 0.7rem; background: var(--terracotta); color: white; padding: 2px 8px; border-radius: 50px;">Novo</span>
+            <h4 style="margin: 8px 0 3px; color: var(--verde);">A Viagem do Marujo</h4>
+            <p style="font-size: 0.85rem; color: var(--cinza); margin: 0;">Luís Cardoso • Timor-Leste</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+              <span style="font-weight: 700; color: var(--terracotta);">1.100 Kz</span>
+              <button class="btn btn-sm btn-primary" onclick="addToCart('A Viagem do Marujo', 1100)">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div style="background: var(--branco); border-radius: var(--radius); overflow: hidden; box-shadow: var(--sombra); transition: var(--transition);">
+          <div style="height: 140px; background: linear-gradient(135deg, #006400, #228B22); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"><i class="fas fa-book"></i></div>
+          <div style="padding: 15px;">
+            <span style="font-size: 0.7rem; background: var(--verde); color: white; padding: 2px 8px; border-radius: 50px;">Popular</span>
+            <h4 style="margin: 8px 0 3px; color: var(--verde);">O Testamento do Sr. Napumoceno</h4>
+            <p style="font-size: 0.85rem; color: var(--cinza); margin: 0;">Germano Almeida • Cabo Verde</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+              <span style="font-weight: 700; color: var(--terracotta);">1.400 Kz</span>
+              <button class="btn btn-sm btn-primary" onclick="addToCart('O Testamento do Sr. Napumoceno', 1400)">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div style="background: var(--branco); border-radius: var(--radius); overflow: hidden; box-shadow: var(--sombra); transition: var(--transition);">
+          <div style="height: 140px; background: linear-gradient(135deg, #8B4513, #A0522D); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;"><i class="fas fa-book"></i></div>
+          <div style="padding: 15px;">
+            <span style="font-size: 0.7rem; background: var(--dourado); color: white; padding: 2px 8px; border-radius: 50px;">Recomendado</span>
+            <h4 style="margin: 8px 0 3px; color: var(--verde);">A Geração da Utopia</h4>
+            <p style="font-size: 0.85rem; color: var(--cinza); margin: 0;">Pepetela • Angola</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+              <span style="font-weight: 700; color: var(--terracotta);">1.800 Kz</span>
+              <button class="btn btn-sm btn-primary" onclick="addToCart('A Geração da Utopia', 1800)">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIS VENDIDOS -->
+  <section style="padding: 80px 0; background: var(--branco);">
+    <div class="container">
+      <div class="section-title">
+        <h2><i class="fas fa-fire"></i> Mais Vendidos</h2>
+        <p>Os livros preferidos dos nossos leitores</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+        <div style="display: flex; gap: 15px; background: var(--marfim); border-radius: var(--radius); padding: 15px; align-items: center;">
+          <div style="width: 50px; height: 65px; border-radius: 6px; background: linear-gradient(135deg, #2D5A3D, #4CAF50); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; flex-shrink: 0;"><i class="fas fa-book"></i></div>
+          <div style="flex:1;">
+            <strong style="display:block; font-size:0.95rem; color:var(--verde);">Terra Sonâmbula</strong>
+            <span style="font-size:0.8rem; color:var(--cinza);">Mia Couto</span>
+            <div style="display:flex; align-items:center; gap:5px; margin-top:5px;">
+              <span style="font-weight:700; color:var(--terracotta); font-size:0.9rem;">1.500 Kz</span>
+              <span style="font-size:0.75rem; color:var(--verde); background:var(--verde); color:white; padding:2px 8px; border-radius:50px;">#1</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 15px; background: var(--marfim); border-radius: var(--radius); padding: 15px; align-items: center;">
+          <div style="width: 50px; height: 65px; border-radius: 6px; background: linear-gradient(135deg, #C75B39, #D4A843); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; flex-shrink: 0;"><i class="fas fa-book"></i></div>
+          <div style="flex:1;">
+            <strong style="display:block; font-size:0.95rem; color:var(--verde);">Mayombe</strong>
+            <span style="font-size:0.8rem; color:var(--cinza);">Pepetela</span>
+            <div style="display:flex; align-items:center; gap:5px; margin-top:5px;">
+              <span style="font-weight:700; color:var(--terracotta); font-size:0.9rem;">1.500 Kz</span>
+              <span style="font-size:0.75rem; background:var(--dourado); color:white; padding:2px 8px; border-radius:50px;">#2</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 15px; background: var(--marfim); border-radius: var(--radius); padding: 15px; align-items: center;">
+          <div style="width: 50px; height: 65px; border-radius: 6px; background: linear-gradient(135deg, #4A0E0E, #8B0000); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; flex-shrink: 0;"><i class="fas fa-book"></i></div>
+          <div style="flex:1;">
+            <strong style="display:block; font-size:0.95rem; color:var(--verde);">O Vendedor de Passados</strong>
+            <span style="font-size:0.8rem; color:var(--cinza);">Agualusa</span>
+            <div style="display:flex; align-items:center; gap:5px; margin-top:5px;">
+              <span style="font-weight:700; color:var(--terracotta); font-size:0.9rem;">2.000 Kz</span>
+              <span style="font-size:0.75rem; background:#CD7F32; color:white; padding:2px 8px; border-radius:50px;">#3</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 15px; background: var(--marfim); border-radius: var(--radius); padding: 15px; align-items: center;">
+          <div style="width: 50px; height: 65px; border-radius: 6px; background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; flex-shrink: 0;"><i class="fas fa-book"></i></div>
+          <div style="flex:1;">
+            <strong style="display:block; font-size:0.95rem; color:var(--verde);">Chiquinho</strong>
+            <span style="font-size:0.8rem; color:var(--cinza);">Baltasar Lopes</span>
+            <div style="display:flex; align-items:center; gap:5px; margin-top:5px;">
+              <span style="font-weight:700; color:var(--terracotta); font-size:0.9rem;">1.200 Kz</span>
+              <span style="font-size:0.75rem; background:var(--cinza); color:white; padding:2px 8px; border-radius:50px;">#4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESCRITORES EM DESTAQUE -->
+  <section class="escritores-section" style="padding: 80px 0; background: var(--marfim);">
+    <div class="container">
+      <div class="section-title">
+        <h2><i class="fas fa-pen-fancy"></i> Escritores em Destaque</h2>
+        <p>Os autores que moldam a literatura lusófona</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px;" id="hqWritersGrid">
+        <div class="writer-card" style="background: var(--branco); border-radius: var(--radius); overflow: hidden; box-shadow: var(--sombra); transition: var(--transition);">
+          <div style="height: 80px; background: linear-gradient(135deg, #C75B39, #C75B39cc); display: flex; align-items: flex-end; justify-content: center;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--branco); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; color: var(--verde); border: 3px solid var(--branco); transform: translateY(30px);">PE</div>
+          </div>
+          <div style="padding: 40px 15px 15px; text-align: center;">
+            <h4 style="color: var(--verde); margin-bottom: 3px;">Pepetela</h4>
+            <span style="font-size: 0.8rem; color: var(--cinza);">Angola • 12 livros</span>
+            <p style="font-size: 0.8rem; color: var(--cinza); margin: 8px 0; line-height: 1.4;">Prémio Camões 1997. Mestre da ficção angolana.</p>
+          </div>
+        </div>
+        <div class="writer-card" style="background: var(--branco); border-radius: var(--radius); overflow: hidden; box-shadow: var(--sombra); transition: var(--transition);">
+          <div style="height: 80px; background: linear-gradient(135deg, #2D5A3D, #2D5A3Dcc); display: flex; align-items: flex-end; justify-content: center;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--branco); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; color: var(--verde); border: 3px solid var(--branco); transform: translateY(30px);">MC</div>
+          </div>
+          <div style="padding: 40px 15px 15px; text-align: center;">
+            <h4 style="color: var(--verde); margin-bottom: 3px;">Mia Couto</h4>
+            <span style="font-size: 0.8rem; color: var(--cinza);">Moçambique • 18 livros</span>
+            <p style="font-size: 0.8rem; color: var(--cinza); margin: 8px 0; line-height: 1.4;">Prémio Camões 2013. Realismo mágico africano.</p>
+          </div>
+        </div>
+        <div class="writer-card" style="background: var(--branco); border-radius: var(--radius); overflow: hidden; box-shadow: var(--sombra); transition: var(--transition);">
+          <div style="height: 80px; background: linear-gradient(135deg, #D4A843, #D4A843cc); display: flex; align-items: flex-end; justify-content: center;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--branco); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; color: var(--verde); border: 3px solid var(--branco); transform: translateY(30px);">JA</div>
+          </div>
+          <div style="padding: 40px 15px 15px; text-align: center;">
+            <h4 style="color: var(--verde); margin-bottom: 3px;">Agualusa</h4>
+            <span style="font-size: 0.8rem; color: var(--cinza);">Angola • 15 livros</span>
+            <p style="font-size: 0.8rem; color: var(--cinza); margin: 8px 0; line-height: 1.4;">Prémio Man Booker 2017. Ficção premiada.</p>
+          </div>
+        </div>
+        <div class="writer-card" style="background: var(--branco); border-radius: var(--radius); overflow: hidden; box-shadow: var(--sombra); transition: var(--transition);">
+          <div style="height: 80px; background: linear-gradient(135deg, #8B4513, #8B4513cc); display: flex; align-items: flex-end; justify-content: center;">
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--branco); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; color: var(--verde); border: 3px solid var(--branco); transform: translateY(30px);">GA</div>
+          </div>
+          <div style="padding: 40px 15px 15px; text-align: center;">
+            <h4 style="color: var(--verde); margin-bottom: 3px;">Germano Almeida</h4>
+            <span style="font-size: 0.8rem; color: var(--cinza);">Cabo Verde • 10 livros</span>
+            <p style="font-size: 0.8rem; color: var(--cinza); margin: 8px 0; line-height: 1.4;">O mais lido dos escritores cabo-verdianos.</p>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 35px;">
+        <a href="escritores.html" class="btn btn-primary">
+          <i class="fas fa-pen-fancy"></i> Ver Todos os Escritores
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLUBES DE LEITURA -->
+  <section class="clubes-section" style="padding: 80px 0; background: var(--branco);">
+    <div class="container">
+      <div class="section-title">
+        <h2><i class="fas fa-users"></i> Clubes de Leitura</h2>
+        <p>Junta-te a outros leitores e discute as melhores obras</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+        <div style="display: flex; gap: 15px; align-items: center; background: var(--marfim); border-radius: var(--radius); padding: 20px; border-left: 4px solid #C75B39;">
+          <div style="width: 45px; height: 45px; border-radius: 50%; background: #C75B3920; color: #C75B39; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+            <i class="fas fa-fire"></i>
+          </div>
+          <div style="flex: 1;">
+            <h4 style="font-size: 1rem; color: var(--verde); margin-bottom: 3px;">Clube Mayombe</h4>
+            <p style="font-size: 0.8rem; color: var(--cinza); margin: 0;">45 membros • Pepetela</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 15px; align-items: center; background: var(--marfim); border-radius: var(--radius); padding: 20px; border-left: 4px solid #2D5A3D;">
+          <div style="width: 45px; height: 45px; border-radius: 50%; background: #2D5A3D20; color: #2D5A3D; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <div style="flex: 1;">
+            <h4 style="font-size: 1rem; color: var(--verde); margin-bottom: 3px;">Leitores de Mia Couto</h4>
+            <p style="font-size: 0.8rem; color: var(--cinza); margin: 0;">62 membros • Terra Sonâmbula</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 15px; align-items: center; background: var(--marfim); border-radius: var(--radius); padding: 20px; border-left: 4px solid #D4A843;">
+          <div style="width: 45px; height: 45px; border-radius: 50%; background: #D4A84320; color: #D4A843; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+            <i class="fas fa-sun"></i>
+          </div>
+          <div style="flex: 1;">
+            <h4 style="font-size: 1rem; color: var(--verde); margin-bottom: 3px;">Clássicos de Cabo Verde</h4>
+            <p style="font-size: 0.8rem; color: var(--cinza); margin: 0;">28 membros • Chiquinho</p>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 35px;">
+        <a href="comunidade.html" class="btn btn-secondary">
+          <i class="fas fa-users"></i> Ver Todos os Clubes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANKING PREVIEW -->
+  <section class="ranking-preview" style="padding: 80px 0; background: linear-gradient(135deg, var(--verde-dark), var(--verde)); color: white;">
+    <div class="container">
+      <div class="section-title" style="margin-bottom: 40px;">
+        <h2 style="color: white;"><i class="fas fa-trophy"></i> Top Leitores</h2>
+        <p style="color: rgba(255,255,255,0.8);">Os leitores mais activos da comunidade</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 800px; margin: 0 auto;">
+        <div style="text-align: center; padding: 25px; background: rgba(255,255,255,0.1); border-radius: var(--radius); backdrop-filter: blur(10px);">
+          <div style="font-size: 2rem; margin-bottom: 10px;">🥇</div>
+          <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--dourado); display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 10px;">MS</div>
+          <strong>Maria Silva</strong>
+          <p style="font-size: 0.85rem; opacity: 0.8; margin: 5px 0 0;">1.250 pts</p>
+        </div>
+        <div style="text-align: center; padding: 25px; background: rgba(255,255,255,0.1); border-radius: var(--radius); backdrop-filter: blur(10px);">
+          <div style="font-size: 2rem; margin-bottom: 10px;">🥈</div>
+          <div style="width: 50px; height: 50px; border-radius: 50%; background: #C0C0C0; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 10px;">JS</div>
+          <strong>João Santos</strong>
+          <p style="font-size: 0.85rem; opacity: 0.8; margin: 5px 0 0;">980 pts</p>
+        </div>
+        <div style="text-align: center; padding: 25px; background: rgba(255,255,255,0.1); border-radius: var(--radius); backdrop-filter: blur(10px);">
+          <div style="font-size: 2rem; margin-bottom: 10px;">🥉</div>
+          <div style="width: 50px; height: 50px; border-radius: 50%; background: #CD7F32; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 10px;">AO</div>
+          <strong>Ana Oliveira</strong>
+          <p style="font-size: 0.85rem; opacity: 0.8; margin: 5px 0 0;">870 pts</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 35px;">
+        <a href="ranking.html" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.4); color: white;">
+          <i class="fas fa-trophy"></i> Ver Ranking Completo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="container">
+      <h2><i class="fas fa-envelope"></i> Newsletter</h2>
+      <p>Recebe novidades, lançamentos e livros grátis no teu email.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="O teu email..." required>
+        <button type="submit">Inscrever</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Raízes Literárias</h3>
+          <p>A maior plataforma de literatura dos países africanos de língua portuguesa. Conectando escritores e leitores do mundo lusófono.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Países</h3>
+          <div class="footer-links">
+            <a href="paises.html#angola">Angola</a>
+            <a href="paises.html#mocambique">Moçambique</a>
+            <a href="paises.html#caboverde">Cabo Verde</a>
+            <a href="paises.html#guine">Guiné-Bissau</a>
+            <a href="paises.html#saotome">São Tomé e Príncipe</a>
+            <a href="paises.html#timor">Timor-Leste</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Plataforma</h3>
+          <div class="footer-links">
+            <a href="comunidade.html">Comunidade</a>
+            <a href="escritores.html">Escritores</a>
+            <a href="loja.html">Livraria</a>
+            <a href="ranking.html">Ranking</a>
+            <a href="biblioteca.html">Biblioteca</a>
+            <a href="entrevistas.html">Entrevistas</a>
+            <a href="audiobooks.html">Audiobooks</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Contato</h3>
+          <div class="footer-links">
+            <a href="mailto:contato@raizesliterarias.com">
+              <i class="fas fa-envelope"></i> contato@raizesliterarias.com
+            </a>
+            <a href="#">
+              <i class="fas fa-map-marker-alt"></i> Luanda, Angola
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Language Selector (Bottom) -->
+  <div class="lang-selector-bottom" id="langSelectorBottom">
+    <button class="lang-btn-bottom" onclick="toggleLangMenuBottom()">
+      <i class="fas fa-globe"></i>
+      <span id="currentLangBottom">PT</span>
+    </button>
+    <div class="lang-menu-bottom" id="langMenuBottom">
+      <a href="#" onclick="setLangBottom('pt')" class="active">🇵🇹 Português</a>
+      <a href="#" onclick="setLangBottom('en')">🇬🇧 English</a>
+      <a href="#" onclick="setLangBottom('es')">🇪🇸 Español</a>
+      <a href="#" onclick="setLangBottom('fr')">🇫🇷 Français</a>
+      <a href="#" onclick="setLangBottom('ar')">🇸🇦 العربية</a>
+      <a href="#" onclick="setLangBottom('zh')">🇨🇳 中文</a>
+      <a href="#" onclick="setLangBottom('ja')">🇯🇵 日本語</a>
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Book Modal -->
+  <div class="book-modal" id="bookModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeBookModal()">&times;</button>
+      <div class="modal-body">
+        <div class="modal-cover">
+          <i class="fas fa-book"></i>
+        </div>
+        <div class="modal-info">
+          <h2 id="modalTitle">Título do Livro</h2>
+          <p class="autor" id="modalAutor">Autor</p>
+          <p class="descricao" id="modalDesc">Descrição do livro...</p>
+          <div class="meta">
+            <div class="meta-item">
+              <strong>País</strong>
+              <span id="modalPais">Angola</span>
+            </div>
+            <div class="meta-item">
+              <strong>Páginas</strong>
+              <span id="modalPag">320</span>
+            </div>
+            <div class="meta-item">
+              <strong>Idioma</strong>
+              <span>Português</span>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-primary" id="modalAction">
+              <i class="fas fa-download"></i> Download
+            </button>
+            <button class="btn btn-secondary" style="border-color: var(--cinza-light); color: var(--preto);">
+              <i class="fas fa-heart"></i> Favoritar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent -->
+  <div id="cookieConsent" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: var(--verde-dark); color: white; padding: 20px; z-index: 9999; box-shadow: 0 -5px 20px rgba(0,0,0,0.2);">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+      <div style="flex: 1; min-width: 250px;">
+        <p style="margin: 0; font-size: 0.95rem;">
+          <i class="fas fa-cookie-bite" style="margin-right: 8px; color: var(--dourado);"></i>
+          Utilizamos cookies para melhorar a sua experiência. Ao continuar a navegar, concorda com a nossa
+          <a href="#" style="color: var(--dourado); text-decoration: underline;">Política de Privacidade</a>.
+        </p>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button onclick="acceptCookies()" style="padding: 10px 20px; background: var(--terracotta); color: white; border: none; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600;">Aceitar</button>
+        <button onclick="rejectCookies()" style="padding: 10px 20px; background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); border-radius: var(--radius-sm); cursor: pointer;">Recusar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+</body>
+</html>

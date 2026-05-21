@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comunidade de leitores e escritores de todo o mundo. Clubes de leitura, discussões e muito mais.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#2D5A3D">
+  <title>Comunidade | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+  <style>
+    .page-hero {
+      margin-top: 70px;
+      padding: 80px 0 40px;
+      background: linear-gradient(135deg, var(--verde-dark), var(--verde));
+      color: white;
+      text-align: center;
+    }
+
+    /* --- Community Bubbles --- */
+    .bubbles-section {
+      padding: 40px 0;
+      background: var(--branco);
+    }
+    .bubbles-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 20px 0;
+      scrollbar-width: none;
+    }
+    .bubbles-scroll::-webkit-scrollbar { display: none; }
+    .bubble-item {
+      flex-shrink: 0;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .bubble-item:hover { transform: translateY(-5px); }
+    .bubble-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 8px;
+      position: relative;
+      border: 3px solid transparent;
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+    .bubble-circle::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--terracotta), var(--dourado));
+      z-index: -1;
+    }
+    .bubble-circle span {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--marfim);
+    }
+    .bubble-name {
+      font-size: 0.8rem;
+      color: var(--preto);
+      max-width: 80px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bubble-count {
+      font-size: 0.7rem;
+      color: var(--cinza);
+    }
+    .bubble-add .bubble-circle::before {
+      background: var(--cinza-light);
+    }
+    .bubble-add .bubble-circle span {
+      background: var(--marfim-dark);
+      color: var(--cinza);
+      font-size: 1.5rem;
+    }
+
+    /* --- Community Feed --- */
+    .community-feed-section {
+      padding: 40px 0;
+    }
+    .community-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 30px;
+    }
+    .twitter-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 25px;
+      align-items: start;
+    }
+    .twitter-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .twitter-sidebar-right {
+      position: sticky;
+      top: 90px;
+    }
+    @media (max-width: 900px) {
+      .twitter-layout {
+        grid-template-columns: 1fr;
+      }
+      .twitter-sidebar-right {
+        position: static;
+      }
+    }
+
+    /* --- Sidebar Communities List --- */
+    .communities-sidebar {
+      position: sticky;
+      top: 90px;
+      height: fit-content;
+    }
+    .sidebar-section {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--sombra);
+    }
+    .sidebar-section h3 {
+      font-size: 1rem;
+      color: var(--verde);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .community-list-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 5px;
+    }
+    .community-list-item:hover {
+      background: var(--marfim);
+    }
+    .community-list-item.active {
+      background: var(--verde);
+      color: white;
+    }
+    .community-list-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .community-list-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .community-list-info strong {
+      display: block;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .community-list-info span {
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+    .community-list-badge {
+      background: var(--terracotta);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* --- Community Feed --- */
+    .community-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .feed-header {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--sombra);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .feed-header-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--terracotta), var(--dourado));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+    }
+    .feed-header-input {
+      flex: 1;
+      padding: 12px 20px;
+      border: 2px solid var(--marfim-dark);
+      border-radius: 50px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--marfim);
+      color: var(--cinza);
+    }
+    .feed-header-input:hover {
+      border-color: var(--verde);
+    }
+
+    /* --- Feed Post --- */
+    .feed-post {
+      background: var(--branco);
+      border-radius: var(--radius);
+      box-shadow: var(--sombra);
+      overflow: hidden;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px;
+    }
+    .post-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .post-user-info {
+      flex: 1;
+    }
+    .post-user-info strong {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+    .post-user-info .verified-icon {
+      color: #1DA1F2;
+      font-size: 0.85rem;
+    }
+    .post-user-info span {
+      font-size: 0.8rem;
+      color: var(--cinza);
+    }
+    .post-community-tag {
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--marfim);
+      color: var(--verde);
+    }
+    .post-content {
+      padding: 0 20px 20px;
+    }
+    .post-content p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--preto);
+      margin-bottom: 15px;
+    }
+    .post-image {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      margin-top: 10px;
+    }
+    .post-book-mention {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background: var(--marfim);
+      border-radius: var(--radius-sm);
+      margin-top: 10px;
+    }
+    .post-book-cover {
+      width: 50px;
+      height: 70px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+    .post-book-info strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--verde);
+    }
+    .post-book-info span {
+      font-size: 0.8rem;
+      color: var(--cinza);
+    }
+    .post-stats {
+      display: flex;
+      gap: 20px;
+      padding: 10px 20px;
+      font-size: 0.8rem;
+      color: var(--cinza);
+      border-top: 1px solid var(--marfim-dark);
+    }
+    .post-actions {
+      display: flex;
+      border-top: 1px solid var(--marfim-dark);
+    }
+    .post-action {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--font-corpo);
+      font-size: 0.9rem;
+      color: var(--cinza);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .post-action:hover {
+      background: var(--marfim);
+      color: var(--verde);
+    }
+    .post-action.liked {
+      color: var(--terracotta);
+    }
+
+    /* --- Clube de Leitura --- */
+    .clube-section {
+      padding: 60px 0;
+      background: var(--marfim);
+    }
+    .clube-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .clube-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      transition: var(--transition);
+    }
+    .clube-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra-hover);
+    }
+    .clube-header {
+      padding: 25px;
+      background: linear-gradient(135deg, var(--verde-dark), var(--verde));
+      color: white;
+      position: relative;
+    }
+    .clube-header h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    .clube-header p {
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+    .clube-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 5px 12px;
+      background: var(--dourado);
+      color: var(--verde-dark);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .clube-body {
+      padding: 25px;
+    }
+    .clube-livro {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .clube-livro-cover {
+      width: 80px;
+      height: 110px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+    .clube-livro-info h4 {
+      font-size: 1rem;
+      color: var(--verde);
+      margin-bottom: 5px;
+    }
+    .clube-livro-info .autor {
+      color: var(--terracotta);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    .clube-progress {
+      margin-top: 10px;
+    }
+    .clube-progress-bar {
+      height: 8px;
+      background: var(--marfim-dark);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .clube-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--terracotta), var(--dourado));
+      border-radius: 4px;
+    }
+    .clube-progress span {
+      font-size: 0.8rem;
+      color: var(--cinza);
+    }
+    .clube-membros {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid var(--marfim-dark);
+    }
+    .clube-membros-avatars {
+      display: flex;
+    }
+    .clube-membro {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--terracotta), var(--dourado));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 600;
+      border: 2px solid var(--branco);
+      margin-left: -8px;
+    }
+    .clube-membro:first-child { margin-left: 0; }
+    .clube-membros span {
+      font-size: 0.8rem;
+      color: var(--cinza);
+    }
+    .clube-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    /* --- Generos --- */
+    .generos-section {
+      padding: 60px 0;
+      background: var(--branco);
+    }
+    .generos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+    }
+    .genero-card {
+      padding: 20px;
+      background: var(--marfim);
+      border-radius: var(--radius);
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+    .genero-card:hover {
+      border-color: var(--terracotta);
+      transform: translateY(-3px);
+      box-shadow: var(--sombra);
+    }
+    .genero-card i {
+      font-size: 2rem;
+      color: var(--terracotta);
+      margin-bottom: 10px;
+    }
+    .genero-card h4 {
+      font-size: 0.9rem;
+      color: var(--verde);
+      margin-bottom: 5px;
+    }
+    .genero-card span {
+      font-size: 0.75rem;
+      color: var(--cinza);
+    }
+
+    /* --- Add Community Modal --- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-box {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-box h2 {
+      font-size: 1.3rem;
+      color: var(--verde);
+      margin-bottom: 20px;
+    }
+    .modal-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--cinza);
+    }
+
+    /* --- Sidebar Writer Posts --- */
+    .sidebar-writer-posts {
+      background: var(--branco);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .sidebar-post {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--marfim-dark);
+    }
+    .sidebar-post:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .sidebar-post:first-of-type {
+      padding-top: 0;
+    }
+    .sidebar-post-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar-post-stats {
+      display: flex;
+      gap: 12px;
+      font-size: 0.75rem;
+      color: var(--cinza-light);
+    }
+    .sidebar-post-stats i.fa-heart {
+      color: var(--terracotta);
+    }
+
+    @media (max-width: 768px) {
+      .community-layout {
+        grid-template-columns: 1fr;
+      }
+      .communities-sidebar {
+        position: static;
+      }
+      .generos-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="paises.html">Países</a>
+        <a href="comunidade.html" class="active">Comunidade</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="entrevistas.html">Entrevistas</a>
+    <a href="loja.html">Livrarias</a>
+    <a href="audiobooks.html">Audiobooks</a>
+      </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="fas fa-users"></i> Comunidade</h1>
+      <p>Conecte-se com leitores e escritores de todo o mundo lusófono</p>
+    </div>
+  </section>
+
+  <!-- Community Bubbles -->
+  <section class="bubbles-section">
+    <div class="container">
+      <div class="bubbles-scroll" id="bubblesScroll">
+        <div class="bubble-item bubble-add" onclick="openAddCommunity()">
+          <div class="bubble-circle">
+            <span><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="bubble-name">Nova</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Feed (Twitter/X Style) -->
+  <section class="community-feed-section">
+    <div class="container">
+      <div class="twitter-layout">
+        <!-- Main Feed -->
+        <main class="twitter-feed">
+          <!-- Posts -->
+          <div id="communityFeed">
+            <!-- Posts will be loaded here -->
+          </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="twitter-sidebar-right">
+          <!-- Search -->
+          <div class="sidebar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Pesquisar..." id="communitySearch">
+          </div>
+
+          <!-- Frases de Escritores -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-quote-left"></i> Frases de Escritores</h3>
+            <div class="sidebar-writer-posts">
+              <div class="sidebar-post">
+                <div class="sidebar-post-header">
+                  <div class="comunidade-avatar" style="width: 32px; height: 32px; font-size: 0.7rem;">PE</div>
+                  <div>
+                    <strong style="font-size: 0.85rem;">Pepetela</strong>
+                    <span style="font-size: 0.7rem; color: var(--cinza); display: block;">Angola</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--cinza); line-height: 1.4; margin: 6px 0;">"Escrever é uma forma de resistência contra o esquecimento."</p>
+              </div>
+              <div class="sidebar-post">
+                <div class="sidebar-post-header">
+                  <div class="comunidade-avatar" style="width: 32px; height: 32px; font-size: 0.7rem;">MC</div>
+                  <div>
+                    <strong style="font-size: 0.85rem;">Mia Couto</strong>
+                    <span style="font-size: 0.7rem; color: var(--cinza); display: block;">Moçambique</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--cinza); line-height: 1.4; margin: 6px 0;">"Cada livro é uma semente que plantamos no vento da esperança."</p>
+              </div>
+              <div class="sidebar-post">
+                <div class="sidebar-post-header">
+                  <div class="comunidade-avatar" style="width: 32px; height: 32px; font-size: 0.7rem;">JA</div>
+                  <div>
+                    <strong style="font-size: 0.85rem;">Agualusa</strong>
+                    <span style="font-size: 0.7rem; color: var(--cinza); display: block;">Angola</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--cinza); line-height: 1.4; margin: 6px 0;">"A ficção é a mentira que diz verdades sobre a realidade."</p>
+              </div>
+              <div class="sidebar-post">
+                <div class="sidebar-post-header">
+                  <div class="comunidade-avatar" style="width: 32px; height: 32px; font-size: 0.7rem;">PC</div>
+                  <div>
+                    <strong style="font-size: 0.85rem;">Paulina Chiziane</strong>
+                    <span style="font-size: 0.7rem; color: var(--cinza); display: block;">Moçambique</span>
+                  </div>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--cinza); line-height: 1.4; margin: 6px 0;">"A mulher africana carrega o mundo nas palmas das suas mãos."</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trending -->
+          <div class="sidebar-card">
+            <h3>Trending</h3>
+            <div class="trending-item">
+              <span class="trending-tag">#LiteraturaAfricana</span>
+              <span class="trending-count">1.2K posts</span>
+            </div>
+            <div class="trending-item">
+              <span class="trending-tag">#Pepetela</span>
+              <span class="trending-count">856 posts</span>
+            </div>
+            <div class="trending-item">
+              <span class="trending-tag">#MiaCouto</span>
+              <span class="trending-count">634 posts</span>
+            </div>
+            <div class="trending-item">
+              <span class="trending-tag">#PoesiaLusofona</span>
+              <span class="trending-count">423 posts</span>
+            </div>
+            <div class="trending-item">
+              <span class="trending-tag">#ClubesDeLeitura</span>
+              <span class="trending-count">312 posts</span>
+            </div>
+            <div class="trending-item">
+              <span class="trending-tag">#PALOP</span>
+              <span class="trending-count">289 posts</span>
+            </div>
+          </div>
+
+          <!-- Comunidades -->
+          <div class="sidebar-card">
+            <h3><i class="fas fa-users"></i> Comunidades</h3>
+            <div id="communitiesList"></div>
+          </div>
+
+          <!-- Links Úteis -->
+          <div class="sidebar-card">
+            <h3>Links Úteis</h3>
+            <a href="escritores.html" class="quick-link" style="display:flex;align-items:center;gap:8px;padding:8px 0;color:var(--cinza);font-size:0.9rem;">
+              <i class="fas fa-pen-fancy" style="color:var(--terracotta)"></i> Escritores em Destaque
+            </a>
+            <a href="ranking.html" class="quick-link" style="display:flex;align-items:center;gap:8px;padding:8px 0;color:var(--cinza);font-size:0.9rem;">
+              <i class="fas fa-trophy" style="color:var(--dourado)"></i> Ranking da Comunidade
+            </a>
+            <a href="loja.html" class="quick-link" style="display:flex;align-items:center;gap:8px;padding:8px 0;color:var(--cinza);font-size:0.9rem;">
+              <i class="fas fa-shopping-cart" style="color:var(--verde)"></i> Loja
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clubes de Leitura -->
+  <section class="clube-section">
+    <div class="container">
+      <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h2>Clubes de Leitura</h2>
+          <p>Junte-se a outros leitores e discuta obras incríveis</p>
+        </div>
+        <button class="btn btn-primary" onclick="openAddClube()">
+          <i class="fas fa-plus"></i> Criar Clube
+        </button>
+      </div>
+      <div class="clube-grid" id="clubeGrid">
+        <div class="clube-card">
+          <div class="clube-header">
+            <h3>Clube Terra Sonâmbula</h3>
+            <p>Uma jornada pela Moçambique mágica de Mia Couto</p>
+            <span class="clube-badge">Ativo</span>
+          </div>
+          <div class="clube-body">
+            <div class="clube-livro">
+              <div class="clube-livro-cover" style="background: linear-gradient(135deg, #2D5A3D, #1E3D2A);"></div>
+              <div class="clube-livro-info">
+                <h4>Terra Sonâmbula</h4>
+                <p class="autor">Mia Couto</p>
+                <div class="clube-progress">
+                  <div class="clube-progress-bar">
+                    <div class="clube-progress-fill" style="width: 65%;"></div>
+                  </div>
+                  <span>Capítulo 12 de 18</span>
+                </div>
+              </div>
+            </div>
+            <div class="clube-membros">
+              <div class="clube-membros-avatars">
+                <div class="clube-membro">MC</div>
+                <div class="clube-membro">JS</div>
+                <div class="clube-membro">AC</div>
+                <div class="clube-membro">+</div>
+              </div>
+              <span>23 membros</span>
+            </div>
+            <div class="clube-actions">
+              <button class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Participar
+              </button>
+              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);">
+                <i class="fas fa-comments"></i> Discussão
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="clube-card">
+          <div class="clube-header" style="background: linear-gradient(135deg, var(--terracotta-dark), var(--terracotta));">
+            <h3>Clube Mayombe</h3>
+            <p>Na floresta com Pepetela e os guerrilheiros</p>
+            <span class="clube-badge">Ativo</span>
+          </div>
+          <div class="clube-body">
+            <div class="clube-livro">
+              <div class="clube-livro-cover" style="background: linear-gradient(135deg, #C75B39, #D4A843);"></div>
+              <div class="clube-livro-info">
+                <h4>Mayombe</h4>
+                <p class="autor">Pepetela</p>
+                <div class="clube-progress">
+                  <div class="clube-progress-bar">
+                    <div class="clube-progress-fill" style="width: 40%;"></div>
+                  </div>
+                  <span>Capítulo 8 de 20</span>
+                </div>
+              </div>
+            </div>
+            <div class="clube-membros">
+              <div class="clube-membros-avatars">
+                <div class="clube-membro">PE</div>
+                <div class="clube-membro">MR</div>
+                <div class="clube-membro">+</div>
+              </div>
+              <span>18 membros</span>
+            </div>
+            <div class="clube-actions">
+              <button class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Participar
+              </button>
+              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);">
+                <i class="fas fa-comments"></i> Discussão
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="clube-card">
+          <div class="clube-header" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+            <h3>Clube Chiquinho</h3>
+            <p>A obra prima de Baltasar Lopes em Cabo Verde</p>
+            <span class="clube-badge">Novo</span>
+          </div>
+          <div class="clube-body">
+            <div class="clube-livro">
+              <div class="clube-livro-cover" style="background: linear-gradient(135deg, #8B4513, #D2691E);"></div>
+              <div class="clube-livro-info">
+                <h4>Chiquinho</h4>
+                <p class="autor">Baltasar Lopes</p>
+                <div class="clube-progress">
+                  <div class="clube-progress-bar">
+                    <div class="clube-progress-fill" style="width: 15%;"></div>
+                  </div>
+                  <span>Capítulo 3 de 20</span>
+                </div>
+              </div>
+            </div>
+            <div class="clube-membros">
+              <div class="clube-membros-avatars">
+                <div class="clube-membro">BL</div>
+                <div class="clube-membro">+</div>
+              </div>
+              <span>8 membros</span>
+            </div>
+            <div class="clube-actions">
+              <button class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Participar
+              </button>
+              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);">
+                <i class="fas fa-comments"></i> Discussão
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Novos Clubes de Leitura -->
+  <section style="padding: 60px 0; background: var(--marfim);">
+    <div class="container">
+      <div class="section-title">
+        <h2>Todos os Clubes</h2>
+        <p>Participe nos clubes de leitura ativos</p>
+      </div>
+      <div id="clubsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Géneros -->
+  <section class="generos-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Todos os Géneros</h2>
+        <p>Explora comunidades por género literário</p>
+      </div>
+      <div class="generos-grid">
+        <div class="genero-card" onclick="selectGenre('romance')">
+          <i class="fas fa-heart"></i>
+          <h4>Romance</h4>
+          <span>1.2K livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('poesia')">
+          <i class="fas fa-feather-alt"></i>
+          <h4>Poesia</h4>
+          <span>856 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('conto')">
+          <i class="fas fa-book-open"></i>
+          <h4>Conto</h4>
+          <span>634 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('teatro')">
+          <i class="fas fa-theater-masks"></i>
+          <h4>Teatro</h4>
+          <span>234 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('ensaio')">
+          <i class="fas fa-graduation-cap"></i>
+          <h4>Ensaio</h4>
+          <span>456 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('cronica')">
+          <i class="fas fa-newspaper"></i>
+          <h4>Crónica</h4>
+          <span>345 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('infantil')">
+          <i class="fas fa-child"></i>
+          <h4>Infantil</h4>
+          <span>567 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('juvenil')">
+          <i class="fas fa-users"></i>
+          <h4>Juvenil</h4>
+          <span>389 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('ficcao')">
+          <i class="fas fa-dragon"></i>
+          <h4>Ficção</h4>
+          <span>789 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('historico')">
+          <i class="fas fa-landmark"></i>
+          <h4>Histórico</h4>
+          <span>321 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('biografia')">
+          <i class="fas fa-user-edit"></i>
+          <h4>Biografia</h4>
+          <span>234 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('aventura')">
+          <i class="fas fa-mountain"></i>
+          <h4>Aventura</h4>
+          <span>456 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('misterio')">
+          <i class="fas fa-search"></i>
+          <h4>Mistério</h4>
+          <span>234 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('fantasia')">
+          <i class="fas fa-hat-wizard"></i>
+          <h4>Fantasia</h4>
+          <span>345 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('terror')">
+          <i class="fas fa-ghost"></i>
+          <h4>Terror</h4>
+          <span>123 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('sci-fi')">
+          <i class="fas fa-rocket"></i>
+          <h4>Ficção Científica</h4>
+          <span>189 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('humor')">
+          <i class="fas fa-laugh"></i>
+          <h4>Humor</h4>
+          <span>167 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('religiao')">
+          <i class="fas fa-pray"></i>
+          <h4>Religião</h4>
+          <span>234 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('autoajuda')">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h4>Autoajuda</h4>
+          <span>345 livros</span>
+        </div>
+        <div class="genero-card" onclick="selectGenre('academico')">
+          <i class="fas fa-university"></i>
+          <h4>Académico</h4>
+          <span>567 livros</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add Community Modal -->
+  <div class="modal-overlay" id="addCommunityModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeAddCommunity()">&times;</button>
+      <h2><i class="fas fa-plus-circle"></i> Criar Comunidade</h2>
+      <form id="addCommunityForm">
+        <div class="form-group">
+          <label>Nome da Comunidade *</label>
+          <input type="text" id="communityName" required placeholder="Ex: Escritores de Angola">
+        </div>
+        <div class="form-group">
+          <label>Descrição</label>
+          <textarea id="communityDesc" rows="3" placeholder="Sobre o que é esta comunidade?"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Género</label>
+          <select id="communityGenre">
+            <option value="geral">Geral</option>
+            <option value="romance">Romance</option>
+            <option value="poesia">Poesia</option>
+            <option value="conto">Conto</option>
+            <option value="teatro">Teatro</option>
+            <option value="ensaio">Ensaio</option>
+            <option value="academico">Académico</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Ícone</label>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button type="button" class="icon-btn selected" data-icon="📚">📚</button>
+            <button type="button" class="icon-btn" data-icon="📖">📖</button>
+            <button type="button" class="icon-btn" data-icon="✍️">✍️</button>
+            <button type="button" class="icon-btn" data-icon="🎭">🎭</button>
+            <button type="button" class="icon-btn" data-icon="📜">📜</button>
+            <button type="button" class="icon-btn" data-icon="🎓">🎓</button>
+            <button type="button" class="icon-btn" data-icon="🌍">🌍</button>
+            <button type="button" class="icon-btn" data-icon="💬">💬</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          <i class="fas fa-plus"></i> Criar Comunidade
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- New Post Modal -->
+  <div class="modal-overlay" id="newPostModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeNewPost()">&times;</button>
+      <h2><i class="fas fa-edit"></i> Nova Publicação</h2>
+      <form id="newPostForm">
+        <div class="form-group">
+          <label>Publicar em:</label>
+          <select id="postCommunity">
+            <option value="feed">Feed Geral</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea id="postContent" rows="5" placeholder="O que está a pensar?" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Mencionar Livro (opcional)</label>
+          <input type="text" id="postBook" placeholder="Nome do livro">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          <i class="fas fa-paper-plane"></i> Publicar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Clube Modal -->
+  <div class="modal-overlay" id="addClubeModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeAddClube()">&times;</button>
+      <h2><i class="fas fa-book-reader"></i> Criar Clube de Leitura</h2>
+      <form id="addClubeForm">
+        <div class="form-group">
+          <label>Nome do Clube *</label>
+          <input type="text" id="clubeName" required placeholder="Ex: Clube de Romance Brasileiro">
+        </div>
+        <div class="form-group">
+          <label>Livro *</label>
+          <input type="text" id="clubeBook" required placeholder="Nome do livro">
+        </div>
+        <div class="form-group">
+          <label>Autor</label>
+          <input type="text" id="clubeAutor" placeholder="Nome do autor">
+        </div>
+        <div class="form-group">
+          <label>Descrição</label>
+          <textarea id="clubeDesc" rows="3" placeholder="Sobre o clube..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Género</label>
+          <select id="clubeGenre">
+            <option value="romance">Romance</option>
+            <option value="poesia">Poesia</option>
+            <option value="conto">Conto</option>
+            <option value="teatro">Teatro</option>
+            <option value="ensaio">Ensaio</option>
+            <option value="ficcao">Ficção</option>
+            <option value="fantasia">Fantasia</option>
+            <option value="misterio">Mistério</option>
+            <option value="terror">Terror</option>
+            <option value="sci-fi">Ficção Científica</option>
+            <option value="biografia">Biografia</option>
+            <option value="historico">Histórico</option>
+            <option value="academico">Académico</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          <i class="fas fa-plus"></i> Criar Clube
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Language Selector (Bottom) -->
+  <div class="lang-selector-bottom" id="langSelectorBottom">
+    <button class="lang-btn-bottom" onclick="toggleLangMenuBottom()">
+      <i class="fas fa-globe"></i>
+      <span id="currentLangBottom">PT</span>
+    </button>
+    <div class="lang-menu-bottom" id="langMenuBottom">
+      <a href="#" onclick="setLangBottom('pt')" class="active">🇵🇹 Português</a>
+      <a href="#" onclick="setLangBottom('en')">🇬🇧 English</a>
+      <a href="#" onclick="setLangBottom('es')">🇪🇸 Español</a>
+      <a href="#" onclick="setLangBottom('fr')">🇫🇷 Français</a>
+      <a href="#" onclick="setLangBottom('ar')">🇸🇦 العربية</a>
+      <a href="#" onclick="setLangBottom('zh')">🇨🇳 中文</a>
+      <a href="#" onclick="setLangBottom('ja')">🇯🇵 日本語</a>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+  <script>
+    // Communities data
+    const COMMUNITIES_KEY = 'raizesCommunities';
+    const POSTS_KEY = 'raizesPosts';
+
+    // Get communities
+    function getCommunities() {
+      return JSON.parse(localStorage.getItem(COMMUNITIES_KEY) || '[]');
+    }
+
+    // Save communities
+    function saveCommunities(communities) {
+      localStorage.setItem(COMMUNITIES_KEY, JSON.stringify(communities));
+    }
+
+    // Get posts
+    function getPosts() {
+      return JSON.parse(localStorage.getItem(POSTS_KEY) || '[]');
+    }
+
+    // Save posts
+    function savePosts(posts) {
+      localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
+    }
+
+    // Initialize
+    function initCommunity() {
+      const user = getCurrentUser();
+
+      // Load default communities if empty
+      if (getCommunities().length === 0) {
+        const defaultCommunities = [
+          { id: '1', name: 'Literatura Angolana', icon: '🇦🇴', desc: 'Tudo sobre literatura angolana', genre: 'geral', members: 234 },
+          { id: '2', name: 'Poesia Lusófona', icon: '✍️', desc: 'Poetas de todos os PALOP', genre: 'poesia', members: 189 },
+          { id: '3', name: 'Clube do Livro', icon: '📖', desc: 'Leituras coletivas', genre: 'romance', members: 156 },
+          { id: '4', name: 'Escritores Iniciantes', icon: '🌱', desc: 'Para quem está a começar', genre: 'geral', members: 312 },
+          { id: '5', name: 'Literatura Moçambicana', icon: '🇲🇿', desc: 'Mia Couto, Craveirinha e mais', genre: 'geral', members: 178 },
+          { id: '6', name: 'Material Académico', icon: '🎓', desc: 'Teses, artigos e pesquisas', genre: 'academico', members: 245 },
+          { id: '7', name: 'Ficção Científica', icon: '🚀', desc: 'Ficção científica lusófona', genre: 'sci-fi', members: 98 },
+          { id: '8', name: 'Literatura Infantil', icon: '👶', desc: 'Livros para crianças', genre: 'infantil', members: 134 }
+        ];
+        saveCommunities(defaultCommunities);
+      }
+
+      // Load default posts if empty
+      if (getPosts().length === 0) {
+        const defaultPosts = [
+          {
+            id: '1',
+            user: 'Pepetela',
+            initials: 'PE',
+            verified: true,
+            community: 'Literatura Angolana',
+            content: 'A literatura é a memória de um povo. Sem ela, não somos nada. Escrever é resistir, é lembrar, é sonhar.',
+            book: null,
+            likes: 234,
+            comments: 45,
+            shares: 12,
+            time: 'Há 2 horas'
+          },
+          {
+            id: '2',
+            user: 'Mia Couto',
+            initials: 'MC',
+            verified: true,
+            community: 'Literatura Moçambicana',
+            content: 'As palavras são sementes. Quando as plantamos na alma de alguém, florescem histórias que transcendem fronteiras.',
+            book: { title: 'Terra Sonâmbula', author: 'Mia Couto' },
+            likes: 189,
+            comments: 38,
+            shares: 8,
+            time: 'Há 5 horas'
+          },
+          {
+            id: '3',
+            user: 'Ana Silva',
+            initials: 'AS',
+            verified: false,
+            community: 'Clube do Livro',
+            content: 'Acabei de terminar "Mayombe" do Pepetela. Uma obra prima! A forma como descreve a floresta e os sentimentos dos guerrilheiros é única. Recomendo a todos!',
+            book: { title: 'Mayombe', author: 'Pepetela' },
+            likes: 67,
+            comments: 23,
+            shares: 5,
+            time: 'Há 1 dia'
+          }
+        ];
+        savePosts(defaultPosts);
+      }
+
+      renderBubbles();
+      renderCommunitiesList();
+      renderFeed();
+    }
+
+    // Render bubbles
+    function renderBubbles() {
+      const scroll = document.getElementById('bubblesScroll');
+      const communities = getCommunities();
+
+      // Keep add button
+      let html = `
+        <div class="bubble-item bubble-add" onclick="openAddCommunity()">
+          <div class="bubble-circle">
+            <span><i class="fas fa-plus"></i></span>
+          </div>
+          <div class="bubble-name">Nova</div>
+        </div>
+      `;
+
+      communities.forEach(c => {
+        html += `
+          <div class="bubble-item" onclick="selectCommunity('${c.id}')">
+            <div class="bubble-circle">
+              <span>${c.icon}</span>
+            </div>
+            <div class="bubble-name">${c.name}</div>
+            <div class="bubble-count">${c.members} membros</div>
+          </div>
+        `;
+      });
+
+      scroll.innerHTML = html;
+    }
+
+    // Render communities list
+    function renderCommunitiesList() {
+      const list = document.getElementById('communitiesList');
+      const communities = getCommunities();
+
+      list.innerHTML = communities.slice(0, 6).map(c => `
+        <div class="community-list-item" onclick="selectCommunity('${c.id}')">
+          <div class="community-list-icon" style="background: var(--marfim);">
+            ${c.icon}
+          </div>
+          <div class="community-list-info">
+            <strong>${c.name}</strong>
+            <span>${c.members} membros</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render feed
+    function renderFeed() {
+      const feed = document.getElementById('communityFeed');
+      const posts = getPosts();
+
+      feed.innerHTML = posts.map(post => `
+        <div class="feed-post">
+          <div class="post-header">
+            <div class="post-avatar" style="background: linear-gradient(135deg, var(--terracotta), var(--dourado));">
+              ${post.initials}
+            </div>
+            <div class="post-user-info">
+              <strong>
+                ${post.user}
+                ${post.verified ? '<i class="fas fa-check-circle verified-icon"></i>' : ''}
+              </strong>
+              <span>${post.time}</span>
+            </div>
+            <span class="post-community-tag">${post.community}</span>
+          </div>
+          <div class="post-content">
+            <p>${post.content}</p>
+            ${post.book ? `
+              <div class="post-book-mention">
+                <div class="post-book-cover" style="background: linear-gradient(135deg, var(--terracotta), var(--dourado));"></div>
+                <div class="post-book-info">
+                  <strong>${post.book.title}</strong>
+                  <span>${post.book.author}</span>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+          <div class="post-stats">
+            <span>${post.likes} curtidas</span>
+            <span>${post.comments} comentários</span>
+            <span>${post.shares} compartilhamentos</span>
+          </div>
+          <div class="post-actions">
+            <button class="post-action" onclick="likePost('${post.id}')">
+              <i class="fas fa-heart"></i> Curtir
+            </button>
+            <button class="post-action">
+              <i class="fas fa-comment"></i> Comentar
+            </button>
+            <button class="post-action">
+              <i class="fas fa-share"></i> Partilhar
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Select community
+    function selectCommunity(id) {
+      showToast('Comunidade selecionada!');
+    }
+
+    // Select genre
+    function selectGenre(genre) {
+      showToast(`Género selecionado: ${genre}`);
+    }
+
+    // Like post
+    function likePost(postId) {
+      const posts = getPosts();
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        post.likes++;
+        savePosts(posts);
+        renderFeed();
+      }
+    }
+
+    // Open add community modal
+    function openAddCommunity() {
+      document.getElementById('addCommunityModal').classList.add('active');
+    }
+
+    // Close add community modal
+    function closeAddCommunity() {
+      document.getElementById('addCommunityModal').classList.remove('active');
+    }
+
+    // Open new post modal
+    function openNewPost() {
+      const user = getCurrentUser();
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+      document.getElementById('newPostModal').classList.add('active');
+    }
+
+    // Close new post modal
+    function closeNewPost() {
+      document.getElementById('newPostModal').classList.remove('active');
+    }
+
+    // Add community form
+    document.getElementById('addCommunityForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('communityName').value;
+      const desc = document.getElementById('communityDesc').value;
+      const genre = document.getElementById('communityGenre').value;
+      const icon = document.querySelector('.icon-btn.selected')?.dataset.icon || '📚';
+
+      const communities = getCommunities();
+      communities.push({
+        id: Date.now().toString(),
+        name,
+        desc,
+        genre,
+        icon,
+        members: 1
+      });
+      saveCommunities(communities);
+
+      renderBubbles();
+      renderCommunitiesList();
+      closeAddCommunity();
+      showToast('Comunidade criada com sucesso!');
+      this.reset();
+    });
+
+    // New post form
+    document.getElementById('newPostForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = getCurrentUser();
+      if (!user) return;
+
+      const content = document.getElementById('postContent').value;
+      const bookName = document.getElementById('postBook').value;
+      const community = document.getElementById('postCommunity').value;
+
+      const posts = getPosts();
+      posts.unshift({
+        id: Date.now().toString(),
+        user: user.name,
+        initials: getInitials(user.name),
+        verified: false,
+        community: community || 'Feed Geral',
+        content,
+        book: bookName ? { title: bookName, author: 'Desconhecido' } : null,
+        likes: 0,
+        comments: 0,
+        shares: 0,
+        time: 'Agora'
+      });
+      savePosts(posts);
+
+      renderFeed();
+      closeNewPost();
+      showToast('Publicação criada!');
+      this.reset();
+    });
+
+    // Icon selection
+    document.querySelectorAll('.icon-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.icon-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+
+    // Close modals on click outside
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    });
+
+    // Reading Clubs
+    const CLUBES_KEY = 'raizesClubes';
+
+    function getClubes() {
+      return JSON.parse(localStorage.getItem(CLUBES_KEY) || '[]');
+    }
+
+    function saveClubes(clubes) {
+      localStorage.setItem(CLUBES_KEY, JSON.stringify(clubes));
+    }
+
+    function openAddClube() {
+      const user = getCurrentUser();
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+      document.getElementById('addClubeModal').classList.add('active');
+    }
+
+    function closeAddClube() {
+      document.getElementById('addClubeModal').classList.remove('active');
+    }
+
+    function renderClubes() {
+      const grid = document.getElementById('clubeGrid');
+      if (!grid) return;
+
+      // Default clubes
+      const defaultClubes = [
+        {
+          id: '1',
+          name: 'Clube Terra Sonâmbula',
+          book: 'Terra Sonâmbula',
+          autor: 'Mia Couto',
+          desc: 'Uma jornada pela Moçambique mágica de Mia Couto',
+          genre: 'romance',
+          members: 23,
+          progress: 65,
+          chapter: 'Capítulo 12 de 18',
+          gradient: 'linear-gradient(135deg, var(--verde-dark), var(--verde))',
+          badge: 'Ativo'
+        },
+        {
+          id: '2',
+          name: 'Clube Mayombe',
+          book: 'Mayombe',
+          autor: 'Pepetela',
+          desc: 'Na floresta com Pepetela e os guerrilheiros',
+          genre: 'romance',
+          members: 18,
+          progress: 40,
+          chapter: 'Capítulo 8 de 20',
+          gradient: 'linear-gradient(135deg, var(--terracotta-dark), var(--terracotta))',
+          badge: 'Ativo'
+        },
+        {
+          id: '3',
+          name: 'Clube Chiquinho',
+          book: 'Chiquinho',
+          autor: 'Baltasar Lopes',
+          desc: 'A obra prima de Baltasar Lopes em Cabo Verde',
+          genre: 'romance',
+          members: 8,
+          progress: 15,
+          chapter: 'Capítulo 3 de 20',
+          gradient: 'linear-gradient(135deg, #1a1a2e, #16213e)',
+          badge: 'Novo'
+        }
+      ];
+
+      const clubes = [...defaultClubes, ...getClubes()];
+
+      grid.innerHTML = clubes.map(clube => `
+        <div class="clube-card">
+          <div class="clube-header" style="background: ${clube.gradient || 'linear-gradient(135deg, var(--verde-dark), var(--verde))'}">
+            <h3>${clube.name}</h3>
+            <p>${clube.desc}</p>
+            <span class="clube-badge">${clube.badge || 'Ativo'}</span>
+          </div>
+          <div class="clube-body">
+            <div class="clube-livro">
+              <div class="clube-livro-cover" style="background: linear-gradient(135deg, var(--terracotta), var(--dourado));"></div>
+              <div class="clube-livro-info">
+                <h4>${clube.book}</h4>
+                <p class="autor">${clube.autor}</p>
+                <div class="clube-progress">
+                  <div class="clube-progress-bar">
+                    <div class="clube-progress-fill" style="width: ${clube.progress || 0}%;"></div>
+                  </div>
+                  <span>${clube.chapter || 'Capítulo 1'}</span>
+                </div>
+              </div>
+            </div>
+            <div class="clube-membros">
+              <div class="clube-membros-avatars">
+                <div class="clube-membro">+</div>
+              </div>
+              <span>${clube.members || 1} membros</span>
+            </div>
+            <div class="clube-actions">
+              <button class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Participar
+              </button>
+              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);">
+                <i class="fas fa-comments"></i> Discussão
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Add clube form
+    document.getElementById('addClubeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = getCurrentUser();
+      if (!user) return;
+
+      const name = document.getElementById('clubeName').value;
+      const book = document.getElementById('clubeBook').value;
+      const autor = document.getElementById('clubeAutor').value;
+      const desc = document.getElementById('clubeDesc').value;
+      const genre = document.getElementById('clubeGenre').value;
+
+      const clubes = getClubes();
+      clubes.push({
+        id: Date.now().toString(),
+        name,
+        book,
+        autor,
+        desc,
+        genre,
+        members: 1,
+        progress: 0,
+        chapter: 'Capítulo 1',
+        gradient: 'linear-gradient(135deg, var(--verde-dark), var(--verde))',
+        badge: 'Novo'
+      });
+      saveClubes(clubes);
+
+      renderClubes();
+      closeAddClube();
+      showToast('Clube de leitura criado com sucesso!');
+      this.reset();
+    });
+
+    // Render feed with writer badge
+    function renderFeed() {
+      const feed = document.getElementById('communityFeed');
+      const posts = getPosts();
+
+      feed.innerHTML = posts.map(post => `
+        <div class="feed-post">
+          <div class="post-header">
+            <div class="post-avatar" style="background: ${post.isWriter ? 'linear-gradient(135deg, var(--verde), #4CAF50)' : 'linear-gradient(135deg, var(--terracotta), var(--dourado))'};">
+              ${post.initials}
+            </div>
+            <div class="post-user-info">
+              <strong>
+                ${post.user}
+                ${post.verified ? '<i class="fas fa-check-circle verified-icon"></i>' : ''}
+                ${post.isWriter ? '<span class="writer-badge-small">Escritor</span>' : ''}
+              </strong>
+              <span>${post.time}</span>
+            </div>
+            <span class="post-community-tag">${post.community}</span>
+          </div>
+          <div class="post-content">
+            <p>${post.content}</p>
+            ${post.book ? `
+              <div class="post-book-mention">
+                <div class="post-book-cover" style="background: linear-gradient(135deg, var(--terracotta), var(--dourado));"></div>
+                <div class="post-book-info">
+                  <strong>${post.book.title}</strong>
+                  <span>${post.book.author}</span>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+          <div class="post-stats">
+            <span>${post.likes} curtidas</span>
+            <span>${post.comments} comentários</span>
+            <span>${post.shares} compartilhamentos</span>
+          </div>
+          <div class="post-actions">
+            <button class="post-action" onclick="likePost('${post.id}')">
+              <i class="fas fa-heart"></i> Curtir
+            </button>
+            <button class="post-action">
+              <i class="fas fa-comment"></i> Comentar
+            </button>
+            <button class="post-action">
+              <i class="fas fa-share"></i> Partilhar
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      initCommunity();
+      renderClubes();
+      if (typeof renderClubs === 'function') renderClubs();
+    });
+  </script>
+
+  <style>
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--marfim-dark);
+      background: var(--branco);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    .icon-btn.selected {
+      border-color: var(--verde);
+      background: rgba(45, 90, 61, 0.1);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--marfim-dark);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-family: var(--font-corpo);
+      background: var(--branco);
+      color: var(--preto);
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--verde);
+    }
+  </style>
+</body>
+</html>

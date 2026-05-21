@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Assiste a entrevistas exclusivas com escritores no canal do YouTube Raízes Literárias.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#2D5A3D">
+  <title>Entrevistas | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+  <style>
+    .page-hero {
+      margin-top: 70px;
+      padding: 80px 0 40px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+      text-align: center;
+    }
+    .entrevistas-section { padding: 60px 0; }
+    .canal-banner {
+      background: linear-gradient(135deg, var(--terracotta), var(--dourado));
+      border-radius: var(--radius);
+      padding: 40px;
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .canal-banner h3 { font-size: 1.5rem; margin-bottom: 10px; }
+    .canal-banner p { opacity: 0.9; margin-bottom: 20px; }
+    .canal-stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+    .canal-stats div {
+      text-align: center;
+    }
+    .canal-stats .numero {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .canal-stats .label {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+    .playlist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+    }
+    .playlist-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      transition: var(--transition);
+    }
+    .playlist-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra-hover);
+    }
+    .playlist-thumb {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: linear-gradient(135deg, var(--verde), var(--terracotta));
+      cursor: pointer;
+    }
+    .playlist-thumb .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--terracotta);
+      transition: var(--transition);
+    }
+    .playlist-card:hover .play-icon {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    .playlist-thumb .duracao {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    .playlist-info {
+      padding: 20px;
+    }
+    .playlist-info h3 {
+      font-size: 1.1rem;
+      color: var(--verde);
+      margin-bottom: 8px;
+    }
+    .playlist-info .escritor {
+      color: var(--terracotta);
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .playlist-info .data {
+      color: var(--cinza);
+      font-size: 0.85rem;
+    }
+    .playlist-info .descricao {
+      color: var(--cinza);
+      font-size: 0.9rem;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+    .filtro-entrevistas {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .filtro-btn {
+      padding: 10px 20px;
+      border: 2px solid var(--marfim-dark);
+      background: transparent;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: var(--font-corpo);
+      font-weight: 500;
+      transition: var(--transition);
+      color: var(--preto);
+    }
+    .filtro-btn.active, .filtro-btn:hover {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="paises.html">Países</a>
+        <a href="comunidade.html">Comunidade</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="entrevistas.html">Entrevistas</a>
+    <a href="loja.html">Livrarias</a>
+    <a href="audiobooks.html">Audiobooks</a>
+      </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="fab fa-youtube"></i> Entrevistas</h1>
+      <p>Assista conversas profundas com os maiores escritores lusófonos no nosso canal do YouTube</p>
+    </div>
+  </section>
+
+  <!-- Canal Banner -->
+  <section class="entrevistas-section">
+    <div class="container">
+      <div class="canal-banner">
+        <h3><i class="fab fa-youtube"></i> Canal Raízes Literárias</h3>
+        <p>Inscreva-se no nosso canal e não perca nenhuma entrevista!</p>
+        <div class="canal-stats">
+          <div>
+            <span class="numero">15K</span>
+            <span class="label">Inscritos</span>
+          </div>
+          <div>
+            <span class="numero">120+</span>
+            <span class="label">Vídeos</span>
+          </div>
+          <div>
+            <span class="numero">500K</span>
+            <span class="label">Visualizações</span>
+          </div>
+        </div>
+        <a href="#" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.4);">
+          <i class="fab fa-youtube"></i> Inscrever-se no Canal
+        </a>
+      </div>
+
+      <!-- Filtros -->
+      <div class="filtro-entrevistas">
+        <button class="filtro-btn active">Todas</button>
+        <button class="filtro-btn">Angola</button>
+        <button class="filtro-btn">Moçambique</button>
+        <button class="filtro-btn">Cabo Verde</button>
+        <button class="filtro-btn">Guiné-Bissau</button>
+        <button class="filtro-btn">São Tomé</button>
+        <button class="filtro-btn">Timor-Leste</button>
+      </div>
+
+      <!-- Playlist -->
+      <div class="playlist-grid">
+        <div class="playlist-card">
+          <div class="playlist-thumb" onclick="playVideo(this, 'VIDEO_ID_1')">
+            <div class="play-icon"><i class="fas fa-play"></i></div>
+            <span class="duracao">45:20</span>
+          </div>
+          <div class="playlist-info">
+            <h3>A Arte de Escrever em Angola</h3>
+            <p class="escritor">Pepetela</p>
+            <p class="data"><i class="far fa-calendar"></i> 15 de Maio, 2026</p>
+            <p class="descricao">Pepetela fala sobre seu processo criativo, a inspiração em Angola e os desafios de escrever sobre a realidade angolana.</p>
+          </div>
+        </div>
+
+        <div class="playlist-card">
+          <div class="playlist-thumb" onclick="playVideo(this, 'VIDEO_ID_2')">
+            <div class="play-icon"><i class="fas fa-play"></i></div>
+            <span class="duracao">38:15</span>
+          </div>
+          <div class="playlist-info">
+            <h3>Moçambique nas Entrelinhas</h3>
+            <p class="escritor">Mia Couto</p>
+            <p class="data"><i class="far fa-calendar"></i> 10 de Maio, 2026</p>
+            <p class="descricao">Mia Couto compartilha histórias sobre sua trajetória, a poesia moçambicana e o significado de ser escritor em Moçambique.</p>
+          </div>
+        </div>
+
+        <div class="playlist-card">
+          <div class="playlist-thumb" onclick="playVideo(this, 'VIDEO_ID_3')">
+            <div class="play-icon"><i class="fas fa-play"></i></div>
+            <span class="duracao">42:30</span>
+          </div>
+          <div class="playlist-info">
+            <h3>Cabo Verde: Ilhas de Palavras</h3>
+            <p class="escritor">Germano Almeida</p>
+            <p class="data"><i class="far fa-calendar"></i> 5 de Maio, 2026</p>
+            <p class="descricao">Germano Almeida fala sobre a literatura cabo-verdiana, a influência das ilhas e a importância da morna na cultura.</p>
+          </div>
+        </div>
+
+        <div class="playlist-card">
+          <div class="playlist-thumb" onclick="playVideo(this, 'VIDEO_ID_4')">
+            <div class="play-icon"><i class="fas fa-play"></i></div>
+            <span class="duracao">35:45</span>
+          </div>
+          <div class="playlist-info">
+            <h3>Agualusa: O Mundo é uma História</h3>
+            <p class="escritor">José Eduardo Agualusa</p>
+            <p class="data"><i class="far fa-calendar"></i> 28 de Abril, 2026</p>
+            <p class="descricao">Agualusa discute sua carreira, o prémio Man Booker e o papel da literatura angolana no cenário mundial.</p>
+          </div>
+        </div>
+
+        <div class="playlist-card">
+          <div class="playlist-thumb" onclick="playVideo(this, 'VIDEO_ID_5')">
+            <div class="play-icon"><i class="fas fa-play"></i></div>
+            <span class="duracao">28:10</span>
+          </div>
+          <div class="playlist-info">
+            <h3>A Voz da Guiné-Bissau</h3>
+            <p class="escritor">Uanhenga Xitu</p>
+            <p class="data"><i class="far fa-calendar"></i> 20 de Abril, 2026</p>
+            <p class="descricao">Uanhenga Xitu fala sobre a tradição oral guineense, a luta pela independência e a literatura contemporânea.</p>
+          </div>
+        </div>
+
+        <div class="playlist-card">
+          <div class="playlist-thumb" onclick="playVideo(this, 'VIDEO_ID_6')">
+            <div class="play-icon"><i class="fas fa-play"></i></div>
+            <span class="duracao">32:50</span>
+          </div>
+          <div class="playlist-info">
+            <h3>Poesia São-Tomense</h3>
+            <p class="escritor">Alda do Espírito Santo</p>
+            <p class="data"><i class="far fa-calendar"></i> 15 de Abril, 2026</p>
+            <p class="descricao">Alda do Espírito Santo compartilha sua poesia, a cultura são-tomense e a importância da literatura para a identidade nacional.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Language Selector (Bottom) -->
+  <div class="lang-selector-bottom" id="langSelectorBottom">
+    <button class="lang-btn-bottom" onclick="toggleLangMenuBottom()">
+      <i class="fas fa-globe"></i>
+      <span id="currentLangBottom">PT</span>
+    </button>
+    <div class="lang-menu-bottom" id="langMenuBottom">
+      <a href="#" onclick="setLangBottom('pt')" class="active">🇵🇹 Português</a>
+      <a href="#" onclick="setLangBottom('en')">🇬🇧 English</a>
+      <a href="#" onclick="setLangBottom('es')">🇪🇸 Español</a>
+      <a href="#" onclick="setLangBottom('fr')">🇫🇷 Français</a>
+      <a href="#" onclick="setLangBottom('ar')">🇸🇦 العربية</a>
+      <a href="#" onclick="setLangBottom('zh')">🇨🇳 中文</a>
+      <a href="#" onclick="setLangBottom('ja')">🇯🇵 日本語</a>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Livraria global. Adquire obras de escritores de todo o mundo. Livros, audiobooks e material académico.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#2D5A3D">
+  <title>Livrarias | Raízes Literárias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhanced.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/features2.css">
+  <style>
+    .page-hero {
+      margin-top: 70px;
+      padding: 80px 0 40px;
+      background: linear-gradient(135deg, var(--terracotta-dark), var(--terracotta), var(--dourado));
+      color: white;
+      text-align: center;
+    }
+    .loja-section { padding: 60px 0; }
+    .loja-filtros {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      align-items: center;
+    }
+    .loja-filtros select {
+      padding: 10px 15px;
+      border: 2px solid var(--marfim-dark);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-corpo);
+      font-size: 0.95rem;
+      background: var(--branco);
+      color: var(--preto);
+      cursor: pointer;
+    }
+    .loja-filtros select:focus { outline: none; border-color: var(--terracotta); }
+    .loja-ordenar {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .loja-ordenar span { color: var(--cinza); font-size: 0.9rem; }
+    .carrinho-flutuante {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: var(--verde);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      box-shadow: var(--sombra-hover);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+    .carrinho-flutuante:hover {
+      background: var(--verde-dark);
+      transform: translateY(-3px);
+    }
+    .carrinho-flutuante .badge {
+      background: var(--terracotta);
+      padding: 2px 8px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .livro-grande-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+    .livro-grande-card:hover {
+      box-shadow: var(--sombra-hover);
+    }
+    .livro-grande-cover {
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: white;
+    }
+    .livro-grande-info {
+      padding: 25px;
+    }
+    .livro-grande-info h3 {
+      font-size: 1.3rem;
+      color: var(--verde);
+      margin-bottom: 8px;
+    }
+    .livro-grande-info .autor {
+      color: var(--terracotta);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .livro-grande-info .descricao {
+      color: var(--cinza);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .livro-grande-info .meta {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .livro-grande-info .meta-item {
+      padding: 5px 12px;
+      background: var(--marfim);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: var(--verde);
+    }
+    .livro-grande-info .preco-grande {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      margin-bottom: 15px;
+    }
+    .livro-grande-info .preco-grande .preco-original {
+      text-decoration: line-through;
+      color: var(--cinza-light);
+      font-size: 1rem;
+      margin-left: 10px;
+    }
+    @media (max-width: 768px) {
+      .livro-grande-card {
+        grid-template-columns: 1fr;
+      }
+      .livro-grande-cover {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-book-open"></i></div>
+        <span>Raízes Literárias</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">HQ</a>
+        <a href="paises.html">Países</a>
+        <a href="comunidade.html">Comunidade</a>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html" class="active">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">HQ</a>
+    <a href="paises.html">Países</a>
+    <a href="comunidade.html">Comunidade</a>
+    <a href="entrevistas.html">Entrevistas</a>
+    <a href="loja.html">Livraria</a>
+    <a href="audiobooks.html">Audiobooks</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1><i class="fas fa-book"></i> Livrarias</h1>
+      <p>Encontra livros dos melhores escritores do mundo inteiro</p>
+    </div>
+  </section>
+
+  <!-- Loja -->
+  <section class="loja-section">
+    <div class="container">
+      <div class="loja-filtros">
+        <select id="filtroPais">
+          <option value="todos">Todos os Países</option>
+          <option value="angola">Angola</option>
+          <option value="mocambique">Moçambique</option>
+          <option value="caboverde">Cabo Verde</option>
+          <option value="guine">Guiné-Bissau</option>
+          <option value="saotome">São Tomé e Príncipe</option>
+          <option value="timor">Timor-Leste</option>
+          <option value="internacional">Internacional</option>
+        </select>
+        <select id="filtroPreco">
+          <option value="todos">Todos os Preços</option>
+          <option value="ate1000">Até 1.000 Kz</option>
+          <option value="ate2000">Até 2.000 Kz</option>
+          <option value="acima2000">Acima de 2.000 Kz</option>
+        </select>
+        <select id="filtroGenero">
+          <option value="todos">Todos os Géneros</option>
+          <option value="romance">Romance</option>
+          <option value="poesia">Poesia</option>
+          <option value="conto">Conto</option>
+          <option value="ensaio">Ensaio</option>
+          <option value="teatro">Teatro</option>
+        </select>
+        <div class="loja-ordenar">
+          <span>Ordenar por:</span>
+          <select id="ordenar">
+            <option value="relevancia">Relevância</option>
+            <option value="preco-menor">Menor Preço</option>
+            <option value="preco-maior">Maior Preço</option>
+            <option value="recente">Mais Recente</option>
+            <option value="popular">Mais Popular</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="loja-counter" id="lojaCounter"></div>
+      <div class="livros-grid" id="lojaGrid">
+        <!-- Livro 1 -->
+        <div class="livro-card animate-on-scroll" data-pais="angola" data-preco="2000" data-genero="romance">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #4A0E0E, #8B0000); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-novo">Novo</span>
+          </div>
+          <div class="livro-info">
+            <h4>O Vendedor de Passados</h4>
+            <p class="autor">José Eduardo Agualusa</p>
+            <span class="pais">Angola</span>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">2.000 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('O Vendedor de Passados', 2000)">Comprar</button>
+            <button class="btn-favorite" data-book="O Vendedor de Passados" onclick="toggleFavorite('O Vendedor de Passados', 'José Eduardo Agualusa', 2000)"><i class="far fa-heart"></i></button>
+            <button class="btn-compare" title="Ler Amostra" onclick="openSampleReader('O Vendedor de Passados')"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+
+        <!-- Livro 2 -->
+        <div class="livro-card animate-on-scroll" data-pais="mocambique" data-preco="1500" data-genero="romance">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #2D5A3D, #1E3D2A); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+          <div class="livro-info">
+            <h4>Terra Sonâmbula</h4>
+            <p class="autor">Mia Couto</p>
+            <span class="pais">Moçambique</span>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.500 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Terra Sonâmbula', 1500)">Comprar</button>
+            <button class="btn-favorite" data-book="Terra Sonâmbula" onclick="toggleFavorite('Terra Sonâmbula', 'Mia Couto', 1500)"><i class="far fa-heart"></i></button>
+            <button class="btn-compare" title="Ler Amostra" onclick="openSampleReader('Terra Sonâmbula')"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+
+        <!-- Livro 3 -->
+        <div class="livro-card animate-on-scroll" data-pais="angola" data-preco="1500" data-genero="romance">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #C75B39, #D4A843); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-destaque">Destaque</span>
+          </div>
+          <div class="livro-info">
+            <h4>Mayombe</h4>
+            <p class="autor">Pepetela</p>
+            <span class="pais">Angola</span>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.500 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Mayombe', 1500)">Comprar</button>
+            <button class="btn-favorite" data-book="Mayombe" onclick="toggleFavorite('Mayombe', 'Pepetela', 1500)"><i class="far fa-heart"></i></button>
+            <button class="btn-compare" title="Ler Amostra" onclick="openSampleReader('Mayombe')"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+
+        <!-- Livro 4 -->
+        <div class="livro-card animate-on-scroll" data-pais="caboverde" data-preco="1200" data-genero="romance">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #8B4513, #D2691E); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-destaque">Clássico</span>
+          </div>
+          <div class="livro-info">
+            <h4>Chiquinho</h4>
+            <p class="autor">Baltasar Lopes</p>
+            <span class="pais">Cabo Verde</span>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.200 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Chiquinho', 1200)">Comprar</button>
+            <button class="btn-favorite" data-book="Chiquinho" onclick="toggleFavorite('Chiquinho', 'Baltasar Lopes', 1200)"><i class="far fa-heart"></i></button>
+            <button class="btn-compare" title="Ler Amostra" onclick="openSampleReader('Chiquinho')"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+
+        <!-- Livro 5 -->
+        <div class="livro-card animate-on-scroll" data-pais="internacional" data-preco="1800" data-genero="romance">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+          <div class="livro-info">
+            <h4>O Alquimista</h4>
+            <p class="autor">Paulo Coelho</p>
+            <span class="pais">Internacional</span>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.800 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('O Alquimista', 1800)">Comprar</button>
+            <button class="btn-favorite" data-book="O Alquimista" onclick="toggleFavorite('O Alquimista', 'Paulo Coelho', 1800)"><i class="far fa-heart"></i></button>
+            <button class="btn-compare" title="Ler Amostra" onclick="openSampleReader('O Alquimista')"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+
+        <!-- Livro 6 -->
+        <div class="livro-card animate-on-scroll" data-pais="mocambique" data-preco="900" data-genero="poesia">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #8B4513, #A0522D); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-destaque">Poesia</span>
+          </div>
+          <div class="livro-info">
+            <h4>Vozeria</h4>
+            <p class="autor">José Craveirinha</p>
+            <span class="pais">Moçambique</span>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">900 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Vozeria', 900)">Comprar</button>
+            <button class="btn-favorite" data-book="Vozeria" onclick="toggleFavorite('Vozeria', 'José Craveirinha', 900)"><i class="far fa-heart"></i></button>
+            <button class="btn-compare" title="Ler Amostra" onclick="openSampleReader('Vozeria')"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+
+        <!-- Livro 7 -->
+        <div class="livro-card animate-on-scroll" data-pais="saotome" data-preco="1200" data-genero="romance">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #DAA520, #B8860B); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+          </div>
+          <div class="livro-info">
+            <h4>A Costa dos Murmúrios</h4>
+            <p class="autor">Lília Momplé</p>
+            <span class="pais">São Tomé e Príncipe</span>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">1.200 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('A Costa dos Murmúrios', 1200)">Comprar</button>
+            <button class="btn-favorite" data-book="A Costa dos Murmúrios" onclick="toggleFavorite('A Costa dos Murmúrios', 'Lília Momplé', 1200)"><i class="far fa-heart"></i></button>
+            <button class="btn-compare" title="Ler Amostra" onclick="openSampleReader('A Costa dos Murmúrios')"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+
+        <!-- Livro 8 -->
+        <div class="livro-card animate-on-scroll" data-pais="angola" data-preco="2500" data-genero="romance">
+          <div class="livro-cover">
+            <div class="livro-cover-img" style="background: linear-gradient(135deg, #2F4F4F, #3C6E6E); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white;">
+              <i class="fas fa-book"></i>
+            </div>
+            <span class="livro-badge badge-destaque">Destaque</span>
+          </div>
+          <div class="livro-info">
+            <h4>Yaka</h4>
+            <p class="autor">Pepetela</p>
+            <span class="pais">Angola</span>
+          </div>
+          <div class="livro-preco">
+            <span class="preco">2.500 Kz</span>
+            <button class="btn-comprar" onclick="addToCart('Yaka', 2500)">Comprar</button>
+            <button class="btn-favorite" data-book="Yaka" onclick="toggleFavorite('Yaka', 'Pepetela', 2500)"><i class="far fa-heart"></i></button>
+            <button class="btn-compare" title="Ler Amostra" onclick="openSampleReader('Yaka')"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carrinho Flutuante -->
+  <div class="carrinho-flutuante" onclick="openCart()">
+    <i class="fas fa-shopping-cart"></i>
+    <span>Carrinho</span>
+    <span class="badge" id="cartCount">0</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raízes Literárias. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Language Selector (Bottom) -->
+  <div class="lang-selector-bottom" id="langSelectorBottom">
+    <button class="lang-btn-bottom" onclick="toggleLangMenuBottom()">
+      <i class="fas fa-globe"></i>
+      <span id="currentLangBottom">PT</span>
+    </button>
+    <div class="lang-menu-bottom" id="langMenuBottom">
+      <a href="#" onclick="setLangBottom('pt')" class="active">🇵🇹 Português</a>
+      <a href="#" onclick="setLangBottom('en')">🇬🇧 English</a>
+      <a href="#" onclick="setLangBottom('es')">🇪🇸 Español</a>
+      <a href="#" onclick="setLangBottom('fr')">🇫🇷 Français</a>
+      <a href="#" onclick="setLangBottom('ar')">🇸🇦 العربية</a>
+      <a href="#" onclick="setLangBottom('zh')">🇨🇳 中文</a>
+      <a href="#" onclick="setLangBottom('ja')">🇯🇵 日本語</a>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/backend.js"></script>
+</body>
+</html>
