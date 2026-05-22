@@ -183,7 +183,7 @@ function performGlobalSearch(query) {
   }
 
   results.innerHTML = matches.map(book => `
-    <div class="search-result-item" onclick="handleSearchSelect('${escapeHtml(book.name)}', ${book.price})">
+    <div class="search-result-item" onclick="handleSearchSelect(${escapeJs(book.name)}, ${book.price})">
       <div class="search-result-cover" style="background: linear-gradient(135deg, var(--terracotta), var(--dourado));">
         <i class="fas fa-book"></i>
       </div>
@@ -196,10 +196,10 @@ function performGlobalSearch(query) {
         </div>
       </div>
       <div class="search-result-actions">
-        <button onclick="event.stopPropagation();addToCart('${escapeHtml(book.name)}',${book.price},'${escapeHtml(book.author)}')" title="Comprar">
+        <button onclick="event.stopPropagation();addToCart(${escapeJs(book.name)},${book.price},${escapeJs(book.author)})" title="Comprar">
           <i class="fas fa-cart-plus"></i>
         </button>
-        <button onclick="event.stopPropagation();toggleFavorite('${escapeHtml(book.name)}','${escapeHtml(book.author)}',${book.price})" title="Favoritar">
+        <button onclick="event.stopPropagation();toggleFavorite(${escapeJs(book.name)},${escapeJs(book.author)},${book.price})" title="Favoritar">
           <i class="far fa-heart"></i>
         </button>
       </div>

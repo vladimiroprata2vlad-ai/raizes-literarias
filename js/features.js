@@ -39,6 +39,10 @@ function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
 }
 
+function escapeJs(value) {
+  return JSON.stringify(value == null ? '' : String(value)).replace(/</g, '\\u003C').replace(/>/g, '\\u003E').replace(/&/g, '\\u0026').replace(/'/g, '\\u0027');
+}
+
 function getCurrentTime() {
   const now = new Date();
   return now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
@@ -119,7 +123,7 @@ function renderFavoritesGrid() {
       </div>
       <div class="livro-preco">
         <span class="preco">${fav.price > 0 ? fav.price.toLocaleString() + ' Kz' : 'Grátis'}</span>
-        <button class="btn-comprar" onclick="addToCart('${escapeHtml(fav.name)}', ${fav.price})">
+        <button class="btn-comprar" onclick="addToCart(${escapeJs(fav.name)}, ${fav.price})">
           <i class="fas fa-cart-plus"></i>
         </button>
       </div>
@@ -261,11 +265,11 @@ function renderCartModal() {
               <span class="cart-item-price">${item.price > 0 ? item.price.toLocaleString() + ' Kz' : 'Grátis'}</span>
             </div>
             <div class="cart-item-qty">
-              <button onclick="updateCartQuantity('${escapeHtml(item.name)}', -1)">-</button>
+              <button onclick="updateCartQuantity(${escapeJs(item.name)}, -1)">-</button>
               <span>${item.quantity}</span>
-              <button onclick="updateCartQuantity('${escapeHtml(item.name)}', 1)">+</button>
+              <button onclick="updateCartQuantity(${escapeJs(item.name)}, 1)">+</button>
             </div>
-            <button class="cart-item-remove" onclick="removeFromCart('${escapeHtml(item.name)}')">
+            <button class="cart-item-remove" onclick="removeFromCart(${escapeJs(item.name)})">
               <i class="fas fa-trash"></i>
             </button>
           </div>
@@ -375,7 +379,7 @@ function openReviewModal(bookName) {
           `).join('')}
         </div>
         <textarea id="reviewComment" rows="4" placeholder="Escreve a tua avaliação...">${escapeHtml(currentComment)}</textarea>
-        <button class="btn btn-primary" style="width:100%;" onclick="submitReview('${escapeHtml(bookName)}')">
+        <button class="btn btn-primary" style="width:100%;" onclick="submitReview(${escapeJs(bookName)})">
           <i class="fas fa-paper-plane"></i> Enviar Avaliação
         </button>
       </div>

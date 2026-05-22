@@ -563,10 +563,10 @@ function renderLibrary() {
           <span>${book.progress}%</span>
         </div>
         <div class="library-actions">
-          <button class="btn btn-sm btn-primary" onclick="openSampleReader('${escapeHtml(book.name)}')">
+          <button class="btn btn-sm btn-primary" onclick="openSampleReader(${escapeJs(book.name)})">>
             <i class="fas fa-book-open"></i> ${book.progress > 0 ? 'Continuar' : 'Ler'}
           </button>
-          <button class="btn btn-sm btn-secondary" onclick="updateReadingProgress('${escapeHtml(book.name)}', ${Math.min(100, book.progress + 10)})">
+          <button class="btn btn-sm btn-secondary" onclick="updateReadingProgress(${escapeJs(book.name)}, ${Math.min(100, book.progress + 10)})">
             <i class="fas fa-forward"></i> +10%
           </button>
         </div>
@@ -627,7 +627,7 @@ function openTipModal(writerName) {
           <label>Mensagem (opcional)</label>
           <input type="text" id="tipMessage" placeholder="Deixe uma mensagem para o escritor">
         </div>
-        <button class="btn btn-primary" style="width:100%" onclick="processTip('${escapeHtml(writerName)}')">
+        <button class="btn btn-primary" style="width:100%" onclick="processTip(${escapeJs(writerName)})">
           <i class="fas fa-hand-holding-heart"></i> Enviar Doação
         </button>
       </div>
@@ -823,7 +823,7 @@ function updateCompareBar() {
     <div class="compare-bar-content">
       <span><i class="fas fa-balance-scale"></i> ${compareList.length} livro(s) selecionado(s)</span>
       <div class="compare-bar-items">
-        ${compareList.map(b => `<span class="compare-tag">${escapeHtml(b.name)} <button onclick="removeFromCompare('${escapeHtml(b.name)}')">&times;</button></span>`).join('')}
+        ${compareList.map(b => `<span class="compare-tag">${escapeHtml(b.name)} <button onclick="removeFromCompare(${escapeJs(b.name)})">&times;</button></span>`).join('')}
       </div>
       <a href="comparar.html" class="btn btn-primary btn-sm">Comparar</a>
     </div>
