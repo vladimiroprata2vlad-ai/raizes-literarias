@@ -2,18 +2,18 @@
    RAÍZES LITERÁRIAS - Profile System
    ============================================ */
 
-const PROFILES_KEY = 'raizesProfiles';
-const FAVORITES_KEY = 'raizesFavorites';
-const LIBRARY_KEY = 'raizesLibrary';
+const PROFILES_STORE_KEY = 'raizesProfiles';
+const PROFILE_FAVORITES_STORE_KEY = 'raizesFavorites';
+const PROFILE_LIBRARY_STORE_KEY = 'raizesLibrary';
 
 // Get all profiles
 function getProfiles() {
-  return JSON.parse(localStorage.getItem(PROFILES_KEY) || '{}');
+  return JSON.parse(localStorage.getItem(PROFILES_STORE_KEY) || '{}');
 }
 
 // Save profiles
 function saveProfiles(profiles) {
-  localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+  localStorage.setItem(PROFILES_STORE_KEY, JSON.stringify(profiles));
 }
 
 // Get current user profile data
@@ -37,12 +37,12 @@ function updateProfile(userId, profileData) {
 
 // Get favorites
 function getFavorites() {
-  return JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
+  return JSON.parse(localStorage.getItem(PROFILE_FAVORITES_STORE_KEY) || '[]');
 }
 
 // Get library
 function getLibrary() {
-  return JSON.parse(localStorage.getItem(LIBRARY_KEY) || '[]');
+  return JSON.parse(localStorage.getItem(PROFILE_LIBRARY_STORE_KEY) || '[]');
 }
 
 // Initialize profile page
@@ -334,7 +334,7 @@ function loadFavoritesGrid() {
 function removeFavorite(bookName) {
   let favorites = getFavorites();
   favorites = favorites.filter(f => f.name !== bookName);
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+  localStorage.setItem(PROFILE_FAVORITES_STORE_KEY, JSON.stringify(favorites));
   loadFavoritesGrid();
   showToast('Removido dos favoritos');
 }

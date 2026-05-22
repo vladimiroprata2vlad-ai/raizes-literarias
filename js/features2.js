@@ -531,6 +531,9 @@ function updateReadingProgress(bookName, progress) {
     book.progress = Math.min(100, progress);
     book.lastRead = new Date().toISOString();
     localStorage.setItem(LIBRARY_KEY, JSON.stringify(lib));
+    renderLibrary();
+    addActivity('read', `Atualizou a leitura de "${bookName}" para ${book.progress}%`);
+    if (book.progress >= 100) addPoints(15);
   }
 }
 
@@ -986,4 +989,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  renderCompareTable();
+  renderLibrary();
+  renderWriterDashboard();
+  renderLongReviews();
+  updateCompareBar();
 });

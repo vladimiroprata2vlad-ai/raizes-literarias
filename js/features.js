@@ -142,16 +142,17 @@ function saveCart(cart) {
   updateCartBadge();
 }
 
-function addToCart(bookName, price) {
-  if (typeof checkLogin === 'function' && !checkLogin('buy')) return;
+function addToCart(bookName, price, author = 'Desconhecido') {
   const cart = getCart();
   const existing = cart.find(item => item.name === bookName);
 
   if (existing) {
     existing.quantity++;
+    existing.author = existing.author || author;
   } else {
     cart.push({
       name: bookName,
+      author,
       price: price,
       quantity: 1
     });
@@ -193,9 +194,24 @@ function getCartCount() {
 
 function updateCartBadge() {
   const badge = document.getElementById('cartCount');
+  const count = getCartCount();
   if (badge) {
-    badge.textContent = getCartCount();
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'inline-flex' : 'none';
   }
+}
+
+function addNotification(title, message, type = 'system') {
+  const notifications = JSON.parse(localStorage.getItem('raizesNotifications') || '[]');
+  notifications.unshift({
+    id: Date.now().toString(),
+    title,
+    message,
+    type,
+    read: false,
+    createdAt: new Date().toISOString()
+  });
+  localStorage.setItem('raizesNotifications', JSON.stringify(notifications.slice(0, 50)));
 }
 
 function openCart() {

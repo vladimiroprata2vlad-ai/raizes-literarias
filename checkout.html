@@ -548,7 +548,8 @@
       // Add books to library
       const cart = getCart();
       cart.forEach(item => {
-        addToLibrary(item.name, item.author || 'Desconhecido', item.price);
+        const knownBook = (typeof ALL_BOOKS !== 'undefined') ? ALL_BOOKS.find(book => book.name === item.name) : null;
+        addToLibrary(item.name, item.author || knownBook?.author || 'Desconhecido', item.price);
       });
 
       // Add points

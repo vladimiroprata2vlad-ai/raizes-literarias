@@ -89,7 +89,7 @@
             <i class="fas fa-crown"></i>
             <h4>Premium</h4>
             <p>Responda comentários e tenha análises avançadas</p>
-            <a href="#" class="btn btn-gold btn-sm" onclick="showToast('Premium em desenvolvimento', 'info'); return false;">Ativar Premium</a>
+            <a href="#" class="btn btn-gold btn-sm" onclick="activatePremium(); return false;">Ativar Premium</a>
           </div>
         </aside>
 
@@ -268,7 +268,7 @@
                 <button type="submit" class="btn btn-primary">
                   <i class="fas fa-upload"></i> Publicar Livro
                 </button>
-                <button type="button" class="btn btn-secondary" style="border-color: var(--cinza-light); color: var(--preto);">
+                <button type="button" class="btn btn-secondary" style="border-color: var(--cinza-light); color: var(--preto);" onclick="saveDraft()">
                   <i class="fas fa-save"></i> Guardar Rascunho
                 </button>
               </div>
@@ -283,7 +283,7 @@
               <div>
                 <h3>Funcionalidade Premium</h3>
                 <p>Para responder aos comentários dos leitores, ative a conta Premium.</p>
-                <a href="#" class="btn btn-gold btn-sm" onclick="showToast('Premium em desenvolvimento', 'info'); return false;">Ativar Premium</a>
+                <a href="#" class="btn btn-gold btn-sm" onclick="activatePremium(); return false;">Ativar Premium</a>
               </div>
             </div>
             <div class="comments-list" id="dashCommentsList">

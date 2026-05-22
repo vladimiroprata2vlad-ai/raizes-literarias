@@ -465,7 +465,7 @@
             <label>
               <input type="checkbox" id="rememberMe"> Lembrar-me
             </label>
-            <a href="#" onclick="showToast('Funcionalidade em desenvolvimento', 'info'); return false;">Esqueceu a senha?</a>
+            <a href="#" onclick="resetPassword(); return false;">Esqueceu a senha?</a>
           </div>
 
           <button type="submit" class="btn-auth">
@@ -636,6 +636,23 @@
       const msgEl = document.getElementById(formId + 'Message');
       msgEl.textContent = message;
       msgEl.className = 'auth-message ' + type;
+    }
+
+    function resetPassword() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const users = getUsers();
+      const user = users.find(u => u.email === email);
+
+      if (!email) {
+        showMessage('login', 'Insere o teu email para recuperar a senha.', 'error');
+        return;
+      }
+      if (!user) {
+        showMessage('login', 'Não encontramos uma conta com este email.', 'error');
+        return;
+      }
+
+      showMessage('login', `Recuperação local: a senha guardada para este demo é "${user.password}".`, 'success');
     }
 
     // Login

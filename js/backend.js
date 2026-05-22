@@ -196,7 +196,7 @@ function performGlobalSearch(query) {
         </div>
       </div>
       <div class="search-result-actions">
-        <button onclick="event.stopPropagation();addToCart('${escapeHtml(book.name)}',${book.price})" title="Comprar">
+        <button onclick="event.stopPropagation();addToCart('${escapeHtml(book.name)}',${book.price},'${escapeHtml(book.author)}')" title="Comprar">
           <i class="fas fa-cart-plus"></i>
         </button>
         <button onclick="event.stopPropagation();toggleFavorite('${escapeHtml(book.name)}','${escapeHtml(book.author)}',${book.price})" title="Favoritar">

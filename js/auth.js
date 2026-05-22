@@ -149,13 +149,11 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Protected pages (require login)
+// Pages that require login because they expose personal account data
 const protectedPages = [
-  'comunidade.html',
-  'entrevistas.html',
-  'loja.html',
-  'contato.html',
-  'audiobooks.html'
+  'dashboard.html',
+  'perfil-leitor.html',
+  'perfil-escritor.html'
 ];
 
 // Check if current page requires login

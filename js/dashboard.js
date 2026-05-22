@@ -2,6 +2,28 @@
    RAÍZES LITERÁRIAS - Dashboard System
    ============================================ */
 
+function getProfiles() {
+  return JSON.parse(localStorage.getItem('raizesProfiles') || '{}');
+}
+
+function saveProfiles(profiles) {
+  localStorage.setItem('raizesProfiles', JSON.stringify(profiles));
+}
+
+function getUserProfile() {
+  const user = getCurrentUser();
+  if (!user) return null;
+  const profiles = getProfiles();
+  return profiles[user.id] || {};
+}
+
+function updateProfile(userId, updates) {
+  const profiles = getProfiles();
+  profiles[userId] = { ...(profiles[userId] || {}), ...updates };
+  saveProfiles(profiles);
+  return profiles[userId];
+}
+
 // Dashboard initialization
 function initDashboard() {
   const user = getCurrentUser();
@@ -128,6 +150,9 @@ function loadSampleBooks() {
   const tableBody = document.getElementById('booksTableBody');
   if (!tableBody) return;
 
+  const user = getCurrentUser();
+  const profileBooks = user ? (getProfiles()[user.id]?.booksWritten || []) : [];
+
   const sampleBooks = [
     {
       title: 'Mayombe',
@@ -163,7 +188,19 @@ function loadSampleBooks() {
     }
   ];
 
-  tableBody.innerHTML = sampleBooks.map(book => `
+  const books = [
+    ...profileBooks.map(book => ({
+      title: book.title,
+      genre: book.genre,
+      downloads: book.status === 'draft' ? '0' : 'Novo',
+      rating: 0,
+      status: book.status || 'pending',
+      cover: 'linear-gradient(135deg, #2D5A3D, #D4A843)'
+    })),
+    ...sampleBooks
+  ];
+
+  tableBody.innerHTML = books.map(book => `
     <tr>
       <td>
         <div class="book-title-cell">
@@ -298,6 +335,51 @@ function initBookTableActions() {
       }
     }
   });
+}
+
+function activatePremium() {
+  const user = getCurrentUser();
+  if (!user) {
+    window.location.href = 'login.html?redirect=dashboard.html';
+    return;
+  }
+
+  updateProfile(user.id, { premium: true, premiumAt: new Date().toISOString() });
+  document.querySelectorAll('.premium-notice').forEach(notice => {
+    notice.innerHTML = `
+      <i class="fas fa-crown"></i>
+      <div>
+        <h3>Premium ativo</h3>
+        <p>A tua conta já pode responder comentários e ver análises avançadas.</p>
+      </div>
+    `;
+  });
+  showToast('Premium ativado com sucesso!');
+}
+
+function saveDraft() {
+  const user = getCurrentUser();
+  if (!user) return;
+
+  const title = document.getElementById('bookTitle')?.value || 'Novo livro';
+  const book = {
+    id: Date.now().toString(),
+    title,
+    genre: document.getElementById('bookGenre')?.value || 'Rascunho',
+    description: document.getElementById('bookDescription')?.value || '',
+    pages: document.getElementById('bookPages')?.value || 0,
+    price: document.getElementById('bookPrice')?.value || 0,
+    status: 'draft',
+    createdAt: new Date().toISOString()
+  };
+
+  const profiles = getProfiles();
+  profiles[user.id] = profiles[user.id] || { booksWritten: [] };
+  profiles[user.id].booksWritten = profiles[user.id].booksWritten || [];
+  profiles[user.id].booksWritten.push(book);
+  saveProfiles(profiles);
+  loadSampleBooks();
+  showToast('Rascunho guardado');
 }
 
 // Initialize on load

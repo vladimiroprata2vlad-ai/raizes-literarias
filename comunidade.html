@@ -830,10 +830,10 @@
               <span>23 membros</span>
             </div>
             <div class="clube-actions">
-              <button class="btn btn-primary btn-sm">
+              <button class="btn btn-primary btn-sm" onclick="joinClube('terra-sonambula')">
                 <i class="fas fa-plus"></i> Participar
               </button>
-              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);">
+              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);" onclick="openClubeDiscussion('terra-sonambula')">
                 <i class="fas fa-comments"></i> Discussão
               </button>
             </div>
@@ -869,10 +869,10 @@
               <span>18 membros</span>
             </div>
             <div class="clube-actions">
-              <button class="btn btn-primary btn-sm">
+              <button class="btn btn-primary btn-sm" onclick="joinClube('mayombe')">
                 <i class="fas fa-plus"></i> Participar
               </button>
-              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);">
+              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);" onclick="openClubeDiscussion('mayombe')">
                 <i class="fas fa-comments"></i> Discussão
               </button>
             </div>
@@ -907,10 +907,10 @@
               <span>8 membros</span>
             </div>
             <div class="clube-actions">
-              <button class="btn btn-primary btn-sm">
+              <button class="btn btn-primary btn-sm" onclick="joinClube('chiquinho')">
                 <i class="fas fa-plus"></i> Participar
               </button>
-              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);">
+              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);" onclick="openClubeDiscussion('chiquinho')">
                 <i class="fas fa-comments"></i> Discussão
               </button>
             </div>
@@ -1382,10 +1382,10 @@
             <button class="post-action" onclick="likePost('${post.id}')">
               <i class="fas fa-heart"></i> Curtir
             </button>
-            <button class="post-action">
+            <button class="post-action" onclick="commentPost('${post.id}')">
               <i class="fas fa-comment"></i> Comentar
             </button>
-            <button class="post-action">
+            <button class="post-action" onclick="sharePost('${post.id}')">
               <i class="fas fa-share"></i> Partilhar
             </button>
           </div>
@@ -1411,6 +1411,35 @@
         post.likes++;
         savePosts(posts);
         renderFeed();
+      }
+    }
+
+    function commentPost(postId) {
+      const text = prompt('Escreve o teu comentário:');
+      if (!text || !text.trim()) return;
+      const posts = getPosts();
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        post.comments++;
+        post.commentList = post.commentList || [];
+        post.commentList.push({ text: text.trim(), time: 'Agora' });
+        savePosts(posts);
+        renderFeed();
+        showToast('Comentário publicado!');
+      }
+    }
+
+    function sharePost(postId) {
+      const posts = getPosts();
+      const post = posts.find(p => p.id === postId);
+      if (post) {
+        post.shares++;
+        savePosts(posts);
+        renderFeed();
+        if (navigator.share) {
+          navigator.share({ title: 'Raízes Literárias', text: post.content, url: window.location.href }).catch(() => {});
+        }
+        showToast('Publicação partilhada!');
       }
     }
 
@@ -1615,16 +1644,31 @@
               <span>${clube.members || 1} membros</span>
             </div>
             <div class="clube-actions">
-              <button class="btn btn-primary btn-sm">
+              <button class="btn btn-primary btn-sm" onclick="joinClube('${clube.id}')">
                 <i class="fas fa-plus"></i> Participar
               </button>
-              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);">
+              <button class="btn btn-secondary btn-sm" style="border-color: var(--cinza-light); color: var(--preto);" onclick="openClubeDiscussion('${clube.id}')">
                 <i class="fas fa-comments"></i> Discussão
               </button>
             </div>
           </div>
         </div>
       `).join('');
+    }
+
+    function joinClube(clubeId) {
+      const joined = JSON.parse(localStorage.getItem('raizesJoinedClubes') || '[]');
+      if (!joined.includes(clubeId)) {
+        joined.push(clubeId);
+        localStorage.setItem('raizesJoinedClubes', JSON.stringify(joined));
+        addPoints(10);
+      }
+      showToast('Entraste no clube de leitura!');
+    }
+
+    function openClubeDiscussion(clubeId) {
+      showToast('Discussão aberta. Publica no feed usando a comunidade do clube.');
+      openNewPost();
     }
 
     // Add clube form
@@ -1703,10 +1747,10 @@
             <button class="post-action" onclick="likePost('${post.id}')">
               <i class="fas fa-heart"></i> Curtir
             </button>
-            <button class="post-action">
+            <button class="post-action" onclick="commentPost('${post.id}')">
               <i class="fas fa-comment"></i> Comentar
             </button>
-            <button class="post-action">
+            <button class="post-action" onclick="sharePost('${post.id}')">
               <i class="fas fa-share"></i> Partilhar
             </button>
           </div>
