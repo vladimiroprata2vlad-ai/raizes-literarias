@@ -98,107 +98,50 @@ function initUploadForm() {
   uploadForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const title = document.getElementById('bookTitle').value;
-    const genre = document.getElementById('bookGenre').value;
-    const description = document.getElementById('bookDescription').value;
-    const pages = document.getElementById('bookPages').value;
-    const price = document.getElementById('bookPrice').value;
-    const isFree = document.getElementById('bookFree').checked;
+    const item = typeof registerContentFromDashboard === 'function'
+      ? registerContentFromDashboard('published')
+      : null;
 
-    // Validate
-    if (!title || !genre || !description) {
-      showToast('Preenche todos os campos obrigatórios', 'error');
-      return;
-    }
+    if (!item) return;
 
-    // Create book object
-    const book = {
-      id: Date.now().toString(),
-      title,
-      genre,
-      description,
-      pages: pages || 0,
-      price: isFree ? 0 : (price || 0),
-      status: 'pending',
-      createdAt: new Date().toISOString()
-    };
-
-    // Save to profile
     const user = getCurrentUser();
     if (user) {
       const profiles = getProfiles();
-      if (!profiles[user.id]) {
-        profiles[user.id] = { booksWritten: [] };
-      }
-      if (!profiles[user.id].booksWritten) {
-        profiles[user.id].booksWritten = [];
-      }
-      profiles[user.id].booksWritten.push(book);
+      if (!profiles[user.id]) profiles[user.id] = { booksWritten: [] };
+      if (!profiles[user.id].booksWritten) profiles[user.id].booksWritten = [];
+      profiles[user.id].booksWritten.push(item);
       saveProfiles(profiles);
     }
 
-    showToast('Livro enviado para análise!');
-    uploadForm.reset();
-
-    // Reload books
     loadSampleBooks();
   });
 }
 
-// Load sample books for table
+// Load books for table
 function loadSampleBooks() {
   const tableBody = document.getElementById('booksTableBody');
   if (!tableBody) return;
 
-  const user = getCurrentUser();
-  const profileBooks = user ? (getProfiles()[user.id]?.booksWritten || []) : [];
+  const content = typeof getContentStore === 'function' ? getContentStore() : { books: [], hqs: [] };
+  const books = [...content.books, ...content.hqs].map(book => ({
+    title: book.title || book.name,
+    genre: book.type === 'hq' ? 'HQ' : (book.genre || 'Livro'),
+    downloads: book.status === 'draft' ? '0' : 'Novo',
+    rating: 0,
+    status: book.status || 'published',
+    cover: book.type === 'hq' ? 'linear-gradient(135deg, #5A2D5A, #D4A843)' : 'linear-gradient(135deg, #2D5A3D, #D4A843)'
+  }));
 
-  const sampleBooks = [
-    {
-      title: 'Mayombe',
-      genre: 'Romance',
-      downloads: '2.345',
-      rating: 4.8,
-      status: 'published',
-      cover: 'linear-gradient(135deg, #C75B39, #D4A843)'
-    },
-    {
-      title: 'Yaka',
-      genre: 'Romance',
-      downloads: '1.823',
-      rating: 4.7,
-      status: 'published',
-      cover: 'linear-gradient(135deg, #2D5A3D, #1E3D2A)'
-    },
-    {
-      title: 'O Vendedor de Passados',
-      genre: 'Ficção',
-      downloads: '3.120',
-      rating: 4.9,
-      status: 'published',
-      cover: 'linear-gradient(135deg, #4A0E0E, #8B0000)'
-    },
-    {
-      title: 'A Guerra da Cabaça',
-      genre: 'Teatro',
-      downloads: '456',
-      rating: 4.5,
-      status: 'draft',
-      cover: 'linear-gradient(135deg, #8B4513, #D2691E)'
-    }
-  ];
-
-  const books = [
-    ...profileBooks.map(book => ({
-      title: book.title,
-      genre: book.genre,
-      downloads: book.status === 'draft' ? '0' : 'Novo',
-      rating: 0,
-      status: book.status || 'pending',
-      cover: 'linear-gradient(135deg, #2D5A3D, #D4A843)'
-    })),
-    ...sampleBooks
-  ];
+  if (books.length === 0) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align:center; padding:40px; color:var(--cinza);">
+          Nenhum conteúdo cadastrado ainda. Use "Publicar" para adicionar livros ou HQs reais.
+        </td>
+      </tr>
+    `;
+    return;
+  }
 
   tableBody.innerHTML = books.map(book => `
     <tr>
@@ -358,28 +301,21 @@ function activatePremium() {
 }
 
 function saveDraft() {
+  const item = typeof registerContentFromDashboard === 'function'
+    ? registerContentFromDashboard('draft')
+    : null;
+  if (!item) return;
+
   const user = getCurrentUser();
-  if (!user) return;
+  if (user) {
+    const profiles = getProfiles();
+    profiles[user.id] = profiles[user.id] || { booksWritten: [] };
+    profiles[user.id].booksWritten = profiles[user.id].booksWritten || [];
+    profiles[user.id].booksWritten.push(item);
+    saveProfiles(profiles);
+  }
 
-  const title = document.getElementById('bookTitle')?.value || 'Novo livro';
-  const book = {
-    id: Date.now().toString(),
-    title,
-    genre: document.getElementById('bookGenre')?.value || 'Rascunho',
-    description: document.getElementById('bookDescription')?.value || '',
-    pages: document.getElementById('bookPages')?.value || 0,
-    price: document.getElementById('bookPrice')?.value || 0,
-    status: 'draft',
-    createdAt: new Date().toISOString()
-  };
-
-  const profiles = getProfiles();
-  profiles[user.id] = profiles[user.id] || { booksWritten: [] };
-  profiles[user.id].booksWritten = profiles[user.id].booksWritten || [];
-  profiles[user.id].booksWritten.push(book);
-  saveProfiles(profiles);
   loadSampleBooks();
-  showToast('Rascunho guardado');
 }
 
 // Initialize on load

@@ -27,7 +27,7 @@
         <span>Raízes Literárias</span>
       </a>
       <div class="nav-links">
-        <a href="index.html">HQ</a>
+        <a href="index.html">Início</a>
         <a href="dashboard.html" class="active">Dashboard</a>
         <a href="escritores.html">Escritores</a>
         <a href="loja.html">Livraria</a>
@@ -40,7 +40,7 @@
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">HQ</a>
+    <a href="index.html">Início</a>
     <a href="dashboard.html">Dashboard</a>
     <a href="comunidade.html">Comunidade</a>
   </div>
@@ -205,9 +205,30 @@
             <form id="uploadForm" class="upload-form">
               <div class="form-row">
                 <div class="form-group">
-                  <label for="bookTitle">Título do Livro *</label>
+                  <label for="bookType">Tipo *</label>
+                  <select id="bookType" required>
+                    <option value="book">Livro</option>
+                    <option value="hq">HQ / Banda Desenhada</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="bookTitle">Título *</label>
                   <input type="text" id="bookTitle" required placeholder="Título da obra">
                 </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bookAuthor">Autor *</label>
+                  <input type="text" id="bookAuthor" required placeholder="Nome do autor">
+                </div>
+                <div class="form-group">
+                  <label for="bookCountry">País *</label>
+                  <input type="text" id="bookCountry" required placeholder="Ex: Angola">
+                </div>
+              </div>
+
+              <div class="form-row">
                 <div class="form-group">
                   <label for="bookGenre">Género *</label>
                   <select id="bookGenre" required>
@@ -218,6 +239,7 @@
                     <option value="teatro">Teatro</option>
                     <option value="ensaio">Ensaio</option>
                     <option value="infantil">Infantil</option>
+                    <option value="hq">HQ / Banda Desenhada</option>
                   </select>
                 </div>
               </div>
@@ -266,7 +288,7 @@
 
               <div class="form-actions">
                 <button type="submit" class="btn btn-primary">
-                  <i class="fas fa-upload"></i> Publicar Livro
+                  <i class="fas fa-upload"></i> Publicar
                 </button>
                 <button type="button" class="btn btn-secondary" style="border-color: var(--cinza-light); color: var(--preto);" onclick="saveDraft()">
                   <i class="fas fa-save"></i> Guardar Rascunho

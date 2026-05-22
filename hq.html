@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Compare livros lado a lado - preços, avaliações e mais.">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="HQ e banda desenhada no Raízes Literárias">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#2D5A3D">
-  <title>Comparar Livros | Raízes Literárias</title>
+  <title>HQ | Raízes Literárias</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,24 +15,6 @@
   <link rel="stylesheet" href="css/enhanced.css">
   <link rel="stylesheet" href="css/features.css">
   <link rel="stylesheet" href="css/features2.css">
-  <style>
-    .page-hero {
-      margin-top: 70px;
-      padding: 80px 0 40px;
-      background: linear-gradient(135deg, var(--terracotta-dark), var(--terracotta), var(--dourado));
-      color: white;
-      text-align: center;
-    }
-    .compare-section { padding: 60px 0; }
-    .compare-container { max-width: 900px; margin: 0 auto; }
-    .compare-hint {
-      text-align: center;
-      padding: 20px;
-      color: var(--cinza);
-      margin-bottom: 20px;
-    }
-    .compare-hint a { color: var(--terracotta); }
-  </style>
 </head>
 <body>
   <nav class="navbar" id="navbar">
@@ -44,13 +25,13 @@
       </a>
       <div class="nav-links">
         <a href="index.html">Início</a>
-        <a href="hq.html">HQ</a>
+        <a href="hq.html" class="active">HQ</a>
         <a href="paises.html">Países</a>
         <a href="comunidade.html">Comunidade</a>
-        <a href="entrevistas.html">Entrevistas</a>
-        <a href="loja.html">Livrarias</a>
-        <a href="audiobooks.html">Audiobooks</a>
-              </div>
+        <a href="escritores.html">Escritores</a>
+        <a href="loja.html">Livraria</a>
+        <a href="ranking.html">Ranking</a>
+      </div>
       <div class="nav-actions">
         <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
         <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -62,24 +43,25 @@
     <a href="hq.html">HQ</a>
     <a href="paises.html">Países</a>
     <a href="comunidade.html">Comunidade</a>
-    <a href="entrevistas.html">Entrevistas</a>
-    <a href="loja.html">Livrarias</a>
-    <a href="audiobooks.html">Audiobooks</a>
-      </div>
+    <a href="escritores.html">Escritores</a>
+    <a href="loja.html">Livraria</a>
+  </div>
 
   <section class="page-hero">
     <div class="container">
-      <h1><i class="fas fa-balance-scale"></i> Comparar Livros</h1>
-      <p>Compare livros lado a lado para escolher a melhor leitura</p>
+      <h1><i class="fas fa-mask"></i> HQ & Banda Desenhada</h1>
+      <p>Publica, descobre e lê histórias em quadrinhos, manga, BD africana e novelas gráficas.</p>
     </div>
   </section>
 
-  <section class="compare-section">
+  <section class="loja-section">
     <div class="container">
-      <div class="compare-container">
-        <p class="compare-hint">Selecciona livros na <a href="loja.html">loja</a> clicando no ícone de balança <i class="fas fa-balance-scale"></i></p>
-        <div id="compareTable"></div>
+      <div class="section-title">
+        <h2>Catálogo de HQ</h2>
+        <p>Os títulos aparecem aqui quando forem cadastrados no painel.</p>
       </div>
+      <div class="loja-counter" id="hqCounter"></div>
+      <div class="livros-grid" id="hqGrid"></div>
     </div>
   </section>
 
@@ -91,9 +73,6 @@
     </div>
   </footer>
 
-  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
-  <div class="toast" id="toast"></div>
-
   <script src="js/particles.js"></script>
   <script src="js/scroll-reveal.js"></script>
   <script src="js/auth.js"></script>
@@ -101,6 +80,5 @@
   <script src="js/features.js"></script>
   <script src="js/features2.js"></script>
   <script src="js/backend.js"></script>
-  <script>document.addEventListener('DOMContentLoaded', renderCompareTable);</script>
 </body>
 </html>
