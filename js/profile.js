@@ -214,6 +214,11 @@ function loadReaderBooks() {
 }
 
 // --- Reader Profile: Want to Read ---
+function profileEscapeJs(value) {
+  if (typeof escapeJs === 'function') return escapeJs(value);
+  return JSON.stringify(value == null ? '' : String(value)).replace(/</g, '\\u003C').replace(/>/g, '\\u003E').replace(/&/g, '\\u0026').replace(/'/g, '\\u0027');
+}
+
 function loadWantToRead() {
   const grid = document.getElementById('wantToReadGrid');
   if (!grid) return;
@@ -235,7 +240,7 @@ function loadWantToRead() {
       <div class="livro-info">
         <h4>${book.name}</h4>
         <p class="autor">${book.author}</p>
-        <button class="btn btn-primary btn-sm" onclick="addToCart('${book.name}', 0)" style="margin-top: 8px; font-size: 0.8rem;">
+        <button class="btn btn-primary btn-sm" onclick="addToCart(${profileEscapeJs(book.name)}, 0)" style="margin-top: 8px; font-size: 0.8rem;">
           <i class="fas fa-shopping-cart"></i> Comprar
         </button>
       </div>
@@ -318,10 +323,10 @@ function loadFavoritesGrid() {
         <h4>${book.name || book.title}</h4>
         <p class="autor">${book.author || 'Desconhecido'}</p>
         <div style="display: flex; gap: 5px; margin-top: 8px;">
-          <button class="btn btn-primary btn-sm" onclick="addToCart('${book.name || book.title}', ${book.price || 0})" style="font-size: 0.8rem; flex: 1;">
+          <button class="btn btn-primary btn-sm" onclick="addToCart(${profileEscapeJs(book.name || book.title)}, ${book.price || 0})" style="font-size: 0.8rem; flex: 1;">
             <i class="fas fa-shopping-cart"></i>
           </button>
-          <button class="btn btn-secondary btn-sm" onclick="removeFavorite('${book.name || book.title}')" style="font-size: 0.8rem; color: var(--terracotta);">
+          <button class="btn btn-secondary btn-sm" onclick="removeFavorite(${profileEscapeJs(book.name || book.title)})" style="font-size: 0.8rem; color: var(--terracotta);">
             <i class="fas fa-trash"></i>
           </button>
         </div>
